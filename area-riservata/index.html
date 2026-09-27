@@ -1267,6 +1267,8 @@ function route(){
   const id=(location.hash||"").slice(1) || window.__PAGE || "";
   const p=PAGES.find(x=>x.id===id) || SITE.find(x=>x.id===id) || SITE[0];
   current=p;
+  const PS={"":"calcio",societa:"calcio",aziende:"pallavolo",enti:"tennis",atleti:"padel",famiglie:"padel"};
+  if(!S.picked && PS[p.id]) S.sport=PS[p.id];
   $("#app").innerHTML = p.render(p);
   if(!WEB) document.title = p.tag ? `SWS · ${p.tag}` : "SWS Foto Sport";
   if(!route.first) window.scrollTo(0,0);
@@ -1291,7 +1293,7 @@ document.addEventListener("click", e=>{
   if(t.dataset.cat){ S.cat=t.dataset.cat; rerender(); return; }
   if(t.dataset.role){ S.pr.ruolo=t.dataset.role; document.querySelectorAll("[data-role]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.role===S.pr.ruolo)); prUpdate(); return; }
   if(t.id==="pr-copy"){ const m=prMsg(); try{ navigator.clipboard.writeText(m).then(()=>toast("Testo copiato"),()=>toast("Seleziona e copia il testo")); }catch(err){ toast("Seleziona e copia il testo"); } return; }
-  if(t.dataset.sport){ S.sport=t.dataset.sport; partial(true); return; }
+  if(t.dataset.sport){ S.picked=true; S.sport=t.dataset.sport; partial(true); return; }
   if(t.dataset.g){ S.g=t.dataset.g; if(S.atleta==="Martina Rossi"&&S.g==="m") S.atleta="Luca Rossi"; else if(S.atleta==="Luca Rossi"&&S.g==="f") S.atleta="Martina Rossi"; partial(true); return; }
   if(t.dataset.mon){ S.month=(S.month+ +t.dataset.mon+12)%12; set("lg-cal",calendar()); set("lg-m",MONTHS[S.month]+" 2027"); set("cf-cal",calendar()); set("cf-m",MONTHS[S.month]+" 2027"); return; }
   if(t.id==="na-gift"){ S.gift=true; rerender(); return; }
@@ -1348,7 +1350,7 @@ function partial(pick){
 // logo upload (resta nel browser)
 document.addEventListener("change", e=>{
   if(e.target.id==="crest-in"){ const f=e.target.files&&e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ S.crest=r.result; partial(); toast("Stemma caricato nell'anteprima"); }; r.readAsDataURL(f); return; }
-  if(e.target.matches(".sport-sel select")){ S.sport=e.target.value; partial(true); return; }
+  if(e.target.matches(".sport-sel select")){ S.picked=true; S.sport=e.target.value; partial(true); return; }
   if(!/-file$/.test(e.target.id)) return;
   const f=e.target.files&&e.target.files[0]; if(!f) return;
   const r=new FileReader(); r.onload=()=>{ S.logo=r.result; partial(); document.querySelectorAll(".drop .note").forEach(n=>n.textContent="Stai vedendo il tuo logo."); toast("Logo caricato nell'anteprima"); if(current?.id==="natale"&&!S.gift){S.gift=true; set("na-box",giftBox());} }; r.readAsDataURL(f);
