@@ -1,6 +1,6 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><base href="/"><title>Prova tu: crea la tua figurina · SWS Foto Sport</title>
-<meta name="description" content="Scegli sport e squadra, scrivi il nome: figurina e foto di squadra cambiano in tempo reale. Stagione sportiva 2026/2027."><meta property="og:type" content="website"><meta property="og:site_name" content="SWS Agency · Foto Sport">
-<meta property="og:title" content="Prova tu: crea la tua figurina · SWS Foto Sport"><meta property="og:description" content="Scegli sport e squadra, scrivi il nome: figurina e foto di squadra cambiano in tempo reale. Stagione sportiva 2026/2027."><meta property="og:image" content="https://sws-foto-sport.vercel.app/img/ricordo.jpg"><meta property="og:url" content="https://sws-foto-sport.vercel.app/prova/">
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><base href="/"><title>Prova tu: personalizza le tue fotografie · SWS Foto Sport</title>
+<meta name="description" content="Gioca con il configuratore: foto dell&#x27;atleta, foto di squadra e calendario 2027 con il nome, lo sport e lo sponsor della tua società."><meta property="og:type" content="website"><meta property="og:site_name" content="SWS Agency · Foto Sport">
+<meta property="og:title" content="Prova tu: personalizza le tue fotografie · SWS Foto Sport"><meta property="og:description" content="Gioca con il configuratore: foto dell&#x27;atleta, foto di squadra e calendario 2027 con il nome, lo sport e lo sponsor della tua società."><meta property="og:image" content="https://sws-foto-sport.vercel.app/img/ricordo.jpg"><meta property="og:url" content="https://sws-foto-sport.vercel.app/prova/">
 <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/img/sws-icon.png">
 <style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
 <script>window.__WEB=true;window.__PAGE="prova";</script>
@@ -590,6 +590,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .pc-top{grid-template-columns:19.5cqi minmax(0,1fr)!important}
 .pc-year{font-size:7cqi!important}
 .pc-col .mm table{letter-spacing:-.04em}
+.cfg-sub{margin:8px 0 0;font-size:clamp(15px,1.6vw,18px);color:var(--muted,#aaa);max-width:640px}
 </style>
 
 <div id="app"></div>
@@ -1140,7 +1141,7 @@ function pArea(p){
 
 function pProva(p){
   return shell(`<section class="cfg">
-    <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Crea la tua <span class="kitc">figurina</span></h1></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
+    <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Personalizza le tue <span class="kitc">fotografie</span></h1><p class="cfg-sub">Gioca con il nostro configuratore e ottieni un'anteprima di quello che potremo fare per te.</p></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
     <div class="cfg-main"><div class="cfg-prev3">
       <div class="pv pv-f"><span class="label">Foto atleta · 15×20 cm</span><div id="cf-fig">${figurina({size:""})}</div></div>
       <div class="pv pv-t"><span class="label">Foto di squadra · 20×30 cm</span><div id="cf-team">${teamCard()}</div></div>

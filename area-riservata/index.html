@@ -590,6 +590,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .pc-top{grid-template-columns:19.5cqi minmax(0,1fr)!important}
 .pc-year{font-size:7cqi!important}
 .pc-col .mm table{letter-spacing:-.04em}
+.cfg-sub{margin:8px 0 0;font-size:clamp(15px,1.6vw,18px);color:var(--muted,#aaa);max-width:640px}
 </style>
 
 <div id="app"></div>
@@ -1140,7 +1141,7 @@ function pArea(p){
 
 function pProva(p){
   return shell(`<section class="cfg">
-    <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Crea la tua <span class="kitc">figurina</span></h1></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
+    <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Personalizza le tue <span class="kitc">fotografie</span></h1><p class="cfg-sub">Gioca con il nostro configuratore e ottieni un'anteprima di quello che potremo fare per te.</p></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
     <div class="cfg-main"><div class="cfg-prev3">
       <div class="pv pv-f"><span class="label">Foto atleta · 15×20 cm</span><div id="cf-fig">${figurina({size:""})}</div></div>
       <div class="pv pv-t"><span class="label">Foto di squadra · 20×30 cm</span><div id="cf-team">${teamCard()}</div></div>
