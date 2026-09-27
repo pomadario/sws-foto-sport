@@ -49,7 +49,8 @@ a{color:inherit}
 .chip-top span{font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:999px;backdrop-filter:blur(6px)}
 .sound{position:absolute;right:16px;top:16px}
 .sponsor-bug{position:absolute;right:16px;bottom:16px;background:#fff;border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;color:#141414;font:600 11px var(--display);box-shadow:var(--shadow);transition:opacity .4s,transform .4s}
-.sponsor-bug img{height:28px;width:auto;display:block}
+.sponsor-bug img{height:clamp(30px,5.5vw,52px);width:auto;display:block}
+.sponsor-bug{font-size:13px!important;padding:10px 14px!important}
 .sponsor-bug[hidden]{display:none}
 .hotspot{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:0;background:rgba(226,51,43,.9);color:#fff;font:800 12px var(--display);cursor:pointer;box-shadow:0 0 0 0 rgba(226,51,43,.6);animation:pulse 1.6s infinite}
 .hotspot[hidden]{display:none}
@@ -167,7 +168,7 @@ footer a{text-decoration:none;font-weight:600}
       <span class="label">Il tuo marchio nella festa</span>
       <h2>Il logo sulla figurina e nel video</h2>
       <p>Carica il logo della tua azienda: lo vedi subito sulla figurina regalata e nell'angolo del video, come lo vedrebbero le famiglie.</p>
-      <div class="drop"><label for="file" style="font-weight:700">Carica il tuo logo</label><input id="file" type="file" accept="image/*"><p class="note" id="lnote">Ora vedi un logo di esempio (Colombo Serramenti, azienda inventata).</p></div>
+      <div class="drop"><label for="file" style="font-weight:700">Carica il tuo logo</label><input id="file" type="file" accept="image/*"><p class="note" id="lnote">Qui compare il logo dello sponsor: carica il tuo per vederlo.</p></div>
       <div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn kit" href="https://wa.me/393296606094" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><button class="btn ghost" data-act="replay" type="button">Rivedi il video col mio logo</button></div>
     </div>
   </section>
@@ -181,7 +182,7 @@ footer a{text-decoration:none;font-weight:600}
 </div>
 
 <script>
-const SAMPLE="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100"><rect x="4" y="10" width="80" height="80" rx="18" fill="#0F5C4D"/><path d="M26 30h36v40H26z" fill="none" stroke="#fff" stroke-width="6"/><path d="M44 30v40M26 50h36" stroke="#fff" stroke-width="4"/><text x="100" y="54" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#0F5C4D">Colombo</text><text x="102" y="80" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#3B4A47">SERRAMENTI · DAL 1978</text></svg>`);
+const SAMPLE="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100"><rect x="3" y="3" width="434" height="94" rx="16" fill="#FFD400" stroke="#141414" stroke-width="5" stroke-dasharray="14 9"/><text x="220" y="42" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="26" letter-spacing="2" fill="#141414">IL TUO</text><text x="220" y="83" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="40" fill="#141414">SPONSOR QUI</text></svg>`);
 let logo=SAMPLE;
 const $=s=>document.querySelector(s);
 const v=$("#vid");
