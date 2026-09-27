@@ -592,6 +592,20 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .pc-col .mm table{letter-spacing:-.04em}
 .cfg-sub{margin:8px 0 0;font-size:clamp(15px,1.6vw,18px);color:var(--muted,#aaa);max-width:640px}
 .legal{grid-column:1/-1;flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 40px;border-top:1px solid var(--line,#333);padding-top:16px;margin-top:8px;font-size:12px;line-height:1.5;color:var(--muted,#aaa)}.legal p{margin:0}.legal p:first-child{flex:1 1 520px;max-width:860px}.legal b{color:#fff}.legal-l{display:flex;gap:40px;color:#fff}
+.pc{display:grid;gap:8px;font-size:13.5px;line-height:1.4}
+.pc>div{border-radius:10px;padding:10px 12px}
+.pc .pro{background:rgba(31,163,122,.14)}.pc .con{background:rgba(226,51,43,.12)}
+.pc b{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.pc .pro b{color:#3fd4a0}.pc .con b{color:#ff7a73}
+.pc ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.legal-l a{color:#fff;text-decoration:none}.legal-l a:hover{text-decoration:underline}
+.legaldoc{max-width:820px;padding-block:24px 60px}
+.legaldoc h1{font-size:clamp(32px,5vw,52px);margin:10px 0 6px}
+.legaldoc h2{font-size:20px;margin:30px 0 8px;text-transform:none;font-family:var(--display)}
+.legaldoc p{max-width:none}.legaldoc .kicker{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#aaa)}.legaldoc p,.legaldoc li{font-size:15.5px;line-height:1.65;color:#d9d9d9}
+.legaldoc ul{padding-left:20px}
+.legaldoc .upd{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#999)}
+.legaldoc a{color:#fff}
 </style>
 
 <div id="app"></div>
@@ -694,7 +708,7 @@ function formule(aud){
   const A=`<button class="fcard ${f==="a"?"on":""}" data-formula="a" aria-pressed="${f==="a"}">
       <span class="ftag">Formula 1 · Senza sponsor</span>
       <b>Foto a chi le vuole</b>
-      <ul><li>Fotografiamo tutti gli atleti e tutte le squadre.</li><li>Le famiglie ordinano online solo se vogliono, e pagano loro.</li><li>Alla società torna il <strong>${PCT}%</strong> di tutto quello che viene venduto.</li></ul>
+      <ul><li>Scattiamo le foto in palestra o al campo a tutti gli atleti e a tutte le squadre.</li><li>La società raccoglie i nominativi e il denaro di chi vuole le foto.</li><li>Consegniamo alla società tutto il materiale.</li><li>Alla società rimane il <strong>${PCT}%</strong> di tutto il venduto.</li></ul>
       <span class="fcost">Costo per la società: <strong>0 €</strong></span></button>`;
   const B=`<button class="fcard ${f==="b"?"on":""}" data-formula="b" aria-pressed="${f==="b"}">
       <span class="ftag">Formula 2 · Con sponsor</span>
@@ -745,7 +759,7 @@ function foot(){ return `<footer class="foot2">
     <a href="${CONTACT.ig}" target="_blank" rel="noopener"><span class="label">Instagram</span>${CONTACT.igLabel}</a>
     <a href="${CONTACT.wa}" target="_blank" rel="noopener"><span class="label">WhatsApp</span>${CONTACT.telLabel}</a>
     <a href="mailto:${CONTACT.mail}"><span class="label">Email</span>${CONTACT.mail}</a>
-  </div><div class="legal"><p><b>2026© SWS AGENCY S.R.L.</b> - Partita IVA e Codice Fiscale: 04625240983 - Cap. Sociale: € 10.000,00 iv<br>SDI: M5UXCR1 - Sede legale: Via Attiraglio, 100 Palazzolo sull'Oglio (BS) - Sede operativa: Via F.lli Pagani 10, Castelli Calepio (BG)<br>Attività avviata con il contributo di Regione Lombardia - Bando Nuova Impresa 2026</p><p class="legal-l"><span>Privacy policy</span><span>Termini di utilizzo</span></p></div></footer>`; }
+  </div><div class="legal"><p><b>2026© SWS AGENCY S.R.L.</b> - Partita IVA e Codice Fiscale: 04625240983 - Cap. Sociale: € 10.000,00 iv<br>SDI: M5UXCR1 - Sede legale: Via Attiraglio, 100 Palazzolo sull'Oglio (BS) - Sede operativa: Via F.lli Pagani 10, Castelli Calepio (BG)<br>Attività avviata con il contributo di Regione Lombardia - Bando Nuova Impresa 2026</p><p class="legal-l"><a href="${linkTo("privacy")}">Privacy policy</a><a href="${linkTo("termini")}">Termini di utilizzo</a></p></div></footer>`; }
 function directLine(){ return `<div class="direct"><div><span class="label">Preferisci parlarne subito?</span><b>${CONTACT.telLabel} · <a href="mailto:${CONTACT.mail}" style="color:inherit">${CONTACT.mail}</a></b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="tel:${CONTACT.tel}">Chiama</a></div></div>`; }
 function page(p, inner){
   const cut=inner.indexOf("</section>")+10;
@@ -790,8 +804,8 @@ function pGratis(p){
     <div class="steps">
       <div class="step"><span class="label"></span><b>Fissiamo le date</b><p>Con i tuoi allenatori, durante gli allenamenti. Nessuna giornata in più.</p></div>
       <div class="step"><span class="label"></span><b>Scattiamo</b><p>Ogni atleta da solo, ogni squadra al completo.</p></div>
-      <div class="step"><span class="label"></span><b>Le famiglie ordinano</b><p>Da un modulo online, con calma, da casa.</p></div>
-      <div class="step"><span class="label"></span><b>Voi incassate</b><p>Il ${PCT}% del totale venduto va alla società.</p></div>
+      <div class="step"><span class="label"></span><b>La società raccoglie</b><p>Nominativi e denaro di chi vuole le foto.</p></div>
+      <div class="step"><span class="label"></span><b>Consegniamo e voi incassate</b><p>Il ${PCT}% del totale venduto va alla società.</p></div>
     </div></section>`);
 }
 
@@ -1037,10 +1051,12 @@ function howDialog(){ return `<dialog class="how" id="how" aria-labelledby="how-
   <p>Fotografiamo tutti gli atleti e tutte le squadre: foto individuale con nome e numero, e foto di gruppo. Poi scegli una delle due varianti.</p>
   <div class="how-vars">
     <div class="how-var"><span class="label">Variante 1</span><b class="t">Senza sponsor</b>
-      <ol><li>Scattiamo le foto in palestra o al campo.</li><li>Le famiglie le guardano online e ordinano solo se vogliono.</li><li>Alla società torna il ${PCT}% di tutto il venduto.</li></ol>
+      <ol><li>Scattiamo le foto in palestra o al campo a tutti gli atleti e a tutte le squadre.</li><li>La società raccoglie i nominativi e il denaro di chi vuole le foto.</li><li>Consegniamo alla società tutto il materiale.</li><li>Alla società rimane il ${PCT}% di tutto il venduto.</li></ol>
+      <div class="pc"><div class="pro"><b>Pro</b><ul><li>Velocissima: si parte subito, basta fissare le date.</li><li>Nessuno da trovare o convincere.</li><li>Alla società rimane il ${PCT}% di tutto il venduto.</li><li>Ogni famiglia sceglie liberamente cosa ordinare.</li></ul></div><div class="con"><b>Contro</b><ul><li>Non tutti gli atleti ricevono la foto: solo chi la ordina.</li><li>La società si occupa di raccogliere nominativi e denaro.</li><li>L'incasso dipende da quante famiglie ordinano.</li></ul></div></div>
       <span class="res">Costo per la società: 0 €</span></div>
     <div class="how-var sp"><span class="label">Variante 2</span><b class="t">Con sponsor</b>
-      <ol><li>Un'azienda del territorio sostiene il servizio.</li><li>Ogni atleta riceve in regalo la sua foto e quella della squadra, con il logo dello sponsor.</li><li>Consegna in società, per esempio alla festa di Natale.</li></ol>
+      <ol><li>Un'azienda del territorio sostiene il servizio.</li><li>Ogni atleta riceve in regalo la sua foto e quella della squadra, con il logo dello sponsor.</li><li>Consegna in società, per esempio alla festa di Natale.</li><li>Sugli acquisti in più delle famiglie (altre foto, calendari per i parenti) alla società rimane il ${PCT}%.</li></ol>
+      <div class="pc"><div class="pro"><b>Pro</b><ul><li>Tutti gli atleti ricevono la foto, senza eccezioni.</li><li>Nessun denaro da raccogliere per la foto regalo.</li><li>Lo sponsor resta legato alla società anche per altre iniziative.</li><li>Un bel regalo della società da consegnare alla festa.</li><li>In più il ${PCT}% sugli acquisti extra delle famiglie.</li></ul></div><div class="con"><b>Contro</b><ul><li>Ci può volere tempo per individuare lo sponsor.</li><li>Serve un nome da parte della società (poi a convincerlo ci pensiamo noi).</li><li>I tempi di consegna dipendono dall'accordo con lo sponsor.</li></ul></div></div>
       <span class="res">Costo per società e famiglie: 0 €</span></div>
   </div>
   <div class="how-note"><b>Lo sponsor lo suggerisce il gruppo sportivo</b><span>Ci indichi un'azienda che conosci: un genitore imprenditore, un negozio o un fornitore della zona. Poi pensiamo noi a incontrarla, spiegarle il progetto con materiali pronti e aiutarla a dire sì.</span></div>
@@ -1183,6 +1199,32 @@ function pEnti(p){
     <div class="steps">${steps.map(([a,b])=>`<div class="step"><span class="label"></span><b>${a}</b><p>${b}</p></div>`).join("")}</div></section>
   <section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte: ti proponiamo come partire.</p></div>${form("enti","soc")}${directLine()}</section>`, "t-fam");
 }
+function pLegal(p){ return shell(`<section class="legaldoc">${p.id==="privacy"?LEGAL_PRIV:LEGAL_TERM}</section>`); }
+const LEGAL_PRIV=`<span class="kicker">Informativa</span><h1>Privacy policy</h1><p class="upd">Ultimo aggiornamento: 28 settembre 2026</p>
+<p>Questa informativa spiega come trattiamo i dati personali di chi visita questo sito, ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003.</p>
+<h2>Titolare del trattamento</h2><p>SWS AGENCY S.R.L., P.IVA e C.F. 04625240983, sede legale in Via Attiraglio 100, Palazzolo sull'Oglio (BS), sede operativa in Via F.lli Pagani 10, Castelli Calepio (BG), email <a href="mailto:info@swsagency.it">info@swsagency.it</a>.</p>
+<h2>Quali dati trattiamo</h2><ul>
+<li><b>Dati di navigazione.</b> Il server che ospita il sito (Vercel) registra automaticamente dati tecnici come indirizzo IP, tipo di browser, data e ora della richiesta. Servono solo a far funzionare il sito e a garantirne la sicurezza.</li>
+<li><b>Dati che ci invii tu.</b> Quando compili un modulo o premi un pulsante di contatto, il messaggio si apre su WhatsApp o nel tuo programma di posta: ci arrivano solo i dati che scegli di inviarci (nome, società, telefono, email, testo del messaggio).</li>
+<li><b>Configuratore.</b> Nomi, loghi e stemmi che inserisci nell'anteprima restano nel tuo browser: non vengono caricati sui nostri server.</li></ul>
+<h2>Perché li trattiamo e su quale base</h2><ul>
+<li>Rispondere alle tue richieste e preparare una proposta: misure precontrattuali richieste da te (art. 6.1.b GDPR).</li>
+<li>Gestire il servizio fotografico con la società sportiva: esecuzione del contratto (art. 6.1.b) e obblighi di legge (art. 6.1.c).</li>
+<li>Sicurezza e funzionamento del sito: legittimo interesse del titolare (art. 6.1.f).</li></ul>
+<h2>Foto degli atleti</h2><p>Le fotografie scattate durante il servizio sono trattate secondo gli accordi con la società sportiva e sulla base dei consensi raccolti dalla società presso atleti e famiglie (per i minori, da chi esercita la responsabilità genitoriale). Le foto non vengono pubblicate su questo sito senza consenso.</p>
+<h2>A chi comunichiamo i dati</h2><p>Solo a fornitori che ci aiutano a erogare il servizio (hosting, posta elettronica, messaggistica, laboratorio di stampa), nominati se necessario responsabili del trattamento. Non vendiamo né cediamo i dati a terzi. Alcuni fornitori (ad es. Vercel, Meta per WhatsApp, Google per i caratteri tipografici) possono trattare dati fuori dall'UE con le garanzie previste dal GDPR.</p>
+<h2>Cookie</h2><p>Il sito non usa cookie di profilazione né strumenti di analisi. Possono essere presenti solo cookie tecnici necessari al funzionamento e le richieste ai servizi di Google Fonts per i caratteri del sito.</p>
+<h2>Per quanto tempo</h2><p>I dati dei contatti per il tempo necessario a gestire la richiesta e l'eventuale rapporto, poi per i tempi previsti dalla legge. I dati tecnici di navigazione per il tempo strettamente necessario.</p>
+<h2>I tuoi diritti</h2><p>Puoi chiedere in ogni momento accesso, rettifica, cancellazione, limitazione, portabilità dei dati e opporti al trattamento scrivendo a <a href="mailto:info@swsagency.it">info@swsagency.it</a>. Puoi anche proporre reclamo al Garante per la protezione dei dati personali (garanteprivacy.it).</p>`;
+const LEGAL_TERM=`<span class="kicker">Condizioni</span><h1>Termini di utilizzo</h1><p class="upd">Ultimo aggiornamento: 28 settembre 2026</p>
+<p>Questo sito è gestito da SWS AGENCY S.R.L., P.IVA e C.F. 04625240983, sede legale in Via Attiraglio 100, Palazzolo sull'Oglio (BS), sede operativa in Via F.lli Pagani 10, Castelli Calepio (BG), email <a href="mailto:info@swsagency.it">info@swsagency.it</a>. Usando il sito accetti questi termini.</p>
+<h2>A cosa serve il sito</h2><p>Il sito presenta il servizio fotografico di SWS Agency per società sportive, sponsor, atleti e famiglie. Le informazioni hanno scopo illustrativo: condizioni, prezzi e tempi del servizio sono definiti nella proposta o nel contratto firmato con la società sportiva o con lo sponsor.</p>
+<h2>Anteprime e simulazioni</h2><p>Figurine, foto di squadra, calendari e simulazioni economiche mostrati nel configuratore sono esempi indicativi. Le immagini di esempio sono illustrative e non ritraggono atleti reali delle società. I prodotti finali possono differire per grafica, colori e impaginazione.</p>
+<h2>Proprietà dei contenuti</h2><p>Testi, grafica, marchi e immagini del sito appartengono a SWS Agency o ai rispettivi titolari e non possono essere copiati o riutilizzati senza autorizzazione scritta. Loghi e nomi inseriti dagli utenti nel configuratore restano dei rispettivi titolari e sono usati solo per mostrare l'anteprima nel browser.</p>
+<h2>Uso corretto</h2><p>Non caricare nel configuratore contenuti di cui non hai i diritti o che siano offensivi. È vietato usare il sito in modo da danneggiarne il funzionamento.</p>
+<h2>Responsabilità</h2><p>Ci impegniamo a mantenere il sito corretto e aggiornato, ma non garantiamo l'assenza di errori o interruzioni. Eventuali link a siti esterni (ad es. WhatsApp, Instagram) portano a servizi di terzi con condizioni proprie.</p>
+<h2>Legge applicabile</h2><p>Questi termini sono regolati dalla legge italiana. Per ogni controversia è competente il foro previsto dalla legge; per i consumatori resta il foro di residenza.</p>
+<h2>Contatti</h2><p><a href="mailto:info@swsagency.it">info@swsagency.it</a> · 329 660 6094</p>`;
 const SITE=[
   {id:"", render:pHome},
   {id:"societa", aud:"soc", render:pTarget},
@@ -1192,6 +1234,8 @@ const SITE=[
   {id:"area-riservata", aud:"soc", render:pArea},
   {id:"prova", aud:"soc", render:pProva},
   {id:"enti", aud:"soc", render:pEnti},
+  {id:"privacy", aud:"soc", render:pLegal},
+  {id:"termini", aud:"soc", render:pLegal},
 ];
 
 /* ================= PAGES & ROUTER ================= */
