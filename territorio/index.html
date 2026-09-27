@@ -215,7 +215,7 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .fbrand .sws-logo{width:52px;height:52px}
 .fbrand b{display:block;font-size:17px}
 .fbrand span{font-size:13px;color:var(--muted)}
-.fcontacts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fcontacts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .fcontacts a{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);color:var(--ink);text-decoration:none;font-weight:600;background:var(--card)}
 .fcontacts a:hover{border-color:var(--kit)}
 @media (max-width:760px){.foot2{grid-template-columns:1fr}.fcontacts{grid-template-columns:1fr}}
@@ -376,7 +376,7 @@ const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["basket","Basket"],
 const sportName=id=>id==="altro"?(S.altro||"Il tuo sport"):(SPORTS.find(x=>x[0]===id)||SPORTS[0])[1];
 const SWS_PATH="M0,0v1000h1000V0H0ZM332.9,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.2,49.4,56.2,81v203c0,50.9-30.1,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.2-75.9s90.5,25.3,90.5,75.9v161.3h0ZM668.6,417.2l-40.3,431.8h-95.3l-19.4-413.7-19.4,413.7h-95.3l-40.3-432.5-18.6-240.3h76.3l30.1,510.5,29.7-510.5h75.1l29.6,510.5,30-510.5h76.3l-18.6,241h0ZM875.4,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.1,49.4,56.1,81v203c0,50.9-30,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.1-75.9s90.5,25.3,90.5,75.9v161.3h0Z";
 const swsLogo=(cls="")=>`<svg class="sws-logo ${cls}" viewBox="0 0 1000 1000" role="img" aria-label="SWS Agency"><path fill="currentColor" d="${SWS_PATH}"/></svg>`;
-const CONTACT={site:"https://www.swsagency.it",siteLabel:"swsagency.it",ig:"https://www.instagram.com/agency_sws/",igLabel:"@agency_sws",name:"Dario Poma",tel:"+393296606094",telLabel:"329 660 6094",wa:"https://wa.me/393296606094"};
+const CONTACT={site:"https://www.swsagency.it",siteLabel:"swsagency.it",ig:"https://www.instagram.com/agency_sws/",igLabel:"@agency_sws",name:"SWS Agency",mail:"info@swsagency.it",tel:"+393296606094",telLabel:"329 660 6094",wa:"https://wa.me/393296606094"};
 const SAMPLE_LOGO="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100"><rect x="3" y="3" width="434" height="94" rx="16" fill="#FFD400" stroke="#141414" stroke-width="5" stroke-dasharray="14 9"/><text x="220" y="42" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="26" letter-spacing="2" fill="#141414">IL TUO</text><text x="220" y="83" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="40" fill="#141414">SPONSOR QUI</text></svg>`);
 const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"pallavolo", g:"f", players:14,
   n:180, share:60, spend:30, az:"", logo:null, sample:true, month:11, budget:1500, tess:180, gift:false,
@@ -484,9 +484,10 @@ function foot(){ return `<footer class="foot2">
   <div class="fcontacts">
     <a href="${CONTACT.site}" target="_blank" rel="noopener"><span class="label">Sito</span>${CONTACT.siteLabel}</a>
     <a href="${CONTACT.ig}" target="_blank" rel="noopener"><span class="label">Instagram</span>${CONTACT.igLabel}</a>
-    <a href="${CONTACT.wa}" target="_blank" rel="noopener"><span class="label">${CONTACT.name}</span>${CONTACT.telLabel}</a>
+    <a href="${CONTACT.wa}" target="_blank" rel="noopener"><span class="label">WhatsApp</span>${CONTACT.telLabel}</a>
+    <a href="mailto:${CONTACT.mail}"><span class="label">Email</span>${CONTACT.mail}</a>
   </div></footer>`; }
-function directLine(){ return `<div class="direct"><div><span class="label">Preferisci parlarne subito?</span><b>${CONTACT.name} · ${CONTACT.telLabel}</b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="tel:${CONTACT.tel}">Chiama</a></div></div>`; }
+function directLine(){ return `<div class="direct"><div><span class="label">Preferisci parlarne subito?</span><b>${CONTACT.telLabel} · <a href="mailto:${CONTACT.mail}" style="color:inherit">${CONTACT.mail}</a></b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="tel:${CONTACT.tel}">Chiama</a></div></div>`; }
 function page(p, inner){
   const cut=inner.indexOf("</section>")+10;
   inner=inner.slice(0,cut)+formule(p.aud)+band(p.id)+inner.slice(cut);
@@ -859,7 +860,7 @@ function pArea(p){
   </section>
   <section class="sec"><div class="sec-head"><span class="label">Cosa troverai</span><h2>Tutto in un posto</h2></div>
     <div class="feat">${[["Le foto della squadra","Individuali e di gruppo, divise per categoria."],["Gli ordini","Le famiglie scelgono formati e quantità e pagano online."],["I download","Le foto per i canali della società, pronte da usare."]].map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
-  <section class="sec"><div class="direct"><div><span class="label">Vuoi attivarla per la tua società?</span><b>${CONTACT.name} · ${CONTACT.telLabel}</b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Scrivici su WhatsApp</a></div></div></section>`);
+  <section class="sec"><div class="direct"><div><span class="label">Vuoi attivarla per la tua società?</span><b>${CONTACT.telLabel} · <a href="mailto:${CONTACT.mail}" style="color:inherit">${CONTACT.mail}</a></b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Scrivici su WhatsApp</a></div></div></section>`);
 }
 const SITE=[
   {id:"", render:pHome},
