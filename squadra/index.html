@@ -640,8 +640,10 @@ const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"palla
   tasks:{}, sent:{}, formula:null, altro:"" };
 
 /* ---------- components ---------- */
-const pImg=(sp,g)=>`img/p/${imgKey(sp)}-${g}.jpg`;
-const tImg=(sp,g)=>`img/t/${imgKey(sp)}-${g}.jpg`;
+const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"rosso",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"verde",sp:"calcio",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"}};
+const heroOn=sp=>!S.picked && S.hero && sp===S.hero.sp;
+const pImg=(sp,g)=>heroOn(sp)?`img/p/hero-${S.hero.k}-${g}.jpg`:`img/p/${imgKey(sp)}-${g}.jpg`;
+const tImg=(sp,g)=>heroOn(sp)&&g===S.hero.g?`img/t/hero-${S.hero.k}.jpg`:`img/t/${imgKey(sp)}-${g}.jpg`;
 const sponsorSrc=()=>S.logo|| (S.sample?SAMPLE_LOGO:null);
 const initials=t=>(t||"La tua società").split(/\s+/).filter(w=>w.length>2||/\d/.test(w)).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"SC";
 function spBox(cls="pp-sp"){ const src=sponsorSrc(); return src?`<span class="${cls}"><img src="${src}" alt="Logo sponsor"></span>`:(S.az?`<span class="${cls} txt">${esc(S.az)}</span>`:""); }
@@ -1267,8 +1269,7 @@ function route(){
   const id=(location.hash||"").slice(1) || window.__PAGE || "";
   const p=PAGES.find(x=>x.id===id) || SITE.find(x=>x.id===id) || SITE[0];
   current=p;
-  const PS={"":"calcio",societa:"calcio",aziende:"pallavolo",enti:"tennis",atleti:"padel",famiglie:"padel"};
-  if(!S.picked && PS[p.id]) S.sport=PS[p.id];
+  if(!S.picked){ S.hero=HERO[p.id]||null; if(S.hero){ S.sport=S.hero.sp; S.g=S.hero.g; } }
   $("#app").innerHTML = p.render(p);
   if(!WEB) document.title = p.tag ? `SWS · ${p.tag}` : "SWS Foto Sport";
   if(!route.first) window.scrollTo(0,0);
