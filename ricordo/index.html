@@ -570,6 +570,26 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .cfg-prev3 .pv-c{grid-column:2!important;max-width:none!important;justify-self:stretch!important}
 .pc-vert{font-size:5.2cqi!important}
 @media (max-width:520px){.cfg-prev3 .label{font-size:8.5px;letter-spacing:.08em}}
+
+.pc-top{align-items:start!important}
+.pc-right{display:grid;gap:2cqi;min-width:0}
+.pc-pic{aspect-ratio:4/3!important;flex:none!important}
+.pc-right .pc-foot{border-top:0;padding:2cqi 2.4cqi;background:#fff;border-radius:1.2cqi;justify-content:space-between}
+.pc-right .pp-by2{color:var(--pp-body)}
+.pc-right .pp-sp{padding:0;max-width:65%}
+.pc-right .pp-sp img{height:8cqi!important}
+.pc-main{grid-template-rows:auto auto!important;align-content:space-between}
+
+.pp-crest.ph{color:var(--kit);border-style:dashed}
+.pp-crest.ph svg{width:58%;height:58%}
+.pp-team .pp-crest.ph,.pc-strip .pp-crest.ph,.pc-pic .pp-crest.ph{font-size:1.5cqi!important}
+.pp-crest.img{background:#fff;overflow:hidden;padding:0}
+.pp-crest.img img{width:100%;height:100%;object-fit:contain;display:block}
+.field .hint{display:block;font-size:11.5px;color:var(--muted,#999);margin-top:4px}
+
+.pc-top{grid-template-columns:19.5cqi minmax(0,1fr)!important}
+.pc-year{font-size:7cqi!important}
+.pc-col .mm table{letter-spacing:-.04em}
 </style>
 
 <div id="app"></div>
@@ -577,7 +597,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 
 <script>
 /* ============ CONFIG (da confermare con Davide) ============ */
-const PCT = 15;            // % alla società (PDF Davide 15% · locandina 20%)
+const PCT = 15;            // % alla società (confermato da Dario 28/9)
 const SEASON = "2026/2027";
 /* ============================================================ */
 
@@ -590,7 +610,7 @@ const num = n => new Intl.NumberFormat("it-IT",{maximumFractionDigits:2}).format
 const MONTHS = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 
 // Stato condiviso tra le pagine (per-visitatore, solo in memoria)
-const SPORT_GROUPS=[["I più praticati a Bergamo e Brescia", [["calcio", "Calcio"], ["pallavolo", "Pallavolo"], ["tennis", "Tennis"], ["padel", "Padel"], ["basket", "Basket"], ["atletica", "Atletica leggera"], ["ciclismo", "Ciclismo"], ["nuoto", "Nuoto"], ["ginnastica", "Ginnastica artistica"], ["ritmica", "Ginnastica ritmica"], ["danza", "Danza sportiva"], ["karate", "Karate"], ["judo", "Judo"], ["calcio5", "Calcio a 5 / Futsal"], ["rugby", "Rugby"]]], ["Sport di squadra", [["pallamano", "Pallamano"], ["baseball", "Baseball"], ["softball", "Softball"], ["hockey", "Hockey su prato"], ["hockeypista", "Hockey su pista"], ["hockeyghiaccio", "Hockey su ghiaccio"], ["floorball", "Floorball / Unihockey"], ["pallanuoto", "Pallanuoto"], ["beach", "Beach volley"], ["sittingvolley", "Sitting volley"], ["baskin", "Baskin"], ["footamericano", "Football americano"], ["flagfootball", "Flag football"], ["lacrosse", "Lacrosse"], ["ultimate", "Ultimate frisbee"], ["cheerleading", "Cheerleading"], ["korfball", "Korfball"], ["calciobalilla", "Calcio balilla"], ["curling", "Curling"]]], ["Palestra, ginnastica e danza", [["acrobatica", "Ginnastica acrobatica"], ["trampolino", "Trampolino elastico"], ["aerobica", "Ginnastica aerobica"], ["twirling", "Twirling"], ["hiphop", "Hip hop / Breaking"], ["pesistica", "Pesistica"], ["powerlifting", "Powerlifting"], ["crossfit", "Functional / CrossFit"], ["pattinaggio", "Pattinaggio artistico"], ["pattcorsa", "Pattinaggio corsa"]]], ["Racchetta e precisione", [["tennistavolo", "Tennistavolo"], ["badminton", "Badminton"], ["squash", "Squash"], ["pickleball", "Pickleball"], ["golf", "Golf"], ["arco", "Tiro con l'arco"], ["tiroasegno", "Tiro a segno"], ["tiroavolo", "Tiro a volo"], ["bocce", "Bocce"], ["bowling", "Bowling"], ["biliardo", "Biliardo"], ["freccette", "Freccette"]]], ["Arti marziali e combattimento", [["taekwondo", "Taekwondo"], ["kickboxing", "Kickboxing"], ["boxe", "Boxe / Pugilato"], ["lotta", "Lotta"], ["jiujitsu", "Ju-jitsu / BJJ"], ["mma", "MMA"], ["kungfu", "Kung fu / Wushu"], ["aikido", "Aikido"], ["muaythai", "Muay thai"], ["scherma", "Scherma"]]], ["Acqua", [["nuotoart", "Nuoto artistico"], ["tuffi", "Tuffi"], ["nuotopinnato", "Nuoto pinnato"], ["salvamento", "Salvamento"], ["canoa", "Canoa e kayak"], ["canottaggio", "Canottaggio"], ["dragonboat", "Dragon boat"], ["vela", "Vela"], ["windsurf", "Windsurf / Kite"], ["sup", "SUP"], ["triathlon", "Triathlon"]]], ["Montagna, bici e outdoor", [["sci", "Sci alpino"], ["scifondo", "Sci di fondo"], ["snowboard", "Snowboard"], ["biathlon", "Biathlon"], ["montagna", "Corsa in montagna"], ["trail", "Trail running"], ["podismo", "Podismo / Corsa su strada"], ["orienteering", "Orienteering"], ["arrampicata", "Arrampicata"], ["mtb", "Mountain bike"], ["bmx", "BMX"], ["ciclocross", "Ciclocross"], ["equitazione", "Equitazione"], ["pentathlon", "Pentathlon moderno"]]], ["Motori", [["motocross", "Motocross / Enduro"], ["karting", "Karting"], ["automobilismo", "Automobilismo"]]]];
+const SPORT_GROUPS=[["Principali", [["calcio", "Calcio"], ["pallavolo", "Pallavolo"], ["tennis", "Tennis"], ["padel", "Padel"], ["basket", "Basket"], ["atletica", "Atletica leggera"], ["ciclismo", "Ciclismo"], ["nuoto", "Nuoto"], ["ginnastica", "Ginnastica artistica"], ["ritmica", "Ginnastica ritmica"], ["danza", "Danza sportiva"], ["karate", "Karate"], ["judo", "Judo"], ["calcio5", "Calcio a 5 / Futsal"], ["rugby", "Rugby"]]], ["Sport di squadra", [["pallamano", "Pallamano"], ["baseball", "Baseball"], ["softball", "Softball"], ["hockey", "Hockey su prato"], ["hockeypista", "Hockey su pista"], ["hockeyghiaccio", "Hockey su ghiaccio"], ["floorball", "Floorball / Unihockey"], ["pallanuoto", "Pallanuoto"], ["beach", "Beach volley"], ["sittingvolley", "Sitting volley"], ["baskin", "Baskin"], ["footamericano", "Football americano"], ["flagfootball", "Flag football"], ["lacrosse", "Lacrosse"], ["ultimate", "Ultimate frisbee"], ["cheerleading", "Cheerleading"], ["korfball", "Korfball"], ["calciobalilla", "Calcio balilla"], ["curling", "Curling"]]], ["Palestra, ginnastica e danza", [["acrobatica", "Ginnastica acrobatica"], ["trampolino", "Trampolino elastico"], ["aerobica", "Ginnastica aerobica"], ["twirling", "Twirling"], ["hiphop", "Hip hop / Breaking"], ["pesistica", "Pesistica"], ["powerlifting", "Powerlifting"], ["crossfit", "Functional / CrossFit"], ["pattinaggio", "Pattinaggio artistico"], ["pattcorsa", "Pattinaggio corsa"]]], ["Racchetta e precisione", [["tennistavolo", "Tennistavolo"], ["badminton", "Badminton"], ["squash", "Squash"], ["pickleball", "Pickleball"], ["golf", "Golf"], ["arco", "Tiro con l'arco"], ["tiroasegno", "Tiro a segno"], ["tiroavolo", "Tiro a volo"], ["bocce", "Bocce"], ["bowling", "Bowling"], ["biliardo", "Biliardo"], ["freccette", "Freccette"]]], ["Arti marziali e combattimento", [["taekwondo", "Taekwondo"], ["kickboxing", "Kickboxing"], ["boxe", "Boxe / Pugilato"], ["lotta", "Lotta"], ["jiujitsu", "Ju-jitsu / BJJ"], ["mma", "MMA"], ["kungfu", "Kung fu / Wushu"], ["aikido", "Aikido"], ["muaythai", "Muay thai"], ["scherma", "Scherma"]]], ["Acqua", [["nuotoart", "Nuoto artistico"], ["tuffi", "Tuffi"], ["nuotopinnato", "Nuoto pinnato"], ["salvamento", "Salvamento"], ["canoa", "Canoa e kayak"], ["canottaggio", "Canottaggio"], ["dragonboat", "Dragon boat"], ["vela", "Vela"], ["windsurf", "Windsurf / Kite"], ["sup", "SUP"], ["triathlon", "Triathlon"]]], ["Montagna, bici e outdoor", [["sci", "Sci alpino"], ["scifondo", "Sci di fondo"], ["snowboard", "Snowboard"], ["biathlon", "Biathlon"], ["montagna", "Corsa in montagna"], ["trail", "Trail running"], ["podismo", "Podismo / Corsa su strada"], ["orienteering", "Orienteering"], ["arrampicata", "Arrampicata"], ["mtb", "Mountain bike"], ["bmx", "BMX"], ["ciclocross", "Ciclocross"], ["equitazione", "Equitazione"], ["pentathlon", "Pentathlon moderno"]]], ["Motori", [["motocross", "Motocross / Enduro"], ["karting", "Karting"], ["automobilismo", "Automobilismo"]]]];
 const SPORTS=[...SPORT_GROUPS.flatMap(g=>g[1]),["altro","Altro sport"]];
 const IMG_ALIAS={softball:"baseball",hockeypista:"hockey",hockeyghiaccio:"hockey",floorball:"hockey",sittingvolley:"pallavolo",baskin:"basket",footamericano:"rugby",flagfootball:"rugby",lacrosse:"hockey",ultimate:"altro",cheerleading:"ginnastica",korfball:"basket",calciobalilla:"altro",curling:"altro",acrobatica:"ginnastica",trampolino:"ginnastica",aerobica:"ginnastica",hiphop:"danza",pesistica:"altro",powerlifting:"altro",crossfit:"altro",pattcorsa:"pattinaggio",squash:"tennis",pickleball:"tennis",tiroasegno:"altro",tiroavolo:"altro",bowling:"altro",biliardo:"altro",freccette:"altro",lotta:"judo",jiujitsu:"judo",mma:"karate",kungfu:"karate",aikido:"judo",muaythai:"karate",tuffi:"nuoto",nuotopinnato:"nuoto",salvamento:"nuoto",dragonboat:"altro",windsurf:"altro",sup:"altro",scifondo:"sci",snowboard:"sci",biathlon:"sci",trail:"atletica",podismo:"atletica",orienteering:"atletica",bmx:"ciclismo",ciclocross:"ciclismo",pentathlon:"atletica",motocross:"altro",karting:"altro",automobilismo:"altro",padel:"tennis",ritmica:"ginnastica",calcio5:"calcio",montagna:"atletica",triathlon:"atletica",mtb:"ciclismo",beach:"pallavolo",nuotoart:"nuoto",twirling:"ginnastica",taekwondo:"karate",kickboxing:"altro",boxe:"altro",bocce:"altro",equitazione:"altro",arco:"altro",canoa:"altro",canottaggio:"altro",vela:"altro",tennistavolo:"altro",badminton:"altro",golf:"altro"};
 const imgKey=sp=>IMG_ALIAS[sp]||sp;
@@ -609,7 +629,7 @@ const tImg=(sp,g)=>`img/t/${imgKey(sp)}-${g}.jpg`;
 const sponsorSrc=()=>S.logo|| (S.sample?SAMPLE_LOGO:null);
 const initials=t=>(t||"La tua società").split(/\s+/).filter(w=>w.length>2||/\d/.test(w)).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"SC";
 function spBox(cls="pp-sp"){ const src=sponsorSrc(); return src?`<span class="${cls}"><img src="${src}" alt="Logo sponsor"></span>`:(S.az?`<span class="${cls} txt">${esc(S.az)}</span>`:""); }
-function crest(soc){ return `<span class="pp-crest">${esc(initials(soc))}</span>`; }
+function crest(soc){ if(S.crest) return `<span class="pp-crest img"><img src="${S.crest}" alt="Stemma"></span>`; return soc?`<span class="pp-crest">${esc(initials(soc))}</span>`:`<span class="pp-crest ph" title="Qui va lo stemma della società"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v9M8 11.5h8" stroke="currentColor" stroke-width="2"/></svg></span>`; }
 /* Foto atleta · 15×20 cm (3:4) — stile calendario SWS */
 function figurina({name=S.atleta, cat=S.cat, nr=S.nr, soc=S.soc, sp=S.sport, g=S.g, season=SEASON, sponsor=true, size="15×20 cm"}={}){
   size=size&&!/cm/.test(size)?size+" cm":size;
@@ -645,11 +665,10 @@ function calendar({soc=S.soc, sp=S.sport, g=S.g, name=""}={}){
     <div class="pc-main">
       <div class="pc-top">
         <div class="pc-col"><b class="pc-year">${y}</b>${[0,1,2,3].map(mini).join("")}</div>
-        <div class="pc-photo"><div class="pc-pic"><img src="${tImg(sp,g)}" alt="Foto di squadra" onerror="this.onerror=null;this.src='img/squadra.jpg'">${crest(soc)}</div>
-          <div class="pp-band"><b class="pp-name">${esc(name||sportName(sp)+" "+(g==="f"?"femminile":"maschile"))}</b><span class="pp-strip"><span class="pp-s1">${esc(soc||"La tua società")}</span><span class="pp-s2">Stagione sportiva ${SEASON}</span></span></div></div>
+        <div class="pc-right"><div class="pc-photo"><div class="pc-pic"><img src="${tImg(sp,g)}" alt="Foto di squadra" onerror="this.onerror=null;this.src='img/squadra.jpg'">${crest(soc)}</div>
+          <div class="pp-band"><b class="pp-name">${esc(name||sportName(sp)+" "+(g==="f"?"femminile":"maschile"))}</b><span class="pp-strip"><span class="pp-s1">${esc(soc||"La tua società")}</span><span class="pp-s2">Stagione sportiva ${SEASON}</span></span></div></div><div class="pc-foot"><span class="pp-by2">con il sostegno di</span>${spBox()||`<span class="pp-sp txt">Il tuo logo</span>`}</div></div>
       </div>
       <div class="pc-rest">${[4,5,6,7,8,9,10,11].map(mini).join("")}</div>
-      <div class="pc-foot"><span class="pp-by2">con il sostegno di</span>${spBox()||`<span class="pp-sp txt">Il tuo logo</span>`}</div>
     </div>
     <span class="pp-size">30×40 cm</span>
   </div>`;
@@ -657,7 +676,7 @@ function calendar({soc=S.soc, sp=S.sport, g=S.g, name=""}={}){
 function picker(){
   return `<div class="picker">
     <div class="seg" role="group" aria-label="Squadra">${[["f","Femminile"],["m","Maschile"]].map(([k,l])=>`<button class="segb" data-g="${k}" aria-pressed="${S.g===k}">${l}</button>`).join("")}</div>
-    <label class="sport-sel"><span class="label">Sport · ${SPORTS.length-1} disponibili</span><select aria-label="Scegli lo sport">${SPORT_GROUPS.map(([g,L])=>`<optgroup label="${g}">${L.map(([k,l])=>`<option value="${k}"${S.sport===k?" selected":""}>${l}</option>`).join("")}</optgroup>`).join("")}<optgroup label="Non lo trovi?"><option value="altro"${S.sport==="altro"?" selected":""}>Altro sport (scrivilo tu)</option></optgroup></select></label>
+    <label class="sport-sel"><span class="label">Sport · ${SPORTS.length-1} disponibili</span><select aria-label="Scegli lo sport">${SPORT_GROUPS.map(([g,L],i)=>{const o=L.map(([k,l])=>`<option value="${k}"${S.sport===k?" selected":""}>${l}</option>`).join(""); return i?`<optgroup label="${g}">${o}</optgroup>`:o;}).join("")}<optgroup label="Non lo trovi?"><option value="altro"${S.sport==="altro"?" selected":""}>Altro sport (scrivilo tu)</option></optgroup></select></label>
     ${current&&current.id!=="prova"?`<a class="cfg-link" href="${linkTo("prova")}">Vedi figurina e foto di squadra insieme → Prova tu</a>`:""}
     <div class="field pk-altro"${S.sport==="altro"?"":" hidden"}><label for="pk-altro">Quale sport?</label><input id="pk-altro" value="${esc(S.altro)}" placeholder="es. Padel, Bocce, Tiro con l'arco" maxlength="24"></div>
   </div>`;
@@ -1132,7 +1151,7 @@ function pProva(p){
       <div class="col"><span class="label">1 · Scegli sport e squadra</span>${picker()}</div>
       <div class="col"><span class="label">2 · Personalizza</span>
         <div class="two" style="gap:12px"><div class="field"><label for="cf-name">Nome dell'atleta</label><input id="cf-name" value="${esc(S.atleta)}" maxlength="22"></div><div class="field"><label for="cf-nr">Numero</label><input id="cf-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div></div>
-        <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div>
+        <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div><div class="field"><label for="crest-in">Stemma della società (facoltativo)</label><input id="crest-in" type="file" accept="image/*"><small class="hint">Se non lo carichi, nel cerchio mettiamo le iniziali del gruppo sportivo.</small></div>
         <div class="field"><label>Categoria</label><div class="chips small">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div></div>
       <div class="col"><span class="label">3 · Lo sponsor</span>
         <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo: compare su figurina, foto e calendario.</span></div>
@@ -1282,6 +1301,7 @@ function partial(pick){
 
 // logo upload (resta nel browser)
 document.addEventListener("change", e=>{
+  if(e.target.id==="crest-in"){ const f=e.target.files&&e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ S.crest=r.result; partial(); toast("Stemma caricato nell'anteprima"); }; r.readAsDataURL(f); return; }
   if(e.target.matches(".sport-sel select")){ S.sport=e.target.value; partial(true); return; }
   if(!/-file$/.test(e.target.id)) return;
   const f=e.target.files&&e.target.files[0]; if(!f) return;
