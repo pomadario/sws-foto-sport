@@ -209,7 +209,7 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .toplinks a{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:999px}
 .toplinks a:hover{border-color:var(--kit)}
 .toplinks .toptel{background:var(--kit);border-color:var(--kit);color:#fff}
-@media (max-width:640px){.toplinks a:not(.toptel){display:none}}
+@media (max-width:640px){.toplinks a:not(.toptel){display:inline-flex}}
 .foot2{display:grid;grid-template-columns:1.2fr 2fr;gap:24px;align-items:center}
 .fbrand{display:flex;gap:14px;align-items:center}
 .fbrand .sws-logo{width:52px;height:52px}
@@ -295,6 +295,59 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .pk-team .tcard{max-width:520px}
 .chip-altro{border-style:dashed}
 .pk-altro[hidden]{display:none}
+/* ===== sito ===== */
+.toplinks{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.toplinks a{font-size:13px;font-weight:600;text-decoration:none;color:var(--ink);padding:7px 11px;border-radius:999px;white-space:nowrap}
+.toplinks a:hover,.toplinks a.on{background:var(--soft)}
+.toplinks a.toptel{background:var(--kit);color:var(--on-kit)}
+@media (max-width:860px){.top{flex-wrap:wrap}.toplinks{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-block:8px 44px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.door{position:relative;display:grid;gap:12px;align-content:end;min-height:320px;padding:28px;border-radius:var(--r-lg);text-decoration:none;color:#fff;overflow:hidden;isolation:isolate;border:2px solid var(--kit);transition:transform .25s}
+.door img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.door::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.88) 75%)}
+.door h2{font-size:clamp(28px,3.6vw,42px)}
+.door p{color:#ddd}
+.door .btn{width:max-content}
+.door:hover{transform:translateY(-4px)}
+.ben4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:980px){.ben4{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.ben4{grid-template-columns:1fr}}
+.bcol{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--kit);border-radius:var(--r);padding:20px;display:grid;gap:14px;align-content:start}
+.bcol h3{font-size:20px}
+.bcol ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.bcol li b{display:block;font-size:15px;line-height:1.25}
+.bcol li span{font-size:13.5px;color:var(--muted)}
+.bcol a.more{font-weight:700;font-size:14px;text-decoration:none}
+.t-atl{--kit:#F2B705;--on-kit:#141414;--kit-soft:rgba(242,183,5,.2)}
+.t-fam{--kit:#1FA37A;--kit-soft:rgba(31,163,122,.2)}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.bgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.bgrid{grid-template-columns:1fr}}
+.bitem{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:8px;align-content:start}
+.bitem i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--kit);letter-spacing:.1em}
+.bitem b{font-size:18px;line-height:1.2}
+.bitem span{font-size:14.5px;color:#cfcfcf}
+.bitem.star{border-color:var(--kit);background:linear-gradient(160deg,var(--kit-soft),var(--card) 60%)}
+.vstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:860px){.vstrip{grid-template-columns:1fr 1fr}}
+.vcard{position:relative;border-radius:var(--r);overflow:hidden;text-decoration:none;color:#fff;aspect-ratio:16/10;display:grid;align-content:end;gap:2px;padding:12px;isolation:isolate;border:1px solid var(--line);transition:transform .2s}
+.vcard:hover{transform:translateY(-3px)}
+.vcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.vcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85))}
+.vcard .play{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:var(--kit);display:grid;place-items:center;font-size:12px}
+.vcard b{font-size:14px;line-height:1.2}
+.vcard .label{color:#ddd}
+.cta-band{background:linear-gradient(120deg,var(--kit),color-mix(in srgb,var(--kit) 35%,#000));color:var(--on-kit);border-radius:var(--r-lg);padding:34px;display:grid;gap:14px;box-shadow:var(--shadow)}
+.cta-band .label{color:inherit;opacity:.8}
+.cta-band p{color:inherit}
+.cta-band .btn{width:max-content;background:#fff;border-color:#fff;color:#141414}
+.msgbox{background:#0f0f0f;border:1.5px dashed var(--line);border-radius:var(--r);padding:16px;white-space:pre-wrap;font-size:15px;line-height:1.5}
+.lockbox{display:grid;gap:14px;max-width:460px}
+.lockbox input:disabled{opacity:.5}
+.soon{display:inline-block;background:var(--kit);color:var(--on-kit);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;width:max-content}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.feat{grid-template-columns:1fr}}
 </style>
 
 <div id="app"></div>
@@ -400,7 +453,9 @@ function compare(f){
 }
 /* ---------- shared blocks ---------- */
 function topBar(aud){
-  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks"><a href="${CONTACT.ig}" target="_blank" rel="noopener">Instagram</a><a href="${CONTACT.site}" target="_blank" rel="noopener">${CONTACT.siteLabel}</a><a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
+  const nav=[["societa","Società"],["aziende","Aziende"],["atleti","Atleti e famiglie"],["video","Video"],["area-riservata","Area riservata"]];
+  const cur=current?current.id:"";
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""}">${l}</a>`).join("")}<a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
@@ -671,6 +726,146 @@ function giftBox(){
     <div style="margin-top:12px;display:flex;justify-content:center"><button class="btn ghost" id="na-close">Richiudi il pacco</button></div>`;
 }
 
+/* ================= SITO: home, target, atleti, famiglie, area riservata ================= */
+const vidLink = id => (WEB?"":"https://sws-foto-sport.vercel.app")+"/video/"+(id?id+"/":"");
+const VANT = {
+ soc:{t:"Per la società sportiva", cls:"", page:"societa", items:[
+  ["Zero costi, sempre","Fotografo, stampa e consegna sono a carico nostro. Alla società non costa nulla."],
+  ["Un ricordo per ogni atleta","La foto individuale con nome, numero e squadra, come una figurina."],
+  ["Il senso di squadra","La foto di gruppo di ogni categoria, da appendere in sede e a casa."],
+  ["Una raccolta fondi senza fatica","Senza sponsor, il 15% di ogni foto venduta torna alla società."],
+  ["Nessun lavoro organizzativo","Ci accordiamo con gli allenatori e scattiamo durante gli allenamenti."],
+  ["Lo sponsor lo portiamo noi","Cerchiamo noi le aziende della zona che vogliono sostenervi."],
+  ["Foto professionali per i vostri canali","Immagini di qualità per sito, social e comunicazioni della società."],
+  ["Più iscritti","Una società che si presenta bene attira nuove famiglie."],
+  ["L'archivio della società","Stagione dopo stagione, la storia di tutti i vostri atleti."]]},
+ az:{t:"Per l'azienda", cls:"kit-red", page:"aziende", items:[
+  ["Un modo nuovo di comunicare","Non un annuncio da saltare: un regalo che le famiglie aspettano, aprono e conservano."],
+  ["365 giorni in casa","Il tuo logo su foto e calendari appesi tutto l'anno, in cucina e in camera."],
+  ["Il marchio nel momento più emozionante","Associato all'orgoglio di un figlio in divisa, non a una pubblicità."],
+  ["Il tuo territorio","Sostieni i ragazzi del paese: le famiglie se lo ricordano quando scelgono."],
+  ["Costo per famiglia bassissimo","Arrivi in ogni casa per pochi euro all'anno, senza sprechi."],
+  ["Il regalo di Natale firmato da te","Alla festa della società ogni atleta riceve il tuo regalo."],
+  ["Storie vere per i tuoi social","Racconti un'azione concreta sul territorio, non uno spot."],
+  ["Responsabilità sociale concreta","Un sostegno reale e visibile allo sport di base."],
+  ["Risultati misurabili","Sai quante famiglie raggiungi e quante foto hai regalato."]]},
+ atl:{t:"Per gli atleti", cls:"t-atl", page:"atleti", items:[
+  ["La tua figurina","Una foto vera con nome, numero e squadra, come i professionisti."],
+  ["Foto da usare sui tuoi profili","Scatti professionali, non la solita foto sfocata dal telefono."],
+  ["La foto con i compagni","La squadra al completo, per ricordarti di questa stagione."],
+  ["La collezione delle stagioni","Anno dopo anno, la tua storia sportiva in una serie di foto."],
+  ["Gratis con lo sponsor","Con la formula sponsor la ricevi in regalo."]]},
+ fam:{t:"Per le famiglie", cls:"t-fam", page:"famiglie", items:[
+  ["Basta foto sfocate dagli spalti","Scatti professionali con la luce giusta, senza nessuna fatica."],
+  ["Ordini solo se vuoi","Guardi le foto da casa e scegli con calma. Nessun obbligo."],
+  ["Gratis con lo sponsor","Con la formula sponsor le foto sono un regalo per tutti."],
+  ["Il regalo per i nonni","Il calendario con la squadra, pronto per Natale."],
+  ["Aiuti la società","Una parte di ogni acquisto va alla società di tuo figlio."],
+  ["Consegna in società","Niente spedizioni: ritiri tutto agli allenamenti."]]}
+};
+const VIDS=[["natale","az","Il regalo firmato da te"],["logo","az","Dodici mesi appeso in casa"],["territorio","az","Il campo del paese"],["costo","az","Il calendario in cucina"],["gratis","soc","Il fotografo in palestra"],["ricordo","soc","La foto che resta"],["squadra","soc","Tutti in posa"],["fondi","soc","Le foto che finanziano la stagione"]];
+function shell(inner, cls=""){ return `<div class="wrap ${cls}">${topBar()}${inner}${foot()}</div>`; }
+function bcol(k,n=4){ const v=VANT[k]; return `<div class="bcol ${v.cls}"><span class="label">${v.t}</span><ul>${v.items.slice(0,n).map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ul><a class="more" href="${linkTo(v.page)}">Tutti i vantaggi →</a></div>`; }
+function bgrid(k){ return `<div class="bgrid">${VANT[k].items.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("")}</div>`; }
+function vstrip(aud){ const l=VIDS.filter(v=>!aud||v[1]===aud); return `<div class="vstrip">${l.map(([id,a,t])=>`<a class="vcard ${a==="az"?"kit-red":""}" href="${vidLink(id)}"><img src="img/${id}.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="label">${a==="az"?"Aziende":"Società"} · video</span><b>${esc(t)}</b></a>`).join("")}</div>`; }
+function lcards(aud){ return `<div class="hub-grid">${PAGES.filter(p=>p.aud===aud).map(p=>`<div class="hub-card ${p.aud==="az"?"kit-red":""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${esc(p.tag)}</span><h3>${esc(p.title)}</h3><div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a></div></div>`).join("")}</div>`; }
+function athleteBand(){ return `<section class="sec t-atl"><div class="cta-band"><span class="label">Sei un'atleta o un genitore?</span><h2>Proponilo alla tua società</h2><p>Ti scriviamo noi il messaggio per il presidente o l'allenatore: lo mandi con WhatsApp o per email in un minuto.</p><a class="btn" href="${linkTo("atleti")}#proponi">Scrivi il messaggio</a></div></section>`; }
+
+function pHome(p){
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">SWS Foto Sport · stagione ${SEASON}</span>
+      <h1>Una sola azione.<br><span class="kitc">Quattro vincitori.</span></h1>
+      <p class="lead">SWS Agency fotografa tutti gli atleti e tutte le squadre delle società sportive, e alla società non costa nulla. Ci guadagnano la società, l'azienda che la sostiene, gli atleti e le loro famiglie.</p>
+      <div class="cta-row"><a class="btn kit" href="${linkTo("societa")}">Sono una società sportiva</a><a class="btn ghost" href="${linkTo("aziende")}">Sono un'azienda</a></div></div>
+    <div>${figurina({size:"15×20"})}</div>
+  </section>
+  <section class="split">
+    <a class="door" href="${linkTo("societa")}"><img src="img/gratis.jpg" alt=""><span class="label" style="color:#ddd">Società e associazioni sportive</span><h2>Le foto dei tuoi atleti, <span class="kitc">gratis</span></h2><p>Figurine, foto di squadra e una raccolta fondi, senza spendere un euro e senza lavoro in più.</p><span class="btn kit">Entra</span></a>
+    <a class="door kit-red" href="${linkTo("aziende")}"><img src="img/natale.jpg" alt=""><span class="label" style="color:#ddd">Aziende del territorio</span><h2>Comunica in modo <span class="kitc">nuovo</span></h2><p>Il tuo logo sul regalo che ogni famiglia aspetta: foto e calendari che restano in casa tutto l'anno.</p><span class="btn kit">Entra</span></a>
+  </section>
+  <section class="sec"><div class="sec-head"><span class="label">Una sola azione, quattro vantaggi</span><h2>Chi ci guadagna?<br><span class="kitc">Tutti.</span></h2><p>Le foto della squadra, fatte bene, mettono d'accordo quattro persone diverse.</p></div>
+    <div class="ben4">${bcol("soc")}${bcol("az")}${bcol("atl")}${bcol("fam")}</div></section>
+  ${formule("soc")}
+  <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>Guarda come funziona</h2><p>Otto video da 10 secondi: tocca il punto rosso quando compare.</p></div>${vstrip()}</section>
+  ${athleteBand()}
+  <section class="sec"><div class="sec-head"><span class="label">Per le società</span><h2>Quattro buoni motivi</h2></div>${lcards("soc")}
+    <div class="sec-head"><span class="label">Per le aziende</span><h2>Quattro buoni motivi</h2></div>${lcards("az")}</section>`);
+}
+function pTarget(p){
+  const aud=p.id==="societa"?"soc":"az", soc=aud==="soc";
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">${soc?"Per società e associazioni sportive":"Per le aziende del territorio"}</span>
+      <h1>${soc?`Tutte le foto.<br><span class="kitc">Zero euro.</span>`:`Comunica<br>in modo <span class="kitc">nuovo.</span>`}</h1>
+      <p class="lead">${soc?`Fotografiamo ogni atleta e ogni squadra della tua società. Senza sponsor le famiglie ordinano solo se vogliono e a voi torna il ${PCT}%. Con uno sponsor le foto le ricevono tutti in regalo.`:`Regala ai ragazzi di una società sportiva della tua zona la foto della loro stagione, con il tuo logo sopra. Non è una pubblicità: è un regalo che le famiglie tengono in casa tutto l'anno.`}</p>
+      <div class="cta-row"><button class="btn kit" data-go="contatti">${soc?"Prenota le giornate di scatto":"Chiedi un preventivo"}</button><a class="btn ghost" href="${vidLink(soc?"gratis":"natale")}">Guarda il video</a></div></div>
+    <div>${soc?teamCard():calendar({m:S.month})}</div>
+  </section>
+  <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${soc?"Perché conviene alla società":"Perché conviene alla tua azienda"}</h2></div>${bgrid(aud)}</section>
+  ${formule(aud)}
+  <section class="sec"><div class="sec-head"><span class="label">Approfondisci</span><h2>Scegli il tuo motivo</h2></div>${lcards(aud)}</section>
+  <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>In 10 secondi</h2></div>${vstrip(aud)}</section>
+  ${soc?athleteBand():""}
+  <section class="sec" id="contatti"><div class="sec-head"><span class="label">Ultimo passo</span><h2>${soc?"Prenota il set per la tua stagione":"Mettiamo il tuo nome in campo"}</h2></div>${form(p.id,aud)}${directLine()}</section>`, soc?"":"kit-red");
+}
+S.pr={nome:"",soc:"",ruolo:"atleta",sport:"pallavolo"};
+function prMsg(){
+  const r=S.pr, link=(WEB?location.origin:"https://sws-foto-sport.vercel.app")+"/gratis/";
+  const chi=r.nome?`Sono ${r.nome}`:"Ciao";
+  const ruolo=r.ruolo==="genitore"?", genitore di un nostro atleta":r.ruolo==="allenatore"?", allenatore":"";
+  return `Ciao! ${r.nome?chi+ruolo+". ":""}Ho trovato questa iniziativa di SWS Agency: fotografano gratis tutti gli atleti e tutte le squadre della società, con la foto personale con nome e numero e la foto di squadra.\n\nPer la società non costa nulla: o le famiglie ordinano solo se vogliono e alla società torna il ${PCT}%, oppure uno sponsor della zona le regala a tutti.\n\nSi potrebbe fare anche da noi${r.soc?" alla "+r.soc:""}? Qui c'è tutto: ${link}`;
+}
+function prLinks(){ const m=prMsg(); return {wa:"https://wa.me/?text="+encodeURIComponent(m), mail:"mailto:?subject="+encodeURIComponent("Foto gratis per la nostra società")+"&body="+encodeURIComponent(m)}; }
+function proposer(){ const L=prLinks(); return `<section class="sec" id="proponi"><div class="two">
+  <div class="sec-head"><span class="label">Proponilo alla tua società</span><h2>Il messaggio lo scriviamo noi</h2><p>Metti il tuo nome e quello della società: prepariamo il testo per il presidente o l'allenatore. Tu lo mandi con un tocco.</p>
+    <div class="msgbox" id="pr-msg">${esc(prMsg())}</div></div>
+  <div class="panel">
+    <div class="field"><label>Chi sei?</label><div class="chips">${[["atleta","Atleta"],["genitore","Genitore"],["allenatore","Allenatore"]].map(([k,l])=>`<button class="chip" data-role="${k}" aria-pressed="${S.pr.ruolo===k}">${l}</button>`).join("")}</div></div>
+    <div class="field"><label for="pr-nome">Il tuo nome</label><input id="pr-nome" value="${esc(S.pr.nome)}" placeholder="es. Giulia" maxlength="30"></div>
+    <div class="field"><label for="pr-soc">La tua società</label><input id="pr-soc" value="${esc(S.pr.soc)}" placeholder="es. Volley Iseo" maxlength="40"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn kit" id="pr-wa" href="${L.wa}" target="_blank" rel="noopener">Manda su WhatsApp</a><a class="btn ghost" id="pr-mail" href="${L.mail}">Manda per email</a><button class="btn ghost" id="pr-copy" type="button">Copia il testo</button></div>
+    <p class="note">Vuoi che li contattiamo noi? <a href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, vorrei proporre le foto SWS alla mia società")}" target="_blank" rel="noopener">Scrivici su WhatsApp</a> e ci pensiamo noi.</p>
+  </div></div></section>`; }
+function pPeople(p){
+  const atl=p.id==="atleti";
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">${atl?"Per gli atleti":"Per le famiglie"}</span>
+      <h1>${atl?`Sei un'atleta?<br><span class="kitc">Proponilo alla tua società.</span>`:`Le foto di tuo figlio,<br><span class="kitc">fatte bene.</span>`}</h1>
+      <p class="lead">${atl?"La tua figurina con nome e numero, la foto con i compagni, una collezione stagione dopo stagione. Basta che la tua società dica sì: per lei è gratis.":"Niente più foto sfocate dagli spalti: un fotografo professionista in palestra, le foto le guardi da casa e ordini solo se vuoi. Con uno sponsor, sono un regalo."}</p>
+      <div class="cta-row"><button class="btn kit" data-go="proponi">Proponilo alla società</button><a class="btn ghost" href="${linkTo(atl?"famiglie":"atleti")}">${atl?"Sei un genitore?":"Sei un'atleta?"}</a></div></div>
+    <div>${figurina({size:"15×20"})}</div>
+  </section>
+  <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${atl?"Cosa ci guadagni tu":"Cosa ci guadagna la tua famiglia"}</h2></div>${bgrid(atl?"atl":"fam")}</section>
+  <section class="sec"><div class="sec-head"><span class="label">${atl?"E per la tua famiglia":"E per tuo figlio"}</span></div>${bgrid(atl?"fam":"atl")}</section>
+  ${proposer()}
+  <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>Guarda come funziona</h2></div>${vstrip("soc")}</section>`, atl?"t-atl":"t-fam");
+}
+function pArea(p){
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">Area riservata</span><h1>La tua squadra,<br><span class="kitc">le tue foto.</span></h1>
+      <p class="lead">Presto ogni squadra avrà il suo accesso: le foto della stagione, gli ordini delle famiglie e i download, tutto in un posto solo.</p></div>
+    <div class="panel lockbox"><span class="soon">In arrivo</span>
+      <div class="field"><label for="ar-cod">Codice squadra</label><input id="ar-cod" disabled placeholder="es. VOLLEYISEO-U12"></div>
+      <div class="field"><label for="ar-pw">Password</label><input id="ar-pw" type="password" disabled></div>
+      <button class="btn kit" disabled style="opacity:.5;cursor:not-allowed">Accedi</button>
+      <p class="note">L'accesso viene attivato dopo la giornata di scatto. Ricevi codice e password dalla tua società.</p></div>
+  </section>
+  <section class="sec"><div class="sec-head"><span class="label">Cosa troverai</span><h2>Tutto in un posto</h2></div>
+    <div class="feat">${[["Le foto della squadra","Individuali e di gruppo, divise per categoria."],["Gli ordini","Le famiglie scelgono formati e quantità e pagano online."],["I download","Le foto per i canali della società, pronte da usare."]].map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  <section class="sec"><div class="direct"><div><span class="label">Vuoi attivarla per la tua società?</span><b>${CONTACT.name} · ${CONTACT.telLabel}</b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Scrivici su WhatsApp</a></div></div></section>`);
+}
+const SITE=[
+  {id:"", render:pHome},
+  {id:"societa", aud:"soc", render:pTarget},
+  {id:"aziende", aud:"az", render:pTarget},
+  {id:"atleti", aud:"soc", render:pPeople},
+  {id:"famiglie", aud:"soc", render:pPeople},
+  {id:"area-riservata", aud:"soc", render:pArea},
+];
+
 /* ================= PAGES & ROUTER ================= */
 const PAGES = [
   {id:"gratis",   aud:"soc", tag:"Gratis",        title:"Zero euro, tutte le foto", render:pGratis},
@@ -698,15 +893,15 @@ function hub(){
 let current=null;
 function route(){
   const id=(location.hash||"").slice(1) || window.__PAGE || "";
-  const p=PAGES.find(x=>x.id===id);
-  current=p||null;
-  $("#app").innerHTML = p ? p.render(p) : hub();
-  if(!WEB) document.title = p ? `SWS · ${p.tag}` : "SWS Foto Sport";
+  const p=PAGES.find(x=>x.id===id) || SITE.find(x=>x.id===id) || SITE[0];
+  current=p;
+  $("#app").innerHTML = p.render(p);
+  if(!WEB) document.title = p.tag ? `SWS · ${p.tag}` : "SWS Foto Sport";
   if(!route.first) window.scrollTo(0,0);
   route.first=false;
 }
 route.first=true;
-function rerender(keepScroll=true){ const y=window.scrollY; const a=document.activeElement?.id; $("#app").innerHTML=current?current.render(current):hub(); if(keepScroll) window.scrollTo(0,y); if(a){const el=document.getElementById(a); if(el){el.focus(); if(el.setSelectionRange&&el.type==="text"){const l=el.value.length; try{el.setSelectionRange(l,l)}catch(e){}}}} }
+function rerender(keepScroll=true){ const y=window.scrollY; const a=document.activeElement?.id; $("#app").innerHTML=current.render(current); if(keepScroll) window.scrollTo(0,y); if(a){const el=document.getElementById(a); if(el){el.focus(); if(el.setSelectionRange&&el.type==="text"){const l=el.value.length; try{el.setSelectionRange(l,l)}catch(e){}}}} }
 window.addEventListener("hashchange", route);
 
 function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,1800); }
@@ -718,6 +913,8 @@ document.addEventListener("click", e=>{
   if(t.dataset.formula){ S.formula=t.dataset.formula; document.querySelectorAll("[data-formula]").forEach(c=>{const on=c.dataset.formula===S.formula; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on);}); set("fcompare",compare(S.formula)); return; }
   if(t.dataset.task!==undefined){ S.tasks[t.dataset.task]=!S.tasks[t.dataset.task]; rerender(); return; }
   if(t.dataset.cat){ S.cat=t.dataset.cat; rerender(); return; }
+  if(t.dataset.role){ S.pr.ruolo=t.dataset.role; document.querySelectorAll("[data-role]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.role===S.pr.ruolo)); prUpdate(); return; }
+  if(t.id==="pr-copy"){ const m=prMsg(); try{ navigator.clipboard.writeText(m).then(()=>toast("Testo copiato"),()=>toast("Seleziona e copia il testo")); }catch(err){ toast("Seleziona e copia il testo"); } return; }
   if(t.dataset.sport){ S.sport=t.dataset.sport; partial(true); return; }
   if(t.dataset.g){ S.g=t.dataset.g; if(S.atleta==="Martina Rossi"&&S.g==="m") S.atleta="Luca Rossi"; else if(S.atleta==="Luca Rossi"&&S.g==="f") S.atleta="Martina Rossi"; partial(true); return; }
   if(t.dataset.mon){ S.month=(S.month+ +t.dataset.mon+12)%12; set("lg-cal",calendar({m:S.month})); set("lg-m",MONTHS[S.month]+" 2027"); return; }
@@ -735,6 +932,7 @@ document.addEventListener("input", e=>{
   const id=e.target.id, v=e.target.value;
   const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az", "pk-altro":"altro" };
   if(map[id]!==undefined){ S[map[id]]=v; partial(); return; }
+  if(id==="pr-nome"||id==="pr-soc"){ S.pr[id.slice(3)]=v; prUpdate(); return; }
   if(id==="sq-n"){ S.players=+v; partial(); return; }
   if(id==="fo-n"){ S.n=+v; partial(); return; }
   if(id==="fo-s"){ S.share=+v; partial(); return; }
@@ -742,6 +940,7 @@ document.addEventListener("input", e=>{
   if(id==="co-b"){ S.budget=+v; partial(); return; }
   if(id==="co-t"){ S.tess=+v; partial(); return; }
 });
+function prUpdate(){ const el=document.getElementById("pr-msg"); if(!el) return; el.textContent=prMsg(); const L=prLinks(); const w=document.getElementById("pr-wa"), m=document.getElementById("pr-mail"); if(w) w.href=L.wa; if(m) m.href=L.mail; }
 function set(id,html){ const el=document.getElementById(id); if(el) el.innerHTML=html; }
 function partial(pick){
   if(!current) return;
