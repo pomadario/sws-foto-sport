@@ -369,6 +369,29 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .how-note{border:2px dashed #F2B705;border-radius:var(--r);padding:16px 18px;display:grid;gap:6px;background:rgba(242,183,5,.08)}
 .how-note b{color:#F2B705}
 .how-x{position:sticky;top:0;justify-self:end;margin-bottom:-40px;background:#2a2a2a;border:0;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+
+.cfg{padding-block:28px 40px;display:grid;gap:18px}
+.cfg-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px}
+.cfg-head h1{font-size:clamp(34px,5vw,60px)}
+.season-badge{display:inline-flex;align-items:center;gap:8px;background:var(--kit);color:var(--on-kit);font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(15px,1.8vw,20px);padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px -12px var(--kit)}
+.cfg-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;align-items:start}
+@media (max-width:980px){.cfg-grid{grid-template-columns:1fr}}
+.cfg-prev{position:sticky;top:12px;display:grid;grid-template-columns:.78fr 1.22fr;gap:16px;align-items:center;background:radial-gradient(circle at 30% 30%,var(--kit-soft),transparent 70%);border-radius:var(--r-lg);padding:14px}
+@media (max-width:640px){.cfg-prev{grid-template-columns:1fr 1.25fr;gap:8px;padding:6px;top:4px;z-index:5;background:var(--ground)}}
+.cfg-prev .fig{max-width:100%;transform:rotate(-2deg)}
+.cfg-prev .tcard{max-width:100%}
+.cfg-ctl{gap:14px}
+.cfg-ctl .sports{max-height:none}
+.sp-callout{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.sp-callout i{font-style:normal;background:#FFD400;color:#141414;padding:4px 10px;border-radius:8px;font-weight:900;border:2px dashed #141414}
+.toplinks a.hot{background:#FFD400;color:#141414}
+.cfg-prev > div{min-width:0}
+.cfg-prev .tband{flex-direction:column;align-items:flex-start;gap:8px}
+.cfg-prev .tband img{max-width:100%!important;height:40px!important}
+.cfg-ctl{min-width:0}
+.cfg-ctl .two{grid-template-columns:1.6fr 1fr}
+@media (max-width:640px){.cfg-prev .tband b{font-size:14px}.cfg-prev .tband img{height:26px!important}.cfg-prev .tband span{font-size:9px}}
+.cfg-link{display:inline-flex;gap:6px;font-weight:700;font-size:14px}
 </style>
 
 <div id="app"></div>
@@ -440,6 +463,7 @@ function picker(){
   return `<div class="picker">
     <div class="seg" role="group" aria-label="Squadra">${[["f","Femminile"],["m","Maschile"]].map(([k,l])=>`<button class="segb" data-g="${k}" aria-pressed="${S.g===k}">${l}</button>`).join("")}</div>
     <div class="sports">${SPORTS.map(([k,l])=>`<button class="chip${k==="altro"?" chip-altro":""}" data-sport="${k}" aria-pressed="${S.sport===k}">${l}</button>`).join("")}</div>
+    ${current&&current.id!=="prova"?`<a class="cfg-link" href="${linkTo("prova")}">Vedi figurina e foto di squadra insieme → Prova tu</a>`:""}
     <div class="field pk-altro"${S.sport==="altro"?"":" hidden"}><label for="pk-altro">Quale sport?</label><input id="pk-altro" value="${esc(S.altro)}" placeholder="es. Padel, Bocce, Tiro con l'arco" maxlength="24"></div>
   </div>`;
 }
@@ -474,9 +498,9 @@ function compare(f){
 }
 /* ---------- shared blocks ---------- */
 function topBar(aud){
-  const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["atleti","Atleti e famiglie"],["video","Video"],["area-riservata","Area riservata"]];
+  const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["atleti","Atleti e famiglie"],["prova","Prova tu"],["video","Video"],["area-riservata","Area riservata"]];
   const cur=current?current.id:"";
-  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""}">${l}</a>`).join("")}<a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
@@ -897,6 +921,25 @@ function pArea(p){
     <div class="feat">${[["Le foto della squadra","Individuali e di gruppo, divise per categoria."],["Gli ordini","Le famiglie scelgono formati e quantità e pagano online."],["I download","Le foto per i canali della società, pronte da usare."]].map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
   <section class="sec"><div class="direct"><div><span class="label">Vuoi attivarla per la tua società?</span><b>${CONTACT.telLabel} · <a href="mailto:${CONTACT.mail}" style="color:inherit">${CONTACT.mail}</a></b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Scrivici su WhatsApp</a></div></div></section>`);
 }
+
+function pProva(p){
+  return shell(`<section class="cfg">
+    <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Crea la tua <span class="kitc">figurina</span></h1></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
+    <div class="cfg-grid">
+      <div class="cfg-prev"><div id="cf-fig">${figurina({size:"15×20"})}</div><div id="cf-team">${teamCard()}</div></div>
+      <div class="panel cfg-ctl">
+        <span class="label">1 · Scegli sport e squadra</span>${picker()}
+        <span class="label">2 · Personalizza</span>
+        <div class="two" style="gap:12px"><div class="field"><label for="cf-name">Nome dell'atleta</label><input id="cf-name" value="${esc(S.atleta)}" maxlength="22"></div><div class="field"><label for="cf-nr">Numero</label><input id="cf-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div></div>
+        <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div>
+        <div class="field"><label>Categoria</label><div class="chips">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div></div>
+        <span class="label">3 · Lo sponsor</span>
+        <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo e guardalo comparire su figurina e foto.</span></div>
+        ${logoDrop("cf")}
+        <div style="display:flex;flex-wrap:wrap;gap:10px">${howBtn()}<a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho provato il configuratore SWS e vorrei le foto per il mio gruppo sportivo")}" target="_blank" rel="noopener">Lo voglio per la mia squadra</a></div>
+      </div>
+    </div></section>`);
+}
 const SITE=[
   {id:"", render:pHome},
   {id:"societa", aud:"soc", render:pTarget},
@@ -904,6 +947,7 @@ const SITE=[
   {id:"atleti", aud:"soc", render:pPeople},
   {id:"famiglie", aud:"soc", render:pPeople},
   {id:"area-riservata", aud:"soc", render:pArea},
+  {id:"prova", aud:"soc", render:pProva},
 ];
 
 /* ================= PAGES & ROUTER ================= */
@@ -974,7 +1018,7 @@ document.addEventListener("click", e=>{
 // live inputs: aggiornano solo le parti necessarie per non perdere il cursore
 document.addEventListener("input", e=>{
   const id=e.target.id, v=e.target.value;
-  const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az", "pk-altro":"altro" };
+  const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az", "cf-name":"atleta", "cf-nr":"nr", "cf-soc":"soc", "cf-az":"az", "pk-altro":"altro" };
   if(map[id]!==undefined){ S[map[id]]=v; partial(); return; }
   if(id==="pr-nome"||id==="pr-soc"){ S.pr[id.slice(3)]=v; prUpdate(); return; }
   if(id==="sq-n"){ S.players=+v; partial(); return; }
@@ -989,7 +1033,7 @@ function set(id,html){ const el=document.getElementById(id); if(el) el.innerHTML
 function partial(pick){
   if(!current) return;
   document.querySelectorAll(".pk-team").forEach(el=>el.innerHTML=teamCard());
-  if(pick){ document.querySelectorAll(".pk-altro").forEach(el=>{ el.hidden=S.sport!=="altro"; if(!el.hidden) setTimeout(()=>el.querySelector("input").focus(),50); }); document.querySelectorAll("[data-sport]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sport===S.sport)); document.querySelectorAll("[data-g]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===S.g)); const rn=document.getElementById("rc-name"); if(rn) rn.value=S.atleta; }
+  if(pick){ document.querySelectorAll(".pk-altro").forEach(el=>{ el.hidden=S.sport!=="altro"; if(!el.hidden) setTimeout(()=>el.querySelector("input").focus(),50); }); document.querySelectorAll("[data-sport]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sport===S.sport)); document.querySelectorAll("[data-g]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===S.g)); const rn=document.getElementById("rc-name"); if(rn) rn.value=S.atleta; const cn=document.getElementById("cf-name"); if(cn) cn.value=S.atleta; }
   switch(current.id){
     case "gratis": set("gr-fig", figurina({size:"15×20"})); break;
     case "ricordo":
@@ -1008,6 +1052,7 @@ function partial(pick){
       set("co-big",eur(c.perFam)); set("co-sub",`circa ${num(c.perFamMonth)} € al mese per famiglia, per 12 mesi di calendario`);
       set("co-bv",eur(S.budget)); set("co-tv",S.tess); set("co-a",eur(c.perFam)); set("co-d",num(c.perDay)+" €"); set("co-p",S.tess*2); break; }
     case "natale": set("na-box", giftBox()); break;
+    case "prova": set("cf-fig", figurina({size:"15×20"})); set("cf-team", teamCard()); break;
   }
 }
 
