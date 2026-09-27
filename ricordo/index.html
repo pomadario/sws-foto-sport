@@ -457,7 +457,7 @@ function compare(f){
 }
 /* ---------- shared blocks ---------- */
 function topBar(aud){
-  const nav=[["societa","Società"],["aziende","Aziende"],["atleti","Atleti e famiglie"],["video","Video"],["area-riservata","Area riservata"]];
+  const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["atleti","Atleti e famiglie"],["video","Video"],["area-riservata","Area riservata"]];
   const cur=current?current.id:"";
   return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""}">${l}</a>`).join("")}<a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
 }
