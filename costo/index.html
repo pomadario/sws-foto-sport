@@ -413,6 +413,52 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .fig-no{flex:0 0 auto;font-size:clamp(8px,4cqi,10px)}
 .fig-no svg{width:clamp(12px,6cqi,18px);height:auto}
 .fig-nr{width:clamp(26px,14cqi,44px)!important;height:clamp(26px,14cqi,44px)!important;font-size:clamp(13px,7cqi,22px)!important}
+.sports{gap:5px!important;max-height:236px!important}
+.sports .chip{font-size:12.5px;padding:5px 11px;border-width:1px}
+.cfg-ctl .sports{max-height:300px!important}
+.seg .segb{font-size:14px}
+.cfg-prev3{display:grid;grid-template-columns:.8fr 1.2fr 1fr;gap:18px;align-items:start;background:radial-gradient(circle at 20% 20%,var(--kit-soft),transparent 60%);border-radius:var(--r-lg);padding:14px}
+.cfg-prev3 .pv{display:grid;gap:8px;min-width:0}
+.cfg-prev3 .fig{max-width:100%;transform:rotate(-2deg)}
+.cfg-prev3 .tcard,.cfg-prev3 .cal{max-width:100%}
+.cfg-prev3 .tband{flex-direction:column;align-items:flex-start;gap:8px}
+.cfg-prev3 .tband img{max-width:100%!important;height:40px!important}
+.cfg-prev3 .calnav b{font-size:14px}
+.cfg-ctl3{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:22px;align-items:start}
+.cfg-ctl3 .col{display:grid;gap:12px;min-width:0}
+.cfg-ctl3 .sports{max-height:300px!important}
+.chips.small .chip{font-size:12.5px;padding:5px 11px}
+@media (max-width:980px){.cfg-prev3{grid-template-columns:1fr 1fr}.cfg-prev3 .pv:last-child{grid-column:1/-1;max-width:420px;justify-self:center;width:100%}.cfg-ctl3{grid-template-columns:1fr}}
+@media (max-width:520px){.cfg-prev3{gap:8px;padding:6px}.cfg-prev3 .tband b{font-size:14px}.cfg-prev3 .tband img{height:26px!important}}
+@media (min-width:981px){
+.cfg{padding-block:18px 40px;gap:12px}
+.cfg-head h1{font-size:44px}
+.cfg-main{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.cfg-prev3{position:sticky;top:10px;grid-template-columns:150px minmax(0,1.5fr) minmax(0,1.1fr);padding:14px;gap:14px;align-items:center}
+.cfg-prev3 .label{font-size:9.5px}
+.cfg-prev3 .fig{max-width:150px}
+.cfg-prev3 .tcard{padding:7px}
+.cfg-prev3 .tphoto{aspect-ratio:16/10}
+.cfg-prev3 .tband{padding:6px 6px!important}
+.cfg-prev3 .tband b{font-size:14px}
+.cfg-prev3 .tband span{font-size:9px}
+.cfg-prev3 .tband img{height:30px!important}
+.cfg-prev3 .cal .pic{aspect-ratio:16/10}
+.cfg-prev3 .cal .grid{padding:5px 8px;gap:2px}
+.cfg-prev3 .cal .mn b{font-size:14px}
+.cfg-prev3 .cal .mn .label{display:none}
+.cfg-prev3 .cal table{font-size:8.5px}
+.cfg-prev3 .cal td{padding:0}
+.cfg-prev3 .cal .ch{padding:5px 8px}
+.cfg-prev3 .cal .ch b{font-size:18px}
+.cfg-prev3 .cal .ch span{font-size:7.5px}
+.cfg-prev3 .cal .foot{padding:5px 8px;min-height:0}
+.cfg-prev3 .cal .foot img{height:24px}
+.cfg-prev3 .cal .foot .by{font-size:9px}
+.cfg-prev3 .calnav .chip{padding:2px 9px}
+.cfg-prev3 .calnav b{font-size:12px}
+.cfg-ctl3{grid-template-columns:1fr;gap:18px}
+}
 </style>
 
 <div id="app"></div>
@@ -433,7 +479,9 @@ const num = n => new Intl.NumberFormat("it-IT",{maximumFractionDigits:2}).format
 const MONTHS = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 
 // Stato condiviso tra le pagine (per-visitatore, solo in memoria)
-const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["basket","Basket"],["atletica","Atletica"],["nuoto","Nuoto"],["rugby","Rugby"],["tennis","Tennis"],["pallamano","Pallamano"],["ginnastica","Ginnastica"],["ciclismo","Ciclismo"],["judo","Judo"],["karate","Karate"],["scherma","Scherma"],["pattinaggio","Pattinaggio"],["sci","Sci"],["baseball","Baseball / Softball"],["pallanuoto","Pallanuoto"],["hockey","Hockey"],["danza","Danza sportiva"],["arrampicata","Arrampicata"],["altro","Altro sport"]];
+const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["tennis","Tennis"],["padel","Padel"],["basket","Basket"],["atletica","Atletica"],["ciclismo","Ciclismo"],["nuoto","Nuoto"],["ginnastica","Ginnastica artistica"],["ritmica","Ginnastica ritmica"],["danza","Danza sportiva"],["karate","Karate"],["judo","Judo"],["calcio5","Calcio a 5"],["rugby","Rugby"],["sci","Sci"],["montagna","Corsa in montagna"],["bocce","Bocce"],["equitazione","Equitazione"],["pattinaggio","Pattinaggio"],["arrampicata","Arrampicata"],["pallamano","Pallamano"],["scherma","Scherma"],["baseball","Baseball / Softball"],["pallanuoto","Pallanuoto"],["arco","Tiro con l'arco"],["canoa","Canoa e kayak"],["canottaggio","Canottaggio"],["vela","Vela"],["triathlon","Triathlon"],["boxe","Boxe"],["taekwondo","Taekwondo"],["kickboxing","Kickboxing"],["tennistavolo","Tennistavolo"],["badminton","Badminton"],["golf","Golf"],["hockey","Hockey"],["mtb","Mountain bike"],["beach","Beach volley"],["nuotoart","Nuoto artistico"],["twirling","Twirling"],["altro","Altro sport"]];
+const IMG_ALIAS={padel:"tennis",ritmica:"ginnastica",calcio5:"calcio",montagna:"atletica",triathlon:"atletica",mtb:"ciclismo",beach:"pallavolo",nuotoart:"nuoto",twirling:"ginnastica",taekwondo:"karate",kickboxing:"altro",boxe:"altro",bocce:"altro",equitazione:"altro",arco:"altro",canoa:"altro",canottaggio:"altro",vela:"altro",tennistavolo:"altro",badminton:"altro",golf:"altro"};
+const imgKey=sp=>IMG_ALIAS[sp]||sp;
 const sportName=id=>id==="altro"?(S.altro||"Il tuo sport"):(SPORTS.find(x=>x[0]===id)||SPORTS[0])[1];
 const SWS_PATH="M0,0v1000h1000V0H0ZM332.9,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.2,49.4,56.2,81v203c0,50.9-30.1,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.2-75.9s90.5,25.3,90.5,75.9v161.3h0ZM668.6,417.2l-40.3,431.8h-95.3l-19.4-413.7-19.4,413.7h-95.3l-40.3-432.5-18.6-240.3h76.3l30.1,510.5,29.7-510.5h75.1l29.6,510.5,30-510.5h76.3l-18.6,241h0ZM875.4,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.1,49.4,56.1,81v203c0,50.9-30,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.1-75.9s90.5,25.3,90.5,75.9v161.3h0Z";
 const swsLogo=(cls="")=>`<svg class="sws-logo ${cls}" viewBox="0 0 1000 1000" role="img" aria-label="SWS Agency"><path fill="currentColor" d="${SWS_PATH}"/></svg>`;
@@ -444,8 +492,8 @@ const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"palla
   tasks:{}, sent:{}, formula:null, altro:"" };
 
 /* ---------- components ---------- */
-const pImg=(sp,g)=>`img/p/${sp}-${g}.jpg`;
-const tImg=(sp,g)=>`img/t/${sp}-${g}.jpg`;
+const pImg=(sp,g)=>`img/p/${imgKey(sp)}-${g}.jpg`;
+const tImg=(sp,g)=>`img/t/${imgKey(sp)}-${g}.jpg`;
 const sponsorSrc=()=>S.logo|| (S.sample?SAMPLE_LOGO:null);
 const initials=t=>(t||"La tua società").split(/\s+/).filter(w=>w.length>2||/\d/.test(w)).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"SC";
 function figurina({name=S.atleta, cat=S.cat, nr=S.nr, soc=S.soc, sp=S.sport, g=S.g, season=SEASON, sponsor=true, size}={}){
@@ -946,20 +994,23 @@ function pArea(p){
 function pProva(p){
   return shell(`<section class="cfg">
     <div class="cfg-head"><div><span class="label">Prova tu · configuratore</span><h1>Crea la tua <span class="kitc">figurina</span></h1></div><span class="season-badge">Stagione sportiva ${SEASON}</span></div>
-    <div class="cfg-grid">
-      <div class="cfg-prev"><div id="cf-fig">${figurina({size:"15×20"})}</div><div id="cf-team">${teamCard()}</div></div>
-      <div class="panel cfg-ctl">
-        <span class="label">1 · Scegli sport e squadra</span>${picker()}
-        <span class="label">2 · Personalizza</span>
+    <div class="cfg-main"><div class="cfg-prev3">
+      <div class="pv"><span class="label">Foto individuale 15×20</span><div id="cf-fig">${figurina({size:"15×20"})}</div></div>
+      <div class="pv"><span class="label">Foto di squadra 20×30</span><div id="cf-team">${teamCard()}</div></div>
+      <div class="pv"><span class="label">Calendario 2027</span><div id="cf-cal">${calendar({m:S.month})}</div>
+        <div class="calnav"><button class="chip" data-mon="-1" aria-label="Mese precedente">‹</button><b id="cf-m">${MONTHS[S.month]} 2027</b><button class="chip" data-mon="1" aria-label="Mese successivo">›</button></div></div>
+    </div>
+    <div class="panel cfg-ctl3">
+      <div class="col"><span class="label">1 · Scegli sport e squadra</span>${picker()}</div>
+      <div class="col"><span class="label">2 · Personalizza</span>
         <div class="two" style="gap:12px"><div class="field"><label for="cf-name">Nome dell'atleta</label><input id="cf-name" value="${esc(S.atleta)}" maxlength="22"></div><div class="field"><label for="cf-nr">Numero</label><input id="cf-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div></div>
         <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div>
-        <div class="field"><label>Categoria</label><div class="chips">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div>
-        <span class="label">3 · Lo sponsor</span>
-        <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo e guardalo comparire su figurina e foto.</span></div>
+        <div class="field"><label>Categoria</label><div class="chips small">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div></div>
+      <div class="col"><span class="label">3 · Lo sponsor</span>
+        <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo: compare su figurina, foto e calendario.</span></div>
         ${logoDrop("cf")}
-        <div style="display:flex;flex-wrap:wrap;gap:10px">${howBtn()}<a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho provato il configuratore SWS e vorrei le foto per il mio gruppo sportivo")}" target="_blank" rel="noopener">Lo voglio per la mia squadra</a></div>
-      </div>
-    </div></section>`);
+        <div style="display:flex;flex-wrap:wrap;gap:10px">${howBtn()}<a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho provato il configuratore SWS e vorrei le foto per il mio gruppo sportivo")}" target="_blank" rel="noopener">Lo voglio per la mia squadra</a></div></div>
+    </div></div></section>`);
 }
 const SITE=[
   {id:"", render:pHome},
@@ -1026,7 +1077,7 @@ document.addEventListener("click", e=>{
   if(t.id==="pr-copy"){ const m=prMsg(); try{ navigator.clipboard.writeText(m).then(()=>toast("Testo copiato"),()=>toast("Seleziona e copia il testo")); }catch(err){ toast("Seleziona e copia il testo"); } return; }
   if(t.dataset.sport){ S.sport=t.dataset.sport; partial(true); return; }
   if(t.dataset.g){ S.g=t.dataset.g; if(S.atleta==="Martina Rossi"&&S.g==="m") S.atleta="Luca Rossi"; else if(S.atleta==="Luca Rossi"&&S.g==="f") S.atleta="Martina Rossi"; partial(true); return; }
-  if(t.dataset.mon){ S.month=(S.month+ +t.dataset.mon+12)%12; set("lg-cal",calendar({m:S.month})); set("lg-m",MONTHS[S.month]+" 2027"); return; }
+  if(t.dataset.mon){ S.month=(S.month+ +t.dataset.mon+12)%12; set("lg-cal",calendar({m:S.month})); set("lg-m",MONTHS[S.month]+" 2027"); set("cf-cal",calendar({m:S.month})); set("cf-m",MONTHS[S.month]+" 2027"); return; }
   if(t.id==="na-gift"){ S.gift=true; rerender(); return; }
   if(t.id==="na-close"){ S.gift=false; rerender(); return; }
   if(t.dataset.copy){
@@ -1074,7 +1125,7 @@ function partial(pick){
       set("co-big",eur(c.perFam)); set("co-sub",`circa ${num(c.perFamMonth)} € al mese per famiglia, per 12 mesi di calendario`);
       set("co-bv",eur(S.budget)); set("co-tv",S.tess); set("co-a",eur(c.perFam)); set("co-d",num(c.perDay)+" €"); set("co-p",S.tess*2); break; }
     case "natale": set("na-box", giftBox()); break;
-    case "prova": set("cf-fig", figurina({size:"15×20"})); set("cf-team", teamCard()); break;
+    case "prova": set("cf-fig", figurina({size:"15×20"})); set("cf-team", teamCard()); set("cf-cal", calendar({m:S.month})); break;
   }
 }
 
