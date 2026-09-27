@@ -1,0 +1,796 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><base href="/"><title>Il tuo nome accanto ai ragazzi del paese</title>
+<meta name="description" content="Regala a ogni atleta della società sportiva la foto della sua stagione, con il tuo logo."><meta property="og:type" content="website"><meta property="og:site_name" content="SWS Agency · Foto Sport">
+<meta property="og:title" content="Il tuo nome accanto ai ragazzi del paese"><meta property="og:description" content="Regala a ogni atleta della società sportiva la foto della sua stagione, con il tuo logo."><meta property="og:image" content="https://sws-foto-sport.vercel.app/img/territorio.jpg"><meta property="og:url" content="https://sws-foto-sport.vercel.app/territorio/">
+<meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/img/sws-icon.png">
+<style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<script>window.__WEB=true;window.__PAGE="territorio";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --ground:#141414; --ink:#FFFFFF; --muted:#A3A3A3; --line:#2C2C2C; --card:#1E1E1E; --soft:#232323;
+  --blue:#2D55F0; --red:#E2332B; --kit:var(--blue); --kit-soft:rgba(45,85,240,.22); --on-kit:#FFFFFF;
+  --photo-bg:#3A3F48; --photo-fig:#6B7380;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r-sm:10px; --r:18px; --r-lg:28px; --shadow:0 24px 60px -30px rgba(0,0,0,.8);
+}
+.kit-red{--kit:var(--red); --kit-soft:rgba(226,51,43,.22)}
+body{background:radial-gradient(1200px 600px at 80% -10%,#262626,transparent 60%),var(--ground)}
+*{box-sizing:border-box}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px}
+.wrap{max-width:1080px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);text-transform:uppercase;line-height:.95;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(42px,7.4vw,88px);font-weight:900}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:800}
+h3{font-size:24px;font-weight:800}
+p{margin:0;max-width:62ch}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kitc{color:var(--kit)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--kit);outline-offset:2px}
+a{color:var(--kit)}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.mark{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:22px;text-decoration:none;color:var(--ink)}
+.mark b{display:inline-grid;place-items:center;background:#FFFFFF;color:#141414;border-radius:10px;padding:6px 9px;line-height:1;font-size:16px}
+.top .label{text-align:right}
+
+/* hero */
+.hero > div:last-child{position:relative}
+.hero > div:last-child::before{content:"";position:absolute;inset:-6% -4%;z-index:-1;border-radius:46% 54% 42% 58%/55% 40% 60% 45%;background:var(--kit-soft)}
+.hero{isolation:isolate;display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:center;padding-block:48px 40px}
+.hero .kicker{display:inline-block;background:var(--kit);color:var(--on-kit);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.hero p.lead{font-size:19px;margin-top:20px;color:var(--ink)}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{appearance:none;border:2px solid #FFFFFF;background:#FFFFFF;color:#141414;padding:13px 22px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
+.btn.kit{background:var(--kit);border-color:var(--kit);color:var(--on-kit)}
+.btn.ghost{background:transparent;color:#FFFFFF;border-color:#555}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px var(--kit)}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:28px;padding-block:32px}}
+
+/* sections */
+.sec{padding-block:44px;border-top:1px solid var(--line);display:grid;gap:24px}
+.sec-head{display:grid;gap:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;display:grid;gap:16px;box-shadow:var(--shadow)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600;transition:background .2s,border-color .2s}
+.chip[aria-pressed="true"]{background:var(--kit);border-color:var(--kit);color:var(--on-kit)}
+
+/* fields */
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:600}
+.field input,.field select{border:1.5px solid var(--line);background:#111;padding:12px 14px;border-radius:var(--r-sm);width:100%}
+.field input:focus{border-color:var(--kit);outline:none}
+input[type=range]{accent-color:var(--kit);width:100%}
+.rangeval{font-family:var(--mono);font-size:13px}
+
+/* photo mock */
+.photo{--card:#FFFFFF;--ink:#141414;--ground:#FFFFFF;--muted:#6B6B6B;--line:#E2E2E2;--photo-bg:#C9CFD8;--photo-fig:#8C95A3;color:#141414;aspect-ratio:3/4;max-width:100%;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 0;display:grid;grid-template-rows:1fr auto;box-shadow:var(--shadow)}
+.photo .shot{position:relative;border-radius:12px;background:linear-gradient(180deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 70%,var(--kit)));overflow:hidden}
+.photo .shot::before{content:"";position:absolute;left:50%;top:22%;width:30%;aspect-ratio:1;border-radius:50%;background:var(--photo-fig);transform:translateX(-50%)}
+.photo .shot::after{content:"";position:absolute;left:50%;bottom:-8%;width:74%;height:48%;border-radius:48% 48% 0 0;background:var(--kit);transform:translateX(-50%)}
+.photo .num{position:absolute;left:50%;bottom:10%;transform:translateX(-50%);z-index:1;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,48px);color:var(--on-kit);line-height:1}
+.photo .strip{display:flex;justify-content:space-between;align-items:end;gap:8px;padding-block:10px 12px}
+.photo .nm{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em;line-height:1}
+.photo .sub{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.photo .logo{position:absolute;top:10px;right:10px;z-index:2;background:var(--card);border-radius:10px;padding:5px 8px;max-width:42%;display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700}
+.photo .logo img{max-height:26px;max-width:100%;display:block}
+.photo .size{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:10px;background:var(--ink);color:var(--ground);padding:3px 8px;border-radius:999px}
+
+/* team grid */
+.team{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:18px;display:grid;gap:12px}
+.team .banner{background:var(--kit);color:var(--on-kit);font-family:var(--display);font-weight:800;font-size:22px;padding:10px 16px;border-radius:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.team .rows{display:grid;gap:6px}
+.team .row{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.pl{width:34px;display:grid;justify-items:center;gap:2px}
+.pl i{width:14px;height:14px;border-radius:50%;background:var(--photo-fig)}
+.pl s{width:30px;height:20px;border-radius:12px 12px 3px 3px;background:var(--kit);text-decoration:none;display:grid;place-items:center;color:var(--on-kit);font-family:var(--mono);font-size:9px}
+.pl.me s{background:var(--ink);color:var(--ground)}
+
+/* calendar */
+.cal{--card:#FFFFFF;--ink:#141414;--muted:#6B6B6B;--line:#E2E2E2;--photo-bg:#C9CFD8;--photo-fig:#8C95A3;color:#141414;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto;box-shadow:var(--shadow)}
+.cal .ch{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--kit);color:var(--on-kit);gap:8px}
+.cal .ch b{font-family:var(--display);font-weight:800;font-size:30px;line-height:1}
+.cal .ch span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:right}
+.cal .pic{aspect-ratio:16/9;position:relative;background:linear-gradient(180deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 70%,var(--kit)));overflow:hidden}
+.cal .pic .row{position:absolute;inset:auto 0 12% 0;display:flex;justify-content:center;gap:4%}
+.cal .pic .row i{width:9%;aspect-ratio:1/1.7;border-radius:40% 40% 8px 8px;background:var(--kit);position:relative}
+.cal .pic .row i::before{content:"";position:absolute;left:50%;top:-38%;width:62%;aspect-ratio:1;border-radius:50%;background:var(--photo-fig);transform:translateX(-50%)}
+.cal .grid{padding:12px 14px;display:grid;gap:6px}
+.cal .mn{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.cal .mn b{font-family:var(--display);font-weight:800;font-size:22px}
+.cal table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:10.5px;font-variant-numeric:tabular-nums;text-align:center}
+.cal th{color:var(--muted);font-weight:500;padding:2px 0}
+.cal td{padding:3px 0}
+.cal td.sun{color:var(--kit);font-weight:500}
+.cal .foot{border-top:1px dashed var(--line);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px}
+.cal .foot .by{font-size:11px;color:var(--muted)}
+.cal .foot img{height:30px;width:auto;max-width:55%}
+.cal .foot .txtlogo{font-family:var(--display);font-weight:800;font-size:19px}
+.calnav{display:flex;gap:8px;justify-content:space-between;align-items:center}
+
+/* big number */
+.big{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(56px,10vw,108px);line-height:.9;color:var(--kit);font-variant-numeric:tabular-nums}
+.note{font-size:12.5px;color:var(--muted)}
+
+/* checklist */
+.tasks{display:grid;gap:8px}
+.task{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:13px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);cursor:pointer;text-align:left;transition:border-color .2s}
+.task .who{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);border-radius:999px}
+.task[aria-pressed="true"]{border-color:var(--kit)}
+.task[aria-pressed="true"] .who{background:var(--kit);border-color:var(--kit);color:var(--on-kit)}
+.task .box{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:700}
+.task[aria-pressed="true"] .box{border-color:var(--kit);background:var(--kit);color:var(--on-kit)}
+
+/* steps (real sequence) */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px;align-content:start}
+.step::before{content:"";width:34px;height:6px;border-radius:999px;background:var(--kit)}
+.step b{font-family:var(--display);font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.step .label::before{counter-increment:s;content:"Passo " counter(s)}
+@media (max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.steps{grid-template-columns:1fr}}
+
+/* timeline */
+.years{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+.yr{flex:0 0 132px}
+.yr .photo{padding:8px 8px 0}
+.yr .photo .nm{font-size:16px}
+.yr .photo .num{font-size:24px}
+
+/* gift */
+.gift{position:relative;aspect-ratio:1;max-width:340px;width:100%;margin-inline:auto;cursor:pointer;border:none;background:none;padding:0}
+.gift .box{position:absolute;inset:28% 8% 0 8%;background:var(--kit);border-radius:22px}
+.gift .lid{position:absolute;left:4%;right:4%;top:16%;height:16%;border-radius:18px;background:color-mix(in srgb,var(--kit) 80%,var(--ink));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.gift .rib{position:absolute;left:46%;width:8%;top:16%;bottom:0;background:var(--ground);opacity:.85}
+.gift .tag{position:absolute;right:0;bottom:12%;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;box-shadow:var(--shadow);font-weight:700;font-size:13px;transform:rotate(-6deg)}
+.gift.open .lid{transform:translateY(-70%) rotate(-12deg)}
+.gift-out{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;align-items:center}
+.gift-out .cal .ch span{font-size:8.5px}
+.gift-out .cal .mn .label{display:none}
+@media (max-width:520px){.gift-out{grid-template-columns:1fr}}
+
+/* logo drop */
+.drop{border:2px dashed var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px;justify-items:start;background:var(--ground)}
+.drop.over{border-color:var(--kit)}
+
+/* form */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media (max-width:620px){.form{grid-template-columns:1fr}}
+.thanks{background:var(--kit);color:var(--on-kit);border-radius:var(--r-lg);padding:28px;display:grid;gap:8px}
+.thanks h3{color:inherit}
+
+.others{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.others a{display:grid;gap:6px;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s}
+.others a:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.others a b{font-family:var(--display);font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+@media (max-width:720px){.others{grid-template-columns:1fr}}
+footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+/* index (preview hub) */
+.hub{padding-block:36px 48px;display:grid;gap:28px}
+.hub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:900px){.hub-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.hub-grid{grid-template-columns:1fr}}
+.hub-card{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);padding:20px;box-shadow:var(--shadow);display:grid;gap:8px;align-content:start}
+.hub-card .bar{height:8px;width:48px;border-radius:999px;background:var(--kit)}
+.hub-card h3{font-size:28px}
+.hub-card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.hub-card .btn{padding:8px 12px;font-size:14px}
+.toast{border-radius:999px;position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:10px 16px;font-weight:600;z-index:9}
+
+
+/* photo band */
+.band{position:relative;margin:0 0 8px;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.band img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover;max-height:560px}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65))}
+.band figcaption{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:12px;color:#fff}
+.band figcaption b{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.6vw,30px);letter-spacing:-.02em;line-height:1.1;max-width:28ch}
+.band figcaption span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.45);padding:5px 10px;border-radius:999px;white-space:nowrap}
+@media (max-width:600px){.band img{aspect-ratio:4/3}.band figcaption span{display:none}}
+.hub-card .thumb{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
+
+/* ===== SWS brand ===== */
+.sws-logo{width:34px;height:34px;display:block;color:#fff;flex:none}
+.mark{gap:12px}
+.mark > span{display:grid;line-height:1;font-size:20px}
+.mark small{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.toplinks{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.toplinks a{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:999px}
+.toplinks a:hover{border-color:var(--kit)}
+.toplinks .toptel{background:var(--kit);border-color:var(--kit);color:#fff}
+@media (max-width:640px){.toplinks a:not(.toptel){display:none}}
+.foot2{display:grid;grid-template-columns:1.2fr 2fr;gap:24px;align-items:center}
+.fbrand{display:flex;gap:14px;align-items:center}
+.fbrand .sws-logo{width:52px;height:52px}
+.fbrand b{display:block;font-size:17px}
+.fbrand span{font-size:13px;color:var(--muted)}
+.fcontacts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fcontacts a{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);color:var(--ink);text-decoration:none;font-weight:600;background:var(--card)}
+.fcontacts a:hover{border-color:var(--kit)}
+@media (max-width:760px){.foot2{grid-template-columns:1fr}.fcontacts{grid-template-columns:1fr}}
+.direct{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:18px 22px;border:1px dashed var(--line);border-radius:var(--r)}
+.direct b{display:block;font-size:20px;margin-top:4px}
+
+/* ===== picker ===== */
+.picker{display:grid;gap:12px}
+.seg{display:inline-flex;background:#111;border:1px solid var(--line);border-radius:999px;padding:4px;width:max-content}
+.segb{border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer}
+.segb[aria-pressed="true"]{background:var(--kit);color:#fff}
+.sports{display:flex;flex-wrap:wrap;gap:6px;max-height:156px;overflow-y:auto;padding-right:4px}
+.sports .chip{padding:6px 12px;font-size:13.5px;background:#191919}
+.sports .chip[aria-pressed="true"]{background:var(--kit);border-color:var(--kit);color:#fff}
+
+/* ===== figurina (stile album) ===== */
+.fig{margin:0;width:100%;max-width:340px;justify-self:center;aspect-ratio:5/7;background:#fff;border-radius:18px;padding:10px;box-shadow:var(--shadow);transform:rotate(-1.5deg);transition:transform .3s}
+.fig:hover{transform:rotate(0) scale(1.01)}
+.fig-in{position:relative;height:100%;border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto auto;background:linear-gradient(160deg,var(--kit) 0 38%,color-mix(in srgb,var(--kit) 70%,#000) 38% 100%)}
+.fig-top{display:flex;align-items:center;gap:8px;padding:8px 10px;color:#fff}
+.crest{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--kit);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:12px;flex:none;box-shadow:0 0 0 2px color-mix(in srgb,#fff 40%,transparent)}
+.fig-soc{font-family:var(--display);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.02em;line-height:1.05;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fig-sea{font-family:var(--mono);font-size:10px;background:rgba(0,0,0,.35);padding:3px 7px;border-radius:999px}
+.fig-photo{position:relative;margin:0 10px;border-radius:8px;overflow:hidden;background:#cfd6df}
+.fig-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.fig-nr{position:absolute;right:8px;top:8px;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--kit);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.fig-size{position:absolute;left:8px;top:8px;font-family:var(--mono);font-size:10px;background:rgba(0,0,0,.6);color:#fff;padding:3px 8px;border-radius:999px}
+.fig-band{margin:-18px 0 0;position:relative;z-index:1;background:#fff;color:#141414;padding:8px 14px 7px;transform:skewY(-3deg);display:grid;gap:1px}
+.fig-band b{font-family:var(--display);font-weight:900;font-size:clamp(17px,2.2vw,22px);text-transform:uppercase;line-height:1;transform:skewY(3deg)}
+.fig-band span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#555;transform:skewY(3deg)}
+.fig-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;min-height:44px}
+.fig-sp{background:#fff;border-radius:8px;padding:4px 8px;display:flex;align-items:center;max-width:60%;height:30px}
+.fig-sp img{height:22px;width:auto;max-width:none;display:block}
+.fig-sp.txt{color:#141414;font-weight:800;font-size:12px}
+.fig-sp.txt:empty{display:none}
+.fig-no{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:#fff}
+.fig-no .sws-logo{width:18px;height:18px}
+.yr .fig{max-width:180px;transform:none;padding:6px}
+.yr .fig-band b{font-size:13px}
+.yr .fig-nr{width:30px;height:30px;font-size:15px}
+.yr{flex:0 0 180px}
+.gift-out .fig{max-width:230px}
+
+/* ===== foto di squadra ===== */
+.tcard{margin:0;background:#fff;border-radius:var(--r-lg);padding:10px;box-shadow:var(--shadow);color:#141414}
+.tphoto{border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#cfd6df}
+.tphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.tband{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 6px 4px}
+.tband b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:18px;line-height:1}
+.tband span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#555}
+.tband img{height:30px;width:auto;max-width:45%}
+.cal .pic{aspect-ratio:4/3}
+.cal .pic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ===== formule ===== */
+.fcards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.fcards{grid-template-columns:1fr}}
+.fcard{appearance:none;text-align:left;font:inherit;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:var(--r-lg);padding:22px;display:grid;gap:10px;align-content:start;cursor:pointer;transition:border-color .2s,transform .2s}
+.fcard:hover{transform:translateY(-2px)}
+.fcard.on{border-color:var(--kit);box-shadow:0 0 0 4px color-mix(in srgb,var(--kit) 25%,transparent)}
+.ftag{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--kit)}
+.fcard b{font-size:clamp(24px,3vw,32px);font-weight:900;text-transform:uppercase;line-height:1}
+.fcard ul{margin:0;padding-left:18px;display:grid;gap:6px;color:#ddd}
+.fcost{margin-top:4px;padding-top:12px;border-top:1px dashed var(--line);font-size:15px}
+.fcost strong{color:var(--kit);font-size:20px}
+.fcompare{overflow-x:auto}
+.fcompare table{width:100%;border-collapse:separate;border-spacing:0;min-width:520px;font-size:15px}
+.fcompare th,.fcompare td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.fcompare thead th{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fcompare tbody th{font-weight:600;color:var(--muted);width:30%}
+.fcompare .hi{color:#fff;background:color-mix(in srgb,var(--kit) 14%,transparent)}
+.fcompare thead .hi{color:var(--kit)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fin .45s ease both}
+@keyframes fin{from{transform:translateY(6px)}to{transform:none}}
+</style>
+
+<div id="app"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ============ CONFIG (da confermare con Davide) ============ */
+const PCT = 15;            // % alla società (PDF Davide 15% · locandina 20%)
+const SEASON = "2026/2027";
+/* ============================================================ */
+
+const $ = s => document.querySelector(s);
+const WEB = !!window.__WEB;
+const linkTo = id => WEB ? (id?`/${id}/`:"/") : (id?`#${id}`:"#");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur = n => new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n);
+const num = n => new Intl.NumberFormat("it-IT",{maximumFractionDigits:2}).format(n);
+const MONTHS = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+
+// Stato condiviso tra le pagine (per-visitatore, solo in memoria)
+const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["basket","Basket"],["atletica","Atletica"],["nuoto","Nuoto"],["rugby","Rugby"],["tennis","Tennis"],["pallamano","Pallamano"],["ginnastica","Ginnastica"],["ciclismo","Ciclismo"],["judo","Judo"],["karate","Karate"],["scherma","Scherma"],["pattinaggio","Pattinaggio"],["sci","Sci"],["baseball","Baseball / Softball"],["pallanuoto","Pallanuoto"],["hockey","Hockey"],["danza","Danza sportiva"],["arrampicata","Arrampicata"]];
+const sportName=id=>(SPORTS.find(x=>x[0]===id)||SPORTS[0])[1];
+const SWS_PATH="M0,0v1000h1000V0H0ZM332.9,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.2,49.4,56.2,81v203c0,50.9-30.1,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.2-75.9s90.5,25.3,90.5,75.9v161.3h0ZM668.6,417.2l-40.3,431.8h-95.3l-19.4-413.7-19.4,413.7h-95.3l-40.3-432.5-18.6-240.3h76.3l30.1,510.5,29.7-510.5h75.1l29.6,510.5,30-510.5h76.3l-18.6,241h0ZM875.4,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.1,49.4,56.1,81v203c0,50.9-30,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.1-75.9s90.5,25.3,90.5,75.9v161.3h0Z";
+const swsLogo=(cls="")=>`<svg class="sws-logo ${cls}" viewBox="0 0 1000 1000" role="img" aria-label="SWS Agency"><path fill="currentColor" d="${SWS_PATH}"/></svg>`;
+const CONTACT={site:"https://www.swsagency.it",siteLabel:"swsagency.it",ig:"https://www.instagram.com/agency_sws/",igLabel:"@agency_sws",name:"Dario Poma",tel:"+393296606094",telLabel:"329 660 6094",wa:"https://wa.me/393296606094"};
+const SAMPLE_LOGO="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100"><rect x="4" y="10" width="80" height="80" rx="18" fill="#0F5C4D"/><path d="M26 30h36v40H26z" fill="none" stroke="#fff" stroke-width="6"/><path d="M44 30v40M26 50h36" stroke="#fff" stroke-width="4"/><text x="100" y="54" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#0F5C4D">Colombo</text><text x="102" y="80" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#3B4A47">SERRAMENTI · DAL 1978</text></svg>`);
+const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"pallavolo", g:"f", players:14,
+  n:180, share:60, spend:30, az:"", logo:null, sample:true, month:11, budget:1500, tess:180, gift:false,
+  tasks:{}, sent:{}, formula:null };
+
+/* ---------- components ---------- */
+const pImg=(sp,g)=>`img/p/${sp}-${g}.jpg`;
+const tImg=(sp,g)=>`img/t/${sp}-${g}.jpg`;
+const sponsorSrc=()=>S.logo|| (S.sample?SAMPLE_LOGO:null);
+const initials=t=>(t||"La tua società").split(/\s+/).filter(w=>w.length>2||/\d/.test(w)).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"SC";
+function figurina({name=S.atleta, cat=S.cat, nr=S.nr, soc=S.soc, sp=S.sport, g=S.g, season=SEASON, sponsor=true, size}={}){
+  const src=sponsor?sponsorSrc():null;
+  return `<figure class="fig">
+    <div class="fig-in">
+      <div class="fig-top"><span class="crest">${esc(initials(soc))}</span><span class="fig-soc">${esc(soc||"La tua società")}</span><span class="fig-sea">${esc(season.replace(/20(\d\d)\/20(\d\d)/,"$1/$2"))}</span></div>
+      <div class="fig-photo"><img src="${pImg(sp,g)}" alt="Ritratto ${esc(sportName(sp))}" loading="lazy">
+        <span class="fig-nr">${esc(nr||"")}</span>${size?`<span class="fig-size">${esc(size)}</span>`:""}</div>
+      <figcaption class="fig-band"><b>${esc(name||"Nome Cognome")}</b><span>${esc(sportName(sp))} · ${esc(cat)}</span></figcaption>
+      <div class="fig-foot">${src?`<span class="fig-sp"><img src="${src}" alt="Sponsor"></span>`:`<span class="fig-sp txt">${esc(S.az||"")}</span>`}<span class="fig-no">${swsLogo()}N° ${String(nr||"0").padStart(3,"0")}</span></div>
+    </div></figure>`;
+}
+function teamCard({soc=S.soc, sp=S.sport, g=S.g, cat=S.cat}={}){
+  const src=sponsorSrc();
+  return `<figure class="tcard"><div class="tphoto"><img src="${tImg(sp,g)}" alt="Foto di squadra ${esc(sportName(sp))}" onerror="this.onerror=null;this.src='img/squadra.jpg'"></div>
+    <figcaption class="tband"><div><b>${esc(soc||"La tua società")}</b><span>${esc(sportName(sp))} ${g==="f"?"femminile":"maschile"} · ${esc(cat)} · ${SEASON}</span></div>${src?`<img src="${src}" alt="Sponsor">`:""}</figcaption></figure>`;
+}
+function calendar({m, soc=S.soc, sp=S.sport, g=S.g}={}){
+  const y=2027, first=new Date(y,m,1), days=new Date(y,m+1,0).getDate();
+  const offset=(first.getDay()+6)%7;
+  let cells=[]; for(let i=0;i<offset;i++) cells.push("");
+  for(let d=1;d<=days;d++) cells.push(d);
+  while(cells.length%7) cells.push("");
+  let rows=""; for(let i=0;i<cells.length;i+=7){ rows+="<tr>"+cells.slice(i,i+7).map((c,j)=>`<td class="${j===6?"sun":""}">${c}</td>`).join("")+"</tr>"; }
+  const src=sponsorSrc();
+  return `<div class="cal">
+    <div class="ch"><b>2027</b><span>${esc(soc||"La tua società")}<br>${esc(sportName(sp))} · stagione ${SEASON}</span></div>
+    <div class="pic"><img src="${tImg(sp,g)}" alt="Foto di squadra" onerror="this.onerror=null;this.src='img/squadra.jpg'"></div>
+    <div class="grid"><div class="mn"><b>${MONTHS[m]}</b><span class="label">foto di squadra</span></div>
+      <table><thead><tr>${["L","M","M","G","V","S","D"].map(d=>`<th>${d}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="foot"><span class="by">con il sostegno di</span>${src?`<img src="${src}" alt="Logo sponsor">`:`<span class="txtlogo">${esc(S.az||"Il tuo logo")}</span>`}</div>
+  </div>`;
+}
+function picker(){
+  return `<div class="picker">
+    <div class="seg" role="group" aria-label="Squadra">${[["f","Femminile"],["m","Maschile"]].map(([k,l])=>`<button class="segb" data-g="${k}" aria-pressed="${S.g===k}">${l}</button>`).join("")}</div>
+    <div class="sports">${SPORTS.map(([k,l])=>`<button class="chip" data-sport="${k}" aria-pressed="${S.sport===k}">${l}</button>`).join("")}</div>
+  </div>`;
+}
+
+const IMG={gratis:"img/gratis.jpg",ricordo:"img/ricordo.jpg",squadra:"img/squadra.jpg",fondi:"img/fondi.jpg",logo:"img/logo.jpg",territorio:"img/territorio.jpg",costo:"img/costo.jpg",natale:"img/natale.jpg"};
+const CAP={gratis:"Il fotografo arriva in palestra. Voi pensate solo ad allenarvi.",ricordo:"Il posto giusto per una foto di sport: in cucina, tutti i giorni.",squadra:"Fango, sorrisi e braccia sulle spalle. Questa è la squadra.",fondi:"Ogni stagione ha il suo momento. E può anche finanziare la prossima.",logo:"Dodici mesi appeso in cucina, accanto alla moka.",territorio:"Il campo del paese, i ragazzi del paese, le aziende del paese.",costo:"È qui che arriva il tuo marchio: sul tavolo di casa.",natale:"Festa di Natale: il regalo passa dalle mani della società."};
+function band(id){ return IMG[id]?`<figure class="band"><img src="${IMG[id]}" alt="${esc(CAP[id])}" loading="eager"><figcaption><b>${esc(CAP[id])}</b><span>Stagione ${SEASON}</span></figcaption></figure>`:""; }
+
+/* ---------- le due formule (messaggio chiave) ---------- */
+function formule(aud){
+  const f=S.formula||(aud==="az"?"b":"a");
+  const A=`<button class="fcard ${f==="a"?"on":""}" data-formula="a" aria-pressed="${f==="a"}">
+      <span class="ftag">Formula 1 · Senza sponsor</span>
+      <b>Foto a chi le vuole</b>
+      <ul><li>Fotografiamo tutti gli atleti e tutte le squadre.</li><li>Le famiglie ordinano online solo se vogliono, e pagano loro.</li><li>Alla società torna il <strong>${PCT}%</strong> di tutto quello che viene venduto.</li></ul>
+      <span class="fcost">Costo per la società: <strong>0 €</strong></span></button>`;
+  const B=`<button class="fcard ${f==="b"?"on":""}" data-formula="b" aria-pressed="${f==="b"}">
+      <span class="ftag">Formula 2 · Con sponsor</span>
+      <b>Foto regalate a tutti</b>
+      <ul><li>Un'azienda del territorio sostiene il servizio.</li><li>Ogni tesserato riceve la sua foto 15×20 con nome e cognome e la foto di squadra 20×30.</li><li>Sui prodotti c'è il logo dello sponsor. Si consegnano per esempio alla festa di Natale.</li></ul>
+      <span class="fcost">Costo per società e famiglie: <strong>0 €</strong></span></button>`;
+  const head= aud==="soc"
+    ? `<h2>Per la tua società è sempre gratis.<br><span class="kitc">Scegli tu come.</span></h2><p>SWS Agency fotografa i tuoi atleti e le tue squadre. Non paghi nulla, in nessuna delle due formule.</p>`
+    : `<h2>Per le società è sempre gratis.<br><span class="kitc">Con uno sponsor, le foto le ricevono tutti.</span></h2><p>SWS Agency fotografa gratis gli atleti delle società sportive. Nella formula con sponsor, sei tu a regalare le foto a ogni tesserato. Il tuo logo va sui prodotti, nelle case delle famiglie.</p>`;
+  return `<section class="sec formule" id="formule"><div class="sec-head"><span class="label">Come funziona in 20 secondi</span>${head}</div>
+    <div class="fcards">${aud==="az"?B+A:A+B}</div>
+    <div class="fcompare" id="fcompare">${compare(f)}</div></section>`;
+}
+function compare(f){
+  const rows=[["Chi paga le foto?","Le famiglie che le ordinano","Lo sponsor"],["Chi riceve le foto?","Chi le ordina","Tutti i tesserati"],["Cosa ci guadagna la società?",`Il ${PCT}% delle vendite`,"Un regalo per ogni atleta, a costo zero"],["Costo per la società","0 €","0 €"]];
+  return `<table><thead><tr><th></th><th class="${f==="a"?"hi":""}">Senza sponsor</th><th class="${f==="b"?"hi":""}">Con sponsor</th></tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th><td class="${f==="a"?"hi":""}">${r[1]}</td><td class="${f==="b"?"hi":""}">${r[2]}</td></tr>`).join("")}</tbody></table>`;
+}
+/* ---------- shared blocks ---------- */
+function topBar(aud){
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks"><a href="${CONTACT.ig}" target="_blank" rel="noopener">Instagram</a><a href="${CONTACT.site}" target="_blank" rel="noopener">${CONTACT.siteLabel}</a><a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
+}
+function form(key, aud){
+  if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
+  const org = aud==="soc" ? "Società / associazione" : "Azienda";
+  return `<form class="form" id="f-${key}" novalidate>
+    <div class="field"><label for="${key}-nome">Nome e cognome</label><input id="${key}-nome" required autocomplete="name"></div>
+    <div class="field"><label for="${key}-org">${org}</label><input id="${key}-org" value="${esc(aud==="soc"?S.soc:S.az)}"></div>
+    <div class="field"><label for="${key}-tel">Telefono</label><input id="${key}-tel" type="tel" autocomplete="tel"></div>
+    <div class="field"><label for="${key}-mail">Email</label><input id="${key}-mail" type="email" autocomplete="email"></div>
+    <div class="full" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <button class="btn kit" type="submit">${aud==="soc"?"Voglio il servizio per la mia società":"Voglio sapere quanto costa"}</button>
+      <span class="note" id="${key}-err"></span></div>
+  </form>`;
+}
+function others(cur, aud){
+  const list = PAGES.filter(p=>p.aud===aud && p.id!==cur);
+  return `<section class="sec"><div class="sec-head"><span class="label">Altri motivi per dire sì</span></div>
+    <div class="others">${list.map(p=>`<a href="${linkTo(p.id)}"><span class="label">${esc(p.tag)}</span><b>${esc(p.title)}</b></a>`).join("")}</div></section>`;
+}
+function foot(){ return `<footer class="foot2">
+  <div class="fbrand">${swsLogo()}<div><b>SWS Agency</b><span>Viviamo lo sport, raccontiamo emozioni, costruiamo connessioni.</span></div></div>
+  <div class="fcontacts">
+    <a href="${CONTACT.site}" target="_blank" rel="noopener"><span class="label">Sito</span>${CONTACT.siteLabel}</a>
+    <a href="${CONTACT.ig}" target="_blank" rel="noopener"><span class="label">Instagram</span>${CONTACT.igLabel}</a>
+    <a href="${CONTACT.wa}" target="_blank" rel="noopener"><span class="label">${CONTACT.name}</span>${CONTACT.telLabel}</a>
+  </div></footer>`; }
+function directLine(){ return `<div class="direct"><div><span class="label">Preferisci parlarne subito?</span><b>${CONTACT.name} · ${CONTACT.telLabel}</b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="tel:${CONTACT.tel}">Chiama</a></div></div>`; }
+function page(p, inner){
+  const cut=inner.indexOf("</section>")+10;
+  inner=inner.slice(0,cut)+formule(p.aud)+band(p.id)+inner.slice(cut);
+  return `<div class="wrap ${p.aud==="az"?"kit-red":""}">${topBar(p.aud)}${inner}
+  <section class="sec" id="contatti"><div class="sec-head"><span class="label">Ultimo passo</span><h2>${p.aud==="soc"?"Prenota il set per la tua stagione":"Mettiamo il tuo nome in campo"}</h2><p>${p.aud==="soc"?"Lasciaci un contatto: ti spieghiamo come funziona e fissiamo le giornate di scatto con i tuoi allenatori.":"Lasciaci un contatto: ti proponiamo le società della tua zona e ti mandiamo un preventivo su misura."}</p></div>${form(p.id,p.aud)}${directLine()}</section>
+  ${others(p.id,p.aud)}${foot()}</div>`;
+}
+
+/* ================= LANDING: SOCIETÀ ================= */
+const TASKS = [
+  ["Fotografo professionista in palestra o al campo","SWS"],
+  ["Scatti individuali di ogni atleta","SWS"],
+  ["Foto di ogni squadra e categoria","SWS"],
+  ["Modulo online per gli ordini delle famiglie","SWS"],
+  ["Stampa e confezionamento","SWS"],
+  ["Consegna dei prodotti alla società","SWS"],
+  ["Scegliere le date con gli allenatori","Voi"],
+];
+function pGratis(p){
+  const done = TASKS.filter((t,i)=>S.tasks[i]).length;
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Nuovo servizio SWS · gratis per le società sportive</span>
+      <h1>Zero euro.<br><span class="kitc">Tutte le foto.</span></h1>
+      <p class="lead">Fotografiamo ogni atleta e ogni squadra della tua società, e alla società non costa nulla. Senza sponsor, le famiglie ordinano solo se vogliono e a voi torna il ${PCT}%. Con uno sponsor, le foto le ricevono tutti in regalo.</p>
+      <div class="cta-row"><button class="btn kit" data-go="contatti">Prenota le giornate di scatto</button><button class="btn ghost" data-go="conto">Fai il conto</button></div></div>
+    <div id="gr-fig">${figurina({size:"15×20"})}</div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Il vostro sport</span><h2>Scegli sport e squadra.<br>La figurina cambia.</h2><p>Venti discipline, squadre maschili e femminili. Ogni atleta riceve la sua figurina con nome, numero, società e stagione.</p></div>
+    <div class="panel">${picker()}<div class="field"><label for="gr-soc">Nome della società</label><input id="gr-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div></div></div></section>
+  <section class="sec" id="conto"><div class="two">
+    <div class="sec-head"><span class="label">Chi fa cosa</span><h2>Spunta tutto quello che serve.<br>Poi guarda il totale.</h2>
+      <p>Tocca le voci una per una: vedi chi se ne occupa e quanto costa alla tua società.</p></div>
+    <div class="panel"><div class="tasks">${TASKS.map((t,i)=>`<button class="task" data-task="${i}" aria-pressed="${!!S.tasks[i]}"><span class="box">${S.tasks[i]?"✓":""}</span><span>${esc(t[0])}</span><span class="who">${S.tasks[i]?t[1]:"?"}</span></button>`).join("")}</div>
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;border-top:1px solid var(--line);padding-top:14px">
+        <div><span class="label">Costo per la società</span><div class="big">€ 0</div></div>
+        <div class="note" style="text-align:right">${done}/${TASKS.length} voci controllate<br>${done===TASKS.length?"Tutto a carico nostro. A voi resta solo un calendario.":"Continua a spuntare"}</div></div></div>
+  </div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Come funziona</span><h2>Quattro passi, una stagione intera</h2></div>
+    <div class="steps">
+      <div class="step"><span class="label"></span><b>Fissiamo le date</b><p>Con i tuoi allenatori, durante gli allenamenti. Nessuna giornata in più.</p></div>
+      <div class="step"><span class="label"></span><b>Scattiamo</b><p>Ogni atleta da solo, ogni squadra al completo.</p></div>
+      <div class="step"><span class="label"></span><b>Le famiglie ordinano</b><p>Da un modulo online, con calma, da casa.</p></div>
+      <div class="step"><span class="label"></span><b>Voi incassate</b><p>Il ${PCT}% del totale venduto va alla società.</p></div>
+    </div></section>`);
+}
+
+const CATS=["Under 10","Under 12","Under 14","Under 16","Under 18"];
+function yearsHTML(){ return [0,1,2,3,4].map(k=>`<div class="yr">${figurina({season:`${2026+k}/${2027+k}`, cat:CATS[k], sponsor:false})}</div>`).join(""); }
+function pRicordo(p){
+  const base=2026, yrs=[0,1,2,3,4];
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Gratis per la società · una foto per ogni atleta</span>
+      <h1>Tra vent'anni<br><span class="kitc">questa foto</span><br>sarà ancora lì.</h1>
+      <p class="lead">Sul frigo, in camera, nel portafoglio dei nonni. Una foto vera, stampata, con il nome del tuo atleta. Prova a scriverlo qui sotto.</p></div>
+    <div id="rc-photo">${figurina({size:"15×20"})}</div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Personalizza</span><h2>Scrivi un nome.<br>Guarda cosa arriva a casa.</h2>
+      <p>Ogni foto individuale riporta nome e cognome, categoria e società. È il suo ricordo, non una foto qualsiasi.</p></div>
+    <div class="panel">
+      ${picker()}
+      <div class="field"><label for="rc-name">Nome dell'atleta</label><input id="rc-name" value="${esc(S.atleta)}" maxlength="22"></div>
+      <div class="field"><label for="rc-soc">Nome della società</label><input id="rc-soc" value="${esc(S.soc)}" placeholder="es. Rugby Rovato 1976" maxlength="30"></div>
+      <div class="field"><label>Categoria</label><div class="chips" data-group="cat">${["Pulcini","Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div></div>
+      <div class="field"><label for="rc-nr">Numero di maglia</label><input id="rc-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div>
+    </div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Lo storico della società</span><h2>Una stagione dopo l'altra</h2>
+    <p>Ogni anno aggiungete un capitolo. Dopo qualche stagione la società ha un archivio che nessun altro ha: tutti i suoi atleti, anno per anno.</p></div>
+    <div class="years" id="rc-years">${yearsHTML()}</div>
+    <p class="note">Scorri: stesso atleta, stagioni diverse. Le categorie cambiano, la maglia resta.</p></section>`);
+}
+
+function pSquadra(p){
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Gratis per la società · la foto di tutta la squadra</span>
+      <h1>Una maglia.<br><span class="kitc">Una foto.</span><br>Tutta la squadra.</h1>
+      <p class="lead">La foto di squadra è quella che i ragazzi si ricordano. Chi c'era, chi giocava accanto a chi, l'anno in cui avete vinto. Componi la tua squadra qui a fianco.</p></div>
+    <div id="sq-team">${teamCard()}</div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Componi la squadra</span><h2>Qual è la vostra squadra?</h2><p>Scegli sport e squadra: la foto cambia. Ogni atleta si porta a casa la foto del suo gruppo, formato 20×30, con il nome della società.</p></div>
+    <div class="panel">
+      ${picker()}
+      <div class="field"><label for="sq-soc">Nome della società</label><input id="sq-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div>
+    </div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Cosa ci guadagna il gruppo</span><h2>Appartenere si vede</h2></div>
+    <div class="steps" style="counter-reset:none">
+      <div class="step"><b>Ogni categoria</b><p>Dai più piccoli alla prima squadra, nessuno escluso.</p></div>
+      <div class="step"><b>Stessa cura per tutti</b><p>La foto del titolare e quella del ragazzo in panchina sono uguali.</p></div>
+      <div class="step"><b>Da appendere</b><p>In sede, negli spogliatoi, nella bacheca della società.</p></div>
+      <div class="step"><b>Da ritrovare</b><p>L'archivio della stagione resta alla società.</p></div>
+    </div></section>`);
+}
+
+function fundsCalc(){ const buyers=Math.round(S.n*S.share/100); const tot=buyers*S.spend; return {buyers, tot, soc: tot*PCT/100}; }
+function pFondi(p){
+  const c=fundsCalc();
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Gratis per la società · il 15% delle vendite a voi</span>
+      <h1>Le foto che<br><span class="kitc">finanziano</span><br>la stagione.</h1>
+      <p class="lead">Il servizio è gratuito. Nella formula senza sponsor, su ogni acquisto delle famiglie il ${PCT}% va alla società. Palloni, trasferte, divise: fai il conto con i tuoi numeri.</p>
+      <div class="cta-row"><button class="btn kit" data-go="calc">Calcola la tua cifra</button></div></div>
+    <div class="panel"><span class="label">Stima per la tua società</span><div class="big" id="fo-big">${eur(c.soc)}</div><p class="note" id="fo-sub">${c.buyers} famiglie su ${S.n} che acquistano, spesa media ${eur(S.spend)}</p></div>
+  </section>
+  <section class="sec" id="calc"><div class="two">
+    <div class="sec-head"><span class="label">Simulazione</span><h2>Muovi i cursori</h2><p>I valori di partenza sono solo un esempio. Metti i numeri della tua società e guarda come cambia la cifra.</p></div>
+    <div class="panel">
+      <div class="field"><label for="fo-n">Atleti tesserati: <span class="rangeval" id="fo-nv">${S.n}</span></label><input id="fo-n" type="range" min="30" max="600" step="10" value="${S.n}"></div>
+      <div class="field"><label for="fo-s">Famiglie che acquistano: <span class="rangeval" id="fo-sv">${S.share}%</span></label><input id="fo-s" type="range" min="10" max="100" step="5" value="${S.share}"></div>
+      <div class="field"><label for="fo-e">Spesa media per famiglia: <span class="rangeval" id="fo-ev">${eur(S.spend)}</span></label><input id="fo-e" type="range" min="10" max="80" step="5" value="${S.spend}"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid var(--line);padding-top:12px">
+        <div><span class="label">Venduto totale</span><div style="font-family:var(--mono);font-size:18px" id="fo-tot">${eur(c.tot)}</div></div>
+        <div><span class="label">Alla società (${PCT}%)</span><div style="font-family:var(--mono);font-size:18px;color:var(--kit)" id="fo-soc">${eur(c.soc)}</div></div>
+      </div>
+      <p class="note">Simulazione indicativa: la cifra reale dipende da quante famiglie ordinano e da cosa scelgono.</p>
+    </div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Cosa possono ordinare le famiglie</span><h2>Prodotti veri, da tenere</h2></div>
+    <div class="steps" style="counter-reset:none">
+      <div class="step"><b>Foto dell'atleta</b><p>Formati 20×30 e 30×40.</p></div>
+      <div class="step"><b>Foto di squadra</b><p>Formato 30×40.</p></div>
+      <div class="step"><b>Calendario atleta</b><p>30×40, con la sua foto.</p></div>
+      <div class="step"><b>Calendario squadra</b><p>30×40, con la foto del gruppo.</p></div>
+    </div></section>`);
+}
+
+/* ================= LANDING: AZIENDE ================= */
+function logoDrop(id){
+  return `<div class="drop" id="${id}-drop"><label for="${id}-file" style="font-weight:600">Carica il tuo logo (PNG, JPG, SVG)</label><input id="${id}-file" type="file" accept="image/*">
+    <div class="field" style="width:100%"><label for="${id}-az">Oppure scrivi il nome dell'azienda</label><input id="${id}-az" value="${esc(S.az)}" placeholder="es. Ferramenta Bianchi" maxlength="26"></div>
+    <p class="note">${S.logo?"Stai vedendo il tuo logo.":"Per ora vedi un logo di esempio (Colombo Serramenti, azienda inventata). Carica il tuo per sostituirlo."}</p></div>`;
+}
+function pLogo(p){
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Per aziende del territorio · sponsor della stagione 2026/27</span>
+      <h1>365 giorni<br>sul frigo<br><span class="kitc">delle famiglie.</span></h1>
+      <p class="lead">Un calendario con la foto della squadra del figlio non si butta. Resta appeso in cucina tutto l'anno, con il tuo logo in basso. Caricalo e sfoglia i mesi.</p></div>
+    <div id="lg-cal">${calendar({m:S.month})}</div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Prova con il tuo marchio</span><h2>Il tuo logo,<br>dodici volte l'anno</h2><p>Il file resta sul tuo dispositivo: lo usiamo solo per mostrarti l'anteprima.</p>
+      <div class="calnav" style="margin-top:8px"><button class="btn ghost" data-mon="-1">← Mese prima</button><span class="label" id="lg-m">${MONTHS[S.month]} 2027</span><button class="btn ghost" data-mon="1">Mese dopo →</button></div></div>
+    <div class="panel">${picker()}${logoDrop("lg")}<div class="field"><label for="lg-soc">Società che vorresti sostenere (facoltativo)</label><input id="lg-soc" value="${esc(S.soc)}" placeholder="es. Rugby Rovato 1976" maxlength="30"></div></div>
+  </div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Dove arriva il tuo marchio</span><h2>Dentro casa, non in mezzo alla strada</h2></div>
+    <div class="steps" style="counter-reset:none">
+      <div class="step"><b>Sulla foto regalo</b><p>Ogni tesserato riceve foto individuale e di squadra con il tuo logo.</p></div>
+      <div class="step"><b>Sui calendari</b><p>Quelli che le famiglie comprano per i nonni a Natale.</p></div>
+      <div class="step"><b>Sugli acquisti in più</b><p>Anche le stampe ordinate dopo possono portare il tuo marchio.</p></div>
+      <div class="step"><b>Tutto l'anno</b><p>Un calendario resta appeso dodici mesi.</p></div>
+    </div></section>`);
+}
+
+function pTerritorio(p){
+  const az=S.az||"La tua azienda", soc=S.soc||"la società del tuo paese";
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Per aziende del territorio · sostieni lo sport dei ragazzi</span>
+      <h1>Il tuo nome<br>accanto ai<br><span class="kitc">ragazzi del paese.</span></h1>
+      <p class="lead">Le famiglie della tua zona sono i tuoi clienti. Regala a ogni tesserato la foto della sua stagione e fatti ricordare per quello che hai fatto per i loro figli.</p></div>
+    <div style="display:grid;gap:14px"><div id="tr-team">${teamCard()}</div><div class="panel" id="tr-card"><span class="label">Il messaggio che arriva a casa</span>
+      <p style="font-family:var(--display);font-size:clamp(26px,3.6vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.1">“La foto della tua stagione te la regala ${esc(az)}.”</p>
+      <p class="note">Consegnata da ${esc(soc)} alla festa di fine anno o di Natale.</p></div></div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Scegli chi sostenere</span><h2>Quale sport ti somiglia?</h2><p>Scegli uno sport e scrivi i nomi: il messaggio si aggiorna. Troviamo noi la società giusta nella tua zona.</p></div>
+    <div class="panel">
+      ${picker()}
+      <div class="field"><label for="tr-az">La tua azienda</label><input id="tr-az" value="${esc(S.az)}" placeholder="es. Ferramenta Bianchi" maxlength="26"></div>
+      <div class="field"><label for="tr-soc">Società (se ne hai già una in mente)</label><input id="tr-soc" value="${esc(S.soc)}" placeholder="es. Basket Chiari" maxlength="30"></div>
+    </div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Perché funziona</span><h2>Chi sostiene i ragazzi viene ricordato</h2></div>
+    <div class="steps" style="counter-reset:none">
+      <div class="step"><b>Vicino</b><p>Parli alle famiglie che abitano e comprano dove lavori tu.</p></div>
+      <div class="step"><b>Concreto</b><p>Non un banner: un regalo che ogni atleta tiene in mano.</p></div>
+      <div class="step"><b>Riconoscibile</b><p>Il tuo logo sui prodotti, per tutta la stagione ${SEASON}.</p></div>
+      <div class="step"><b>Semplice</b><p>Scatti, stampe e consegne li facciamo noi con la società.</p></div>
+    </div></section>`);
+}
+
+function costCalc(){ const perFam=S.budget/Math.max(1,S.tess); return {perFam, perDay: S.budget/365, perFamMonth: perFam/12}; }
+function pCosto(p){
+  const c=costCalc();
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Per aziende del territorio · quanto costa davvero</span>
+      <h1>Quanto costa<br>entrare in<br><span class="kitc">ogni casa?</span></h1>
+      <p class="lead">Metti il budget che pensi di investire e il numero di tesserati della società. Ti diciamo quanto spendi per ogni famiglia raggiunta, e per ogni mese in cui il tuo logo resta appeso.</p>
+      <div class="cta-row"><button class="btn kit" data-go="calc">Inserisci i tuoi numeri</button></div></div>
+    <div class="panel"><span class="label">Costo per famiglia raggiunta</span><div class="big" id="co-big">${eur(c.perFam)}</div><p class="note" id="co-sub">circa ${num(c.perFamMonth)} € al mese per famiglia, per 12 mesi di calendario</p></div>
+  </section>
+  <section class="sec" id="calc"><div class="two">
+    <div class="sec-head"><span class="label">Simulazione</span><h2>I tuoi numeri</h2><p>Le cifre di partenza sono un esempio, non un listino. Il preventivo vero lo facciamo insieme in base alla società scelta.</p></div>
+    <div class="panel">
+      <div class="field"><label for="co-b">Budget sponsor: <span class="rangeval" id="co-bv">${eur(S.budget)}</span></label><input id="co-b" type="range" min="300" max="6000" step="100" value="${S.budget}"></div>
+      <div class="field"><label for="co-t">Tesserati della società: <span class="rangeval" id="co-tv">${S.tess}</span></label><input id="co-t" type="range" min="30" max="600" step="10" value="${S.tess}"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid var(--line);padding-top:12px">
+        <div><span class="label">Per famiglia</span><div style="font-family:var(--mono);font-size:17px" id="co-a">${eur(c.perFam)}</div></div>
+        <div><span class="label">Al giorno</span><div style="font-family:var(--mono);font-size:17px" id="co-d">${num(c.perDay)} €</div></div>
+        <div><span class="label">Prodotti col logo</span><div style="font-family:var(--mono);font-size:17px;color:var(--kit)" id="co-p">${S.tess*2}</div></div>
+      </div>
+      <p class="note">"Prodotti col logo" conta foto individuale e foto di squadra regalate a ogni tesserato, senza gli acquisti extra delle famiglie.</p>
+    </div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Cosa compri davvero</span><h2>Un regalo, non uno spazio pubblicitario</h2></div>
+    <div class="steps" style="counter-reset:none">
+      <div class="step"><b>Foto 15×20</b><p>Individuale, con nome e cognome dell'atleta.</p></div>
+      <div class="step"><b>Foto 20×30</b><p>Di squadra, per ogni tesserato.</p></div>
+      <div class="step"><b>Il tuo logo</b><p>Su tutti i prodotti consegnati.</p></div>
+      <div class="step"><b>Il bis</b><p>Presenza anche sugli acquisti successivi delle famiglie.</p></div>
+    </div></section>`);
+}
+
+function pNatale(p){
+  return page(p, `
+  <section class="hero">
+    <div><span class="kicker">Per aziende del territorio · il regalo di Natale ai ragazzi</span>
+      <h1>Il regalo lo<br>fa la società.<br><span class="kitc">La firma è tua.</span></h1>
+      <p class="lead">Alla festa di Natale ogni tesserato riceve la sua foto e quella della squadra. Sopra c'è il tuo logo. Apri il pacco e guarda.</p></div>
+    <div id="na-box">${giftBox()}</div>
+  </section>
+  <section class="sec"><div class="two">
+    <div class="sec-head"><span class="label">Personalizza il regalo</span><h2>Metti il tuo marchio sul pacco</h2><p>Carica il logo: compare sulle foto regalate e sui calendari che le famiglie comprano per i nonni.</p></div>
+    <div class="panel">${picker()}${logoDrop("na")}</div></div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Dopo la festa</span><h2>Il regalo che continua</h2>
+    <p>Finita la consegna apriamo un nuovo modulo per gli acquisti in più: altre stampe e, sotto le feste, i calendari personalizzati. Anche questi possono portare il tuo logo.</p></div>
+    <div class="steps">
+      <div class="step"><span class="label"></span><b>Scatti</b><p>In autunno, durante gli allenamenti.</p></div>
+      <div class="step"><span class="label"></span><b>Festa di Natale</b><p>La società consegna il regalo a ogni tesserato.</p></div>
+      <div class="step"><span class="label"></span><b>Calendari</b><p>Le famiglie ordinano i calendari per parenti e amici.</p></div>
+      <div class="step"><span class="label"></span><b>Tutto il 2027</b><p>Il tuo logo resta appeso in casa, mese dopo mese.</p></div>
+    </div></section>`);
+}
+function giftBox(){
+  if(!S.gift) return `<button class="gift" id="na-gift" aria-label="Apri il regalo"><span class="lid"></span><span class="box"></span><span class="rib"></span><span class="tag">Apri il regalo</span></button>`;
+  return `<div class="gift-out fade">${figurina({size:"15×20"})}${calendar({m:11})}</div>
+    <div style="margin-top:12px;display:flex;justify-content:center"><button class="btn ghost" id="na-close">Richiudi il pacco</button></div>`;
+}
+
+/* ================= PAGES & ROUTER ================= */
+const PAGES = [
+  {id:"gratis",   aud:"soc", tag:"Gratis",        title:"Zero euro, tutte le foto", render:pGratis},
+  {id:"ricordo",  aud:"soc", tag:"Ricordo",       title:"Tra vent'anni sarà ancora lì", render:pRicordo},
+  {id:"squadra",  aud:"soc", tag:"Appartenenza",  title:"Una maglia, una foto", render:pSquadra},
+  {id:"fondi",    aud:"soc", tag:"Raccolta fondi",title:"Le foto che finanziano la stagione", render:pFondi},
+  {id:"logo",     aud:"az",  tag:"Visibilità",    title:"365 giorni sul frigo", render:pLogo},
+  {id:"territorio",aud:"az", tag:"Territorio",    title:"Accanto ai ragazzi del paese", render:pTerritorio},
+  {id:"costo",    aud:"az",  tag:"Costo contatto",title:"Quanto costa entrare in casa", render:pCosto},
+  {id:"natale",   aud:"az",  tag:"Regalo di Natale",title:"Il regalo firmato da te", render:pNatale},
+];
+
+function hub(){
+  const card = p => `<div class="hub-card ${p.aud==="az"?"kit-red":""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${p.aud==="soc"?"Società":"Aziende"} · ${esc(p.tag)}</span><h3>${esc(p.title)}</h3>
+    ${WEB?"":`<span class="label">link: #${p.id}</span>`}<div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a>${WEB?"":`<button class="btn ghost" data-copy="${p.id}">Copia link</button>`}</div></div>`;
+  return `<div class="wrap">${topBar("soc").replace("Per società e associazioni sportive","Anteprima campagna")}
+  <section class="hub"><div class="sec-head"><span class="label">${WEB?"Stagione":"8 percorsi · stagione"} ${SEASON}</span><h1>SWS Foto Sport</h1>
+    <p>Un servizio fotografico sempre gratis per le società sportive, in due formule: <strong>senza sponsor</strong> (foto a chi le vuole, ${PCT}% delle vendite alla società) o <strong>con sponsor</strong> (foto regalate a tutti i tesserati). ${WEB?"Scegli il percorso che ti riguarda: sei una società sportiva o un'azienda che vuole sostenere lo sport del territorio?":"Quattro landing per le società, quattro per le aziende: ognuna ha il suo link per mail, WhatsApp e social."}</p></div>
+    <div class="sec-head"><span class="label">Società e associazioni</span></div><div class="hub-grid">${PAGES.filter(p=>p.aud==="soc").map(card).join("")}</div>
+    <div class="sec-head"><span class="label">Aziende sponsor</span></div><div class="hub-grid">${PAGES.filter(p=>p.aud==="az").map(card).join("")}</div>
+    ${WEB?"":`<p class="note">Il modulo contatti è in anteprima e non invia ancora nulla.</p>`}
+  </section>${foot()}</div>`;
+}
+
+let current=null;
+function route(){
+  const id=(location.hash||"").slice(1) || window.__PAGE || "";
+  const p=PAGES.find(x=>x.id===id);
+  current=p||null;
+  $("#app").innerHTML = p ? p.render(p) : hub();
+  if(!WEB) document.title = p ? `SWS · ${p.tag}` : "SWS Foto Sport";
+  if(!route.first) window.scrollTo(0,0);
+  route.first=false;
+}
+route.first=true;
+function rerender(keepScroll=true){ const y=window.scrollY; const a=document.activeElement?.id; $("#app").innerHTML=current?current.render(current):hub(); if(keepScroll) window.scrollTo(0,y); if(a){const el=document.getElementById(a); if(el){el.focus(); if(el.setSelectionRange&&el.type==="text"){const l=el.value.length; try{el.setSelectionRange(l,l)}catch(e){}}}} }
+window.addEventListener("hashchange", route);
+
+function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,1800); }
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const t=e.target.closest("button,[data-go]"); if(!t) return;
+  if(t.dataset.go){ e.preventDefault(); document.getElementById(t.dataset.go)?.scrollIntoView({behavior:"smooth"}); return; }
+  if(t.dataset.formula){ S.formula=t.dataset.formula; document.querySelectorAll("[data-formula]").forEach(c=>{const on=c.dataset.formula===S.formula; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on);}); set("fcompare",compare(S.formula)); return; }
+  if(t.dataset.task!==undefined){ S.tasks[t.dataset.task]=!S.tasks[t.dataset.task]; rerender(); return; }
+  if(t.dataset.cat){ S.cat=t.dataset.cat; rerender(); return; }
+  if(t.dataset.sport){ S.sport=t.dataset.sport; partial(true); return; }
+  if(t.dataset.g){ S.g=t.dataset.g; if(S.atleta==="Martina Rossi"&&S.g==="m") S.atleta="Luca Rossi"; else if(S.atleta==="Luca Rossi"&&S.g==="f") S.atleta="Martina Rossi"; partial(true); return; }
+  if(t.dataset.mon){ S.month=(S.month+ +t.dataset.mon+12)%12; set("lg-cal",calendar({m:S.month})); set("lg-m",MONTHS[S.month]+" 2027"); return; }
+  if(t.id==="na-gift"){ S.gift=true; rerender(); return; }
+  if(t.id==="na-close"){ S.gift=false; rerender(); return; }
+  if(t.dataset.copy){
+    const url=WEB? location.origin+"/"+t.dataset.copy+"/" : location.href.split("#")[0]+"#"+t.dataset.copy;
+    const done=()=>toast("Link copiato");
+    try{ navigator.clipboard.writeText(url).then(done,()=>toast(url)); }catch(err){ toast(url); }
+  }
+});
+
+// live inputs: aggiornano solo le parti necessarie per non perdere il cursore
+document.addEventListener("input", e=>{
+  const id=e.target.id, v=e.target.value;
+  const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az" };
+  if(map[id]!==undefined){ S[map[id]]=v; partial(); return; }
+  if(id==="sq-n"){ S.players=+v; partial(); return; }
+  if(id==="fo-n"){ S.n=+v; partial(); return; }
+  if(id==="fo-s"){ S.share=+v; partial(); return; }
+  if(id==="fo-e"){ S.spend=+v; partial(); return; }
+  if(id==="co-b"){ S.budget=+v; partial(); return; }
+  if(id==="co-t"){ S.tess=+v; partial(); return; }
+});
+function set(id,html){ const el=document.getElementById(id); if(el) el.innerHTML=html; }
+function partial(pick){
+  if(!current) return;
+  if(pick){ document.querySelectorAll("[data-sport]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sport===S.sport)); document.querySelectorAll("[data-g]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===S.g)); const rn=document.getElementById("rc-name"); if(rn) rn.value=S.atleta; }
+  switch(current.id){
+    case "gratis": set("gr-fig", figurina({size:"15×20"})); break;
+    case "ricordo":
+      set("rc-photo", figurina({size:"15×20"})); set("rc-years", yearsHTML()); break;
+    case "squadra":
+      set("sq-team", teamCard()); break;
+    case "fondi": { const c=fundsCalc();
+      set("fo-big",eur(c.soc)); set("fo-sub",`${c.buyers} famiglie su ${S.n} che acquistano, spesa media ${eur(S.spend)}`);
+      set("fo-nv",S.n); set("fo-sv",S.share+"%"); set("fo-ev",eur(S.spend)); set("fo-tot",eur(c.tot)); set("fo-soc",eur(c.soc)); break; }
+    case "logo": set("lg-cal", calendar({m:S.month})); break;
+    case "territorio": {
+      const az=S.az||"La tua azienda", soc=S.soc||"la società del tuo paese";
+      set("tr-team", teamCard());
+      set("tr-card", `<span class="label">Il messaggio che arriva a casa</span><p style="font-family:var(--display);font-size:clamp(26px,3.6vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.1">“La foto della tua stagione te la regala ${esc(az)}.”</p><p class="note">Consegnata da ${esc(soc)} alla festa di fine anno o di Natale.</p>`); break; }
+    case "costo": { const c=costCalc();
+      set("co-big",eur(c.perFam)); set("co-sub",`circa ${num(c.perFamMonth)} € al mese per famiglia, per 12 mesi di calendario`);
+      set("co-bv",eur(S.budget)); set("co-tv",S.tess); set("co-a",eur(c.perFam)); set("co-d",num(c.perDay)+" €"); set("co-p",S.tess*2); break; }
+    case "natale": set("na-box", giftBox()); break;
+  }
+}
+
+// logo upload (resta nel browser)
+document.addEventListener("change", e=>{
+  if(!/-file$/.test(e.target.id)) return;
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=()=>{ S.logo=r.result; partial(); document.querySelectorAll(".drop .note").forEach(n=>n.textContent="Stai vedendo il tuo logo."); toast("Logo caricato nell'anteprima"); if(current?.id==="natale"&&!S.gift){S.gift=true; set("na-box",giftBox());} }; r.readAsDataURL(f);
+});
+["dragover","dragleave","drop"].forEach(ev=>document.addEventListener(ev, e=>{
+  const d=e.target.closest?.(".drop"); if(!d) return; e.preventDefault();
+  d.classList.toggle("over", ev==="dragover");
+  if(ev==="drop"){ const f=e.dataTransfer.files[0]; if(f&&f.type.startsWith("image/")){ const r=new FileReader(); r.onload=()=>{S.logo=r.result; partial(); toast("Logo caricato nell'anteprima");}; r.readAsDataURL(f);} }
+}));
+
+// form
+document.addEventListener("submit", e=>{
+  e.preventDefault();
+  const f=e.target; const key=f.id.replace("f-","");
+  const nome=document.getElementById(key+"-nome").value.trim();
+  const tel=document.getElementById(key+"-tel").value.trim();
+  const mail=document.getElementById(key+"-mail").value.trim();
+  const err=document.getElementById(key+"-err");
+  if(!nome){ err.textContent="Scrivi il tuo nome per continuare."; document.getElementById(key+"-nome").focus(); return; }
+  if(!tel && !mail){ err.textContent="Lasciaci almeno un telefono o un'email, così possiamo risponderti."; return; }
+  if(mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){ err.textContent="Controlla l'email: sembra incompleta."; return; }
+  const org=(document.getElementById(key+"-org")||{}).value||"";
+  if(WEB){ const pg=PAGES.find(x=>x.id===key); const msg=`Ciao, sono ${nome}${org?` di ${org}`:""}. Ho visto la pagina SWS Foto Sport (${pg?pg.tag:key}) e mi interessa. ${tel?`Telefono: ${tel}. `:""}${mail?`Email: ${mail}.`:""}`; window.open(CONTACT.wa+"?text="+encodeURIComponent(msg),"_blank","noopener"); }
+  S.sent[key]=nome.split(" ")[0]; rerender();
+});
+
+route();
+</script>
+
+</body></html>
