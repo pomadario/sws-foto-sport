@@ -611,6 +611,20 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .toplinks a.n-societa:hover,.toplinks a.n-aziende:hover,.toplinks a.n-enti:hover,.toplinks a.n-atleti:hover,.toplinks a.n-societa.on,.toplinks a.n-aziende.on,.toplinks a.n-enti.on,.toplinks a.n-atleti.on{border-color:var(--nc)!important;box-shadow:0 0 12px color-mix(in srgb,var(--nc) 40%,transparent)}
 .toplinks a.n-societa.on,.toplinks a.n-aziende.on,.toplinks a.n-enti.on,.toplinks a.n-atleti.on{background:color-mix(in srgb,var(--nc) 14%,transparent)}
 .kit-green{--kit:#1FA37A;--kit-soft:rgba(31,163,122,.2)}
+
+/* intestazione fuori dalla foto: niente sovrapposizioni su volti e corpi */
+.pp-fig,.pp-team{display:flex!important;flex-direction:column}
+.pp-fig .pp-top,.pp-team .pp-top{position:static;inset:auto;background:var(--pp-body);padding:2.2cqi 3cqi;align-items:center;gap:2cqi;flex:0 0 auto}
+.pp-fig,.pp-team{aspect-ratio:auto!important}
+.pp-fig .pp-img,.pp-team .pp-img{position:static;flex:none;width:100%;height:auto;display:block}
+.pp-team .pp-img{aspect-ratio:4/3}.pp-fig .pp-img{aspect-ratio:3/4}
+.pp-fig .pp-band,.pp-team .pp-band{position:static}
+.pp-fig .pp-crest{width:9cqi;font-size:3.4cqi;border-width:.6cqi}
+.pp-fig .pp-sea{margin-left:auto;font-size:2.3cqi;padding:1cqi 1.8cqi}.pp-fig .pp-sea b{font-size:3.8cqi}
+.pp-fig .pp-nr{position:static;width:9cqi;font-size:4.6cqi;flex:0 0 auto}
+.pp-team .pp-top{padding:1.4cqi 2.2cqi}
+.pp-team .pp-crest{width:6.5cqi;font-size:2.4cqi;border-width:.45cqi}
+.pp-team .pp-sea{box-shadow:none}
 </style>
 
 <div id="app"></div>
@@ -657,9 +671,8 @@ function crest(soc){ if(S.crest) return `<span class="pp-crest img"><img src="${
 function figurina({name=S.atleta, cat=S.cat, nr=S.nr, soc=S.soc, sp=S.sport, g=S.g, season=SEASON, sponsor=true, size="15×20 cm"}={}){
   size=size&&!/cm/.test(size)?size+" cm":size;
   return `<figure class="pp pp-fig">
+    <div class="pp-top">${crest(soc)}<span class="pp-sea">Stagione sportiva<b>${esc(season)}</b></span>${nr?`<span class="pp-nr">${esc(nr)}</span>`:""}</div>
     <img class="pp-img" src="${pImg(sp,g)}" alt="Foto atleta ${esc(sportName(sp))}" loading="lazy">
-    <div class="pp-top">${crest(soc)}<span class="pp-sea">Stagione sportiva<b>${esc(season)}</b></span></div>
-    ${nr?`<span class="pp-nr">${esc(nr)}</span>`:""}
     <figcaption class="pp-band"><b class="pp-name">${esc(name||"Nome Cognome")}</b>
       <span class="pp-strip"><span class="pp-s1">${esc(soc||"La tua società")}</span><span class="pp-s2">${esc(sportName(sp))} · ${esc(cat)}</span></span>
       ${sponsor?`<span class="pp-foot">${spBox()}<span class="pp-by">${swsLogo()}SWS</span></span>`:""}</figcaption>
@@ -669,8 +682,8 @@ function figurina({name=S.atleta, cat=S.cat, nr=S.nr, soc=S.soc, sp=S.sport, g=S
 /* Foto di squadra · 20×30 cm (3:2) */
 function teamCard({soc=S.soc, sp=S.sport, g=S.g, cat=S.cat}={}){
   return `<figure class="pp pp-team">
-    <img class="pp-img" src="${tImg(sp,g)}" alt="Foto di squadra ${esc(sportName(sp))}" onerror="this.onerror=null;this.src='img/squadra.jpg'">
     <div class="pp-top">${crest(soc)}<span class="pp-sea">Stagione sportiva<b>${SEASON}</b></span></div>
+    <img class="pp-img" src="${tImg(sp,g)}" alt="Foto di squadra ${esc(sportName(sp))}" onerror="this.onerror=null;this.src='img/squadra.jpg'">
     <figcaption class="pp-band pp-tb"><div><b class="pp-name">${esc(soc||"La tua società")}</b>
       <span class="pp-strip"><span class="pp-s2">${esc(sportName(sp))} ${g==="f"?"femminile":"maschile"} · ${esc(cat)}</span></span></div>${spBox()}</figcaption>
     <span class="pp-size">20×30 cm</span>
@@ -688,7 +701,7 @@ function calendar({soc=S.soc, sp=S.sport, g=S.g, name=""}={}){
     <div class="pc-main">
       <div class="pc-top">
         <div class="pc-col"><b class="pc-year">${y}</b>${[0,1,2,3].map(mini).join("")}</div>
-        <div class="pc-right"><div class="pc-photo"><div class="pc-pic"><img src="${tImg(sp,g)}" alt="Foto di squadra" onerror="this.onerror=null;this.src='img/squadra.jpg'">${crest(soc)}</div>
+        <div class="pc-right"><div class="pc-photo"><div class="pc-pic"><img src="${tImg(sp,g)}" alt="Foto di squadra" onerror="this.onerror=null;this.src='img/squadra.jpg'"></div>
           <div class="pp-band"><b class="pp-name">${esc(name||sportName(sp)+" "+(g==="f"?"femminile":"maschile"))}</b><span class="pp-strip"><span class="pp-s1">${esc(soc||"La tua società")}</span><span class="pp-s2">Stagione sportiva ${SEASON}</span></span></div></div><div class="pc-foot"><span class="pp-by2">con il sostegno di</span>${spBox()||`<span class="pp-sp txt">Il tuo logo</span>`}</div></div>
       </div>
       <div class="pc-rest">${[4,5,6,7,8,9,10,11].map(mini).join("")}</div>
@@ -1211,7 +1224,7 @@ function pEnti(p){
   ${formule("soc")}
   <section class="sec"><div class="sec-head"><span class="label">Come lavoriamo insieme</span><h2>Cinque passi</h2></div>
     <div class="steps">${steps.map(([a,b])=>`<div class="step"><span class="label"></span><b>${a}</b><p>${b}</p></div>`).join("")}</div></section>
-  <section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte: ti proponiamo come partire.</p></div>${form("enti","soc")}${directLine()}</section>`, "t-fam");
+  <section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte: ti proponiamo come partire.</p></div>${form("enti","soc")}${directLine()}</section>`, "kit-green");
 }
 function pLegal(p){ return shell(`<section class="legaldoc">${p.id==="privacy"?LEGAL_PRIV:LEGAL_TERM}</section>`); }
 const LEGAL_PRIV=`<span class="kicker">Informativa</span><h1>Privacy policy</h1><p class="upd">Ultimo aggiornamento: 28 settembre 2026</p>
