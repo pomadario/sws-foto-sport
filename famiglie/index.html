@@ -398,6 +398,21 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .fig-in{height:auto!important;grid-template-rows:auto auto auto auto!important}
 .fig-photo{aspect-ratio:4/5}
 .fig-photo img{object-position:50% 6%!important}
+.fig{container-type:inline-size}
+.fig-in{grid-template-columns:minmax(0,1fr)!important}
+.fig-in > *{min-width:0}
+.fig-top{gap:6px;padding:7px 8px}
+.fig-soc{font-size:clamp(9px,5.2cqi,13px)}
+.fig-sea{font-size:clamp(8px,4cqi,10px);padding:3px 6px;flex:0 0 auto;white-space:nowrap}
+.crest{flex:0 0 auto}
+.fig-band b{font-size:clamp(11px,8.2cqi,30px)!important;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.fig-band span{font-size:clamp(8px,4.2cqi,11px)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.fig-foot{gap:6px;padding:7px 8px;min-height:0}
+.fig-sp{max-width:62%;min-width:0;height:auto;padding:3px 6px}
+.fig-sp img{height:auto!important;width:100%!important;max-width:100%!important;max-height:26px}
+.fig-no{flex:0 0 auto;font-size:clamp(8px,4cqi,10px)}
+.fig-no svg{width:clamp(12px,6cqi,18px);height:auto}
+.fig-nr{width:clamp(26px,14cqi,44px)!important;height:clamp(26px,14cqi,44px)!important;font-size:clamp(13px,7cqi,22px)!important}
 </style>
 
 <div id="app"></div>
@@ -601,7 +616,7 @@ function pRicordo(p){
       ${picker()}
       <div class="field"><label for="rc-name">Nome dell'atleta</label><input id="rc-name" value="${esc(S.atleta)}" maxlength="22"></div>
       <div class="field"><label for="rc-soc">Nome della società</label><input id="rc-soc" value="${esc(S.soc)}" placeholder="es. Rugby Rovato 1976" maxlength="30"></div>
-      <div class="field"><label>Categoria</label><div class="chips" data-group="cat">${["Pulcini","Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div></div>
+      <div class="field"><label>Categoria</label><div class="chips" data-group="cat">${["Pulcini","Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Pulcini","Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div>
       <div class="field"><label for="rc-nr">Numero di maglia</label><input id="rc-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div>
     </div></div></section>
   <section class="sec"><div class="sec-head"><span class="label">Lo storico della società</span><h2>Una stagione dopo l'altra</h2>
@@ -938,7 +953,7 @@ function pProva(p){
         <span class="label">2 · Personalizza</span>
         <div class="two" style="gap:12px"><div class="field"><label for="cf-name">Nome dell'atleta</label><input id="cf-name" value="${esc(S.atleta)}" maxlength="22"></div><div class="field"><label for="cf-nr">Numero</label><input id="cf-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div></div>
         <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div>
-        <div class="field"><label>Categoria</label><div class="chips">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div></div>
+        <div class="field"><label>Categoria</label><div class="chips">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div>
         <span class="label">3 · Lo sponsor</span>
         <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo e guardalo comparire su figurina e foto.</span></div>
         ${logoDrop("cf")}
@@ -1026,6 +1041,7 @@ document.addEventListener("input", e=>{
   const id=e.target.id, v=e.target.value;
   const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az", "cf-name":"atleta", "cf-nr":"nr", "cf-soc":"soc", "cf-az":"az", "pk-altro":"altro" };
   if(map[id]!==undefined){ S[map[id]]=v; partial(); return; }
+  if(id==="cat-free"){ S.cat=v||"Under 12"; document.querySelectorAll("[data-cat]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cat===S.cat)); partial(); return; }
   if(id==="pr-nome"||id==="pr-soc"){ S.pr[id.slice(3)]=v; prUpdate(); return; }
   if(id==="sq-n"){ S.players=+v; partial(); return; }
   if(id==="fo-n"){ S.n=+v; partial(); return; }
