@@ -352,6 +352,23 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .cal .foot img{height:40px}
 .tband img{height:42px!important;max-width:60%}
 .fig-sp img{height:24px!important}
+
+dialog.how{max-width:760px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:var(--r-lg);background:#181818;color:var(--ink);padding:0;box-shadow:0 40px 90px -30px #000}
+dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
+.how-in{padding:28px;display:grid;gap:18px;max-height:88vh;overflow:auto}
+.how-in h2{font-size:clamp(28px,4vw,40px)}
+.how-free{display:inline-block;background:var(--blue);color:#fff;font-weight:800;padding:6px 14px;border-radius:999px;width:max-content}
+.how-vars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.how-vars{grid-template-columns:1fr}}
+.how-var{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:10px;align-content:start}
+.how-var.sp{border-color:var(--red)}
+.how-var b.t{font-family:var(--display);font-size:20px;text-transform:uppercase}
+.how-var ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.how-var .res{font-weight:800;color:var(--blue)}
+.how-var.sp .res{color:var(--red)}
+.how-note{border:2px dashed #F2B705;border-radius:var(--r);padding:16px 18px;display:grid;gap:6px;background:rgba(242,183,5,.08)}
+.how-note b{color:#F2B705}
+.how-x{position:sticky;top:0;justify-self:end;margin-bottom:-40px;background:#2a2a2a;border:0;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
 </style>
 
 <div id="app"></div>
@@ -740,7 +757,7 @@ const VANT = {
   ["Il senso di squadra","La foto di gruppo di ogni categoria, da appendere in sede e a casa."],
   ["Una raccolta fondi senza fatica","Senza sponsor, il 15% di ogni foto venduta torna alla società."],
   ["Nessun lavoro organizzativo","Ci accordiamo con gli allenatori e scattiamo durante gli allenamenti."],
-  ["Lo sponsor lo portiamo noi","Cerchiamo noi le aziende della zona che vogliono sostenervi."],
+  ["Lo sponsor lo convinciamo noi","Tu ci indichi un'azienda che conosci, noi le spieghiamo il progetto e la aiutiamo a dire sì."],
   ["Foto professionali per i vostri canali","Immagini di qualità per sito, social e comunicazioni della società."],
   ["Più iscritti","Una società che si presenta bene attira nuove famiglie."],
   ["L'archivio della società","Stagione dopo stagione, la storia di tutti i vostri atleti."]]},
@@ -769,6 +786,24 @@ const VANT = {
   ["Consegna in società","Niente spedizioni: ritiri tutto agli allenamenti."]]}
 };
 const VIDS=[["natale","az","Il regalo firmato da te"],["logo","az","Dodici mesi appeso in casa"],["territorio","az","Il campo del paese"],["costo","az","Il calendario in cucina"],["gratis","soc","Il fotografo in palestra"],["ricordo","soc","La foto che resta"],["squadra","soc","Tutti in posa"],["fondi","soc","Le foto che finanziano la stagione"]];
+
+function howBtn(){ return `<button class="btn ghost" type="button" data-how="1">Come funziona</button>`; }
+function howDialog(){ return `<dialog class="how" id="how" aria-labelledby="how-t"><div class="how-in">
+  <button class="how-x" type="button" data-howclose="1" aria-label="Chiudi">✕</button>
+  <span class="label">Come funziona</span>
+  <h2 id="how-t">Per il gruppo sportivo<br>è sempre gratis.</h2>
+  <p>Fotografiamo tutti gli atleti e tutte le squadre: foto individuale con nome e numero, e foto di gruppo. Poi scegli una delle due varianti.</p>
+  <div class="how-vars">
+    <div class="how-var"><span class="label">Variante 1</span><b class="t">Senza sponsor</b>
+      <ol><li>Scattiamo le foto in palestra o al campo.</li><li>Le famiglie le guardano online e ordinano solo se vogliono.</li><li>Alla società torna il ${PCT}% di tutto il venduto.</li></ol>
+      <span class="res">Costo per la società: 0 €</span></div>
+    <div class="how-var sp"><span class="label">Variante 2</span><b class="t">Con sponsor</b>
+      <ol><li>Un'azienda del territorio sostiene il servizio.</li><li>Ogni atleta riceve in regalo la sua foto e quella della squadra, con il logo dello sponsor.</li><li>Consegna in società, per esempio alla festa di Natale.</li></ol>
+      <span class="res">Costo per società e famiglie: 0 €</span></div>
+  </div>
+  <div class="how-note"><b>Lo sponsor lo suggerisce il gruppo sportivo</b><span>Ci indichi un'azienda che conosci: un genitore imprenditore, un negozio o un fornitore della zona. Poi pensiamo noi a incontrarla, spiegarle il progetto con materiali pronti e aiutarla a dire sì.</span></div>
+  <div class="cta-row" style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, vorrei saperne di più sulle foto SWS per il mio gruppo sportivo")}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><button class="btn ghost" type="button" data-howclose="1">Ho capito</button></div>
+</div></dialog>`; }
 function shell(inner, cls=""){ return `<div class="wrap ${cls}">${topBar()}${inner}${foot()}</div>`; }
 function bcol(k,n=4){ const v=VANT[k]; return `<div class="bcol ${v.cls}"><span class="label">${v.t}</span><ul>${v.items.slice(0,n).map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ul><a class="more" href="${linkTo(v.page)}">Tutti i vantaggi →</a></div>`; }
 function bgrid(k){ return `<div class="bgrid">${VANT[k].items.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("")}</div>`; }
@@ -782,7 +817,7 @@ function pHome(p){
     <div><span class="kicker">SWS Foto Sport · stagione ${SEASON}</span>
       <h1>Una sola azione.<br><span class="kitc">Quattro vincitori.</span></h1>
       <p class="lead">SWS Agency fotografa tutti gli atleti e tutte le squadre delle società sportive, e alla società non costa nulla. Ci guadagnano la società, l'azienda che la sostiene, gli atleti e le loro famiglie.</p>
-      <div class="cta-row"><a class="btn kit" href="${linkTo("societa")}">Sono una società sportiva</a><a class="btn ghost" href="${linkTo("aziende")}">Sono un'azienda</a></div></div>
+      <div class="cta-row"><a class="btn kit" href="${linkTo("societa")}">Sono una società sportiva</a><a class="btn ghost" href="${linkTo("aziende")}">Sono un'azienda</a>${howBtn()}</div></div>
     <div>${figurina({size:"15×20"})}</div>
   </section>
   <section class="split">
@@ -804,7 +839,7 @@ function pTarget(p){
     <div><span class="kicker">${soc?"Per società e associazioni sportive":"Per le aziende del territorio"}</span>
       <h1>${soc?`Tutte le foto.<br><span class="kitc">Zero euro.</span>`:`Comunica<br>in modo <span class="kitc">nuovo.</span>`}</h1>
       <p class="lead">${soc?`Fotografiamo ogni atleta e ogni squadra della tua società. Senza sponsor le famiglie ordinano solo se vogliono e a voi torna il ${PCT}%. Con uno sponsor le foto le ricevono tutti in regalo.`:`Regala ai ragazzi di una società sportiva della tua zona la foto della loro stagione, con il tuo logo sopra. Non è una pubblicità: è un regalo che le famiglie tengono in casa tutto l'anno.`}</p>
-      <div class="cta-row"><button class="btn kit" data-go="contatti">${soc?"Prenota le giornate di scatto":"Chiedi un preventivo"}</button><a class="btn ghost" href="${vidLink(soc?"gratis":"natale")}">Guarda il video</a></div></div>
+      <div class="cta-row"><button class="btn kit" data-go="contatti">${soc?"Prenota le giornate di scatto":"Chiedi un preventivo"}</button>${howBtn()}<a class="btn ghost" href="${vidLink(soc?"gratis":"natale")}">Guarda il video</a></div></div>
     <div>${soc?teamCard():calendar({m:S.month})}</div>
   </section>
   <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${soc?"Perché conviene alla società":"Perché conviene alla tua azienda"}</h2></div>${bgrid(aud)}</section>
@@ -839,7 +874,7 @@ function pPeople(p){
     <div><span class="kicker">${atl?"Per gli atleti":"Per le famiglie"}</span>
       <h1>${atl?`Sei un'atleta?<br><span class="kitc">Proponilo alla tua società.</span>`:`Le foto di tuo figlio,<br><span class="kitc">fatte bene.</span>`}</h1>
       <p class="lead">${atl?"La tua figurina con nome e numero, la foto con i compagni, una collezione stagione dopo stagione. Basta che la tua società dica sì: per lei è gratis.":"Niente più foto sfocate dagli spalti: un fotografo professionista in palestra, le foto le guardi da casa e ordini solo se vuoi. Con uno sponsor, sono un regalo."}</p>
-      <div class="cta-row"><button class="btn kit" data-go="proponi">Proponilo alla società</button><a class="btn ghost" href="${linkTo(atl?"famiglie":"atleti")}">${atl?"Sei un genitore?":"Sei un'atleta?"}</a></div></div>
+      <div class="cta-row"><button class="btn kit" data-go="proponi">Proponilo alla società</button>${howBtn()}<a class="btn ghost" href="${linkTo(atl?"famiglie":"atleti")}">${atl?"Sei un genitore?":"Sei un'atleta?"}</a></div></div>
     <div>${figurina({size:"15×20"})}</div>
   </section>
   <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${atl?"Cosa ci guadagni tu":"Cosa ci guadagna la tua famiglia"}</h2></div>${bgrid(atl?"atl":"fam")}</section>
@@ -906,6 +941,8 @@ function route(){
   route.first=false;
 }
 route.first=true;
+document.body.insertAdjacentHTML("beforeend", howDialog());
+document.getElementById("how").addEventListener("click",e=>{ if(e.target.id==="how") e.target.close(); });
 function rerender(keepScroll=true){ const y=window.scrollY; const a=document.activeElement?.id; $("#app").innerHTML=current.render(current); if(keepScroll) window.scrollTo(0,y); if(a){const el=document.getElementById(a); if(el){el.focus(); if(el.setSelectionRange&&el.type==="text"){const l=el.value.length; try{el.setSelectionRange(l,l)}catch(e){}}}} }
 window.addEventListener("hashchange", route);
 
@@ -914,6 +951,8 @@ function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clea
 /* ---------- events ---------- */
 document.addEventListener("click", e=>{
   const t=e.target.closest("button,[data-go]"); if(!t) return;
+  if(t.dataset.how){ const d=document.getElementById("how"); if(d&&d.showModal) d.showModal(); return; }
+  if(t.dataset.howclose){ document.getElementById("how")?.close(); return; }
   if(t.dataset.go){ e.preventDefault(); document.getElementById(t.dataset.go)?.scrollIntoView({behavior:"smooth"}); return; }
   if(t.dataset.formula){ S.formula=t.dataset.formula; document.querySelectorAll("[data-formula]").forEach(c=>{const on=c.dataset.formula===S.formula; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on);}); set("fcompare",compare(S.formula)); return; }
   if(t.dataset.task!==undefined){ S.tasks[t.dataset.task]=!S.tasks[t.dataset.task]; rerender(); return; }
