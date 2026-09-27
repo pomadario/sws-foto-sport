@@ -135,7 +135,7 @@ footer a{text-decoration:none;font-weight:600}
       <div class="sponsor-bug" id="bug" hidden><span>con il sostegno di</span><img id="bugimg" alt="Logo sponsor"></div>
       <div class="progress"><i id="prog"></i></div>
       <div class="overlay" id="ov-start"><div class="box">
-        <span class="poster-msg">10 secondi · con audio</span>
+        <span class="poster-msg" id="pmsg">10 secondi · con audio</span>
         <h2 id="t-start">La festa di Natale della tua società</h2>
         <div class="choices"><button class="btn kit" id="play" type="button">Guarda il video</button></div>
       </div></div>
@@ -192,7 +192,7 @@ $("#sound").onclick=()=>{ v.muted=!v.muted; $("#sound").textContent=v.muted?"Att
 v.addEventListener("timeupdate",()=>{
   const d=v.duration||8, t=v.currentTime;
   $("#prog").style.width=(t/d*100)+"%";
-  $("#hot").hidden=!(t>CUR.hot[2] && t<CUR.hot[3]);
+  $("#hot").hidden=!(CUR.hot && t>CUR.hot[2] && t<CUR.hot[3]);
   $("#bug").hidden=!(t>1.2);
 });
 v.addEventListener("ended",()=>{ $("#ov-end").hidden=false; $("#hot").hidden=true; });
@@ -215,15 +215,17 @@ const VIDEOS={
    kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span>',
    lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.",
    chip:"Festa di Natale · stagione 2026/2027",start:"La festa di Natale della squadra",end:"Dentro il pacco c'è la sua foto. Sopra, il tuo logo.",hot:[50,70,0.8,4.6]},
- gratis:{aud:"soc",tag:"Società · Gratis",short:"Il fotografo arriva, voi vi allenate",start:"Il fotografo in palestra, gratis",end:"Alla società non costa nulla. Vuoi vedere come funziona?"},
- ricordo:{aud:"soc",tag:"Società · Ricordo",short:"La foto che resta appesa per anni",start:"Una foto che resta",end:"Ogni atleta con la sua foto, nome e squadra."},
- squadra:{aud:"soc",tag:"Società · Appartenenza",short:"Tutti in posa: la squadra si stringe",start:"Tutti in posa",end:"La foto di squadra, per tutte le categorie."},
- fondi:{aud:"soc",tag:"Società · Raccolta fondi",short:"Le famiglie scelgono, la società incassa il 15%",start:"Un'entrata in più",end:"Alla società torna il 15% di ogni foto venduta."},
- logo:{aud:"az",tag:"Aziende · Visibilità",short:"Dodici mesi appeso in casa e in ufficio",start:"Il tuo logo in casa per 12 mesi",end:"Foto e calendari con il tuo logo."},
- territorio:{aud:"az",tag:"Aziende · Territorio",short:"Il campo del paese al tramonto",start:"Il tuo paese, la tua squadra",end:"Sostieni lo sport del tuo territorio."},
- costo:{aud:"az",tag:"Aziende · Costo contatto",short:"Il calendario sul muro di cucina",start:"Quanto costa arrivare a ogni famiglia?",end:"Fai il conto in 30 secondi."},
+ gratis:{ready:true,hot:[50,80,4.2,7.2],aud:"soc",tag:"Società · Gratis",short:"Il fotografo arriva, voi vi allenate",start:"Il fotografo in palestra, gratis",end:"Alla società non costa nulla. Vuoi vedere come funziona?"},
+ ricordo:{ready:true,hot:[22,42,5.0,7.2],aud:"soc",tag:"Società · Ricordo",short:"La foto che resta appesa per anni",start:"Una foto che resta",end:"Ogni atleta con la sua foto, nome e squadra."},
+ squadra:{ready:true,preview:true,aud:"soc",tag:"Società · Appartenenza",short:"Tutti in posa: la squadra si stringe",start:"Tutti in posa",end:"La foto di squadra, per tutte le categorie."},
+ fondi:{ready:true,preview:true,aud:"soc",tag:"Società · Raccolta fondi",short:"Le famiglie scelgono, la società incassa il 15%",start:"Un'entrata in più",end:"Alla società torna il 15% di ogni foto venduta."},
+ logo:{ready:true,preview:true,aud:"az",tag:"Aziende · Visibilità",short:"Dodici mesi appeso in casa e in ufficio",start:"Il tuo logo in casa per 12 mesi",end:"Foto e calendari con il tuo logo."},
+ territorio:{ready:true,preview:true,aud:"az",tag:"Aziende · Territorio",short:"Il campo del paese al tramonto",start:"Il tuo paese, la tua squadra",end:"Sostieni lo sport del tuo territorio."},
+ costo:{ready:true,preview:true,aud:"az",tag:"Aziende · Costo contatto",short:"Il calendario sul muro di cucina",start:"Quanto costa arrivare a ogni famiglia?",end:"Fai il conto in 30 secondi."},
 };
 let CUR=VIDEOS.natale;
+const DEF_SOC={kick:"Nuovo servizio SWS · gratis per le società sportive",h1:'Le foto dei tuoi atleti.<br><span class="kitc">Alla società non costa nulla.</span>',lead:"SWS Agency fotografa tutti gli atleti e tutte le squadre. Senza sponsor le famiglie ordinano solo se vogliono e alla società torna il 15%. Con uno sponsor le foto le ricevono tutti in regalo."};
+const DEF_AZ={kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il tuo logo nelle case<br><span class="kitc">di tutte le famiglie.</span>',lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con il tuo sostegno ogni tesserato riceve in regalo la sua foto e quella della squadra, con il tuo logo sopra."};
 function choicesFor(id,c){
   const more=`<button class="btn ghost" data-act="go" data-href="${land(id)}" type="button">Scopri come funziona</button>`;
   const wa=`<a class="btn kit" href="${WA}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a>`;
@@ -233,10 +235,11 @@ function choicesFor(id,c){
 function load(id,play){
   const c=VIDEOS[id]; if(!c||!c.ready) return; CUR=c;
   document.documentElement.style.setProperty("--kit",c.aud==="az"?"#E2332B":"#2D55F0");
-  if(c.kick) $("#kick").textContent=c.kick; if(c.h1) $("#h1").innerHTML=c.h1; if(c.lead) $("#lead").textContent=c.lead;
-  $("#chip").textContent=c.chip||c.tag; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
+  const D=c.aud==="az"?DEF_AZ:DEF_SOC;
+  $("#kick").textContent=c.kick||D.kick; $("#h1").innerHTML=c.h1||D.h1; $("#lead").textContent=c.lead||D.lead;
+  $("#chip").textContent=c.chip||c.tag; $("#pmsg").textContent=c.preview?"Anteprima animata · il video completo arriva a breve":"10 secondi · con audio"; $("#sound").hidden=!!c.preview; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
   $("#choices").innerHTML=choicesFor(id,c);
-  const h=$("#hot"); h.style.left=c.hot[0]+"%"; h.style.top=c.hot[1]+"%"; h.hidden=true;
+  const h=$("#hot"); if(c.hot){h.style.left=c.hot[0]+"%"; h.style.top=c.hot[1]+"%";} h.hidden=true;
   v.src=`video/${id}.mp4`; v.poster=`video/${id}-poster.jpg`;
   $("#ov-end").hidden=true; $("#reveal").hidden=true; $("#ov-start").hidden=!!play;
   if(play){ $("#stage").scrollIntoView({behavior:"smooth",block:"center"}); v.play().catch(()=>{}); }
@@ -244,7 +247,7 @@ function load(id,play){
   drawBoard(id);
 }
 function drawBoard(cur){
-  $("#board").innerHTML=Object.entries(VIDEOS).map(([id,c])=>`<article class="shot"${c.ready?` data-act="pick" data-id="${id}" style="cursor:pointer"`:""}><img src="img/${id}.jpg" alt="" loading="lazy"><div><span class="tag ${c.ready?"live":"next"}">${id===cur?"In riproduzione":c.ready?"Guarda":"In arrivo"}</span><span class="label">${c.tag}</span><b>${c.short}</b></div></article>`).join("");
+  $("#board").innerHTML=Object.entries(VIDEOS).map(([id,c])=>`<article class="shot"${c.ready?` data-act="pick" data-id="${id}" style="cursor:pointer"`:""}><img src="img/${id}.jpg" alt="" loading="lazy"><div><span class="tag ${c.ready?"live":"next"}">${id===cur?"In riproduzione":c.preview?"Anteprima":c.ready?"Guarda":"In arrivo"}</span><span class="label">${c.tag}</span><b>${c.short}</b></div></article>`).join("");
 }
 load((location.hash||"").slice(1) in VIDEOS && VIDEOS[(location.hash||"").slice(1)].ready ? location.hash.slice(1) : "natale", false);
 </script>

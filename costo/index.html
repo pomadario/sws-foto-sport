@@ -227,7 +227,7 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .seg{display:inline-flex;background:#111;border:1px solid var(--line);border-radius:999px;padding:4px;width:max-content}
 .segb{border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer}
 .segb[aria-pressed="true"]{background:var(--kit);color:#fff}
-.sports{display:flex;flex-wrap:wrap;gap:6px;max-height:156px;overflow-y:auto;padding-right:4px}
+.sports{display:flex;flex-wrap:wrap;gap:6px;max-height:212px;overflow-y:auto;padding-right:4px}
 .sports .chip{padding:6px 12px;font-size:13.5px;background:#191919}
 .sports .chip[aria-pressed="true"]{background:var(--kit);border-color:var(--kit);color:#fff}
 
@@ -291,6 +291,10 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 .fade{animation:fin .45s ease both}
 @keyframes fin{from{transform:translateY(6px)}to{transform:none}}
+.pk-team{margin-top:20px}
+.pk-team .tcard{max-width:520px}
+.chip-altro{border-style:dashed}
+.pk-altro[hidden]{display:none}
 </style>
 
 <div id="app"></div>
@@ -311,15 +315,15 @@ const num = n => new Intl.NumberFormat("it-IT",{maximumFractionDigits:2}).format
 const MONTHS = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 
 // Stato condiviso tra le pagine (per-visitatore, solo in memoria)
-const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["basket","Basket"],["atletica","Atletica"],["nuoto","Nuoto"],["rugby","Rugby"],["tennis","Tennis"],["pallamano","Pallamano"],["ginnastica","Ginnastica"],["ciclismo","Ciclismo"],["judo","Judo"],["karate","Karate"],["scherma","Scherma"],["pattinaggio","Pattinaggio"],["sci","Sci"],["baseball","Baseball / Softball"],["pallanuoto","Pallanuoto"],["hockey","Hockey"],["danza","Danza sportiva"],["arrampicata","Arrampicata"]];
-const sportName=id=>(SPORTS.find(x=>x[0]===id)||SPORTS[0])[1];
+const SPORTS=[["calcio","Calcio"],["pallavolo","Pallavolo"],["basket","Basket"],["atletica","Atletica"],["nuoto","Nuoto"],["rugby","Rugby"],["tennis","Tennis"],["pallamano","Pallamano"],["ginnastica","Ginnastica"],["ciclismo","Ciclismo"],["judo","Judo"],["karate","Karate"],["scherma","Scherma"],["pattinaggio","Pattinaggio"],["sci","Sci"],["baseball","Baseball / Softball"],["pallanuoto","Pallanuoto"],["hockey","Hockey"],["danza","Danza sportiva"],["arrampicata","Arrampicata"],["altro","Altro sport"]];
+const sportName=id=>id==="altro"?(S.altro||"Il tuo sport"):(SPORTS.find(x=>x[0]===id)||SPORTS[0])[1];
 const SWS_PATH="M0,0v1000h1000V0H0ZM332.9,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.2,49.4,56.2,81v203c0,50.9-30.1,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.2-75.9s90.5,25.3,90.5,75.9v161.3h0ZM668.6,417.2l-40.3,431.8h-95.3l-19.4-413.7-19.4,413.7h-95.3l-40.3-432.5-18.6-240.3h76.3l30.1,510.5,29.7-510.5h75.1l29.6,510.5,30-510.5h76.3l-18.6,241h0ZM875.4,406.8h-75.9v-161.3c0-10.3-4.7-15.4-14.2-15.4h-.4c-9.5,0-14.2,5.1-14.2,15.4v201c0,12.8,16.2,29.1,48.6,49.1,37.4,22.4,56.1,49.4,56.1,81v203c0,50.9-30,76.3-90.1,76.3-60.4-.2-90.5-25.7-90.5-76.3v-160.7h75.9v160.7c0,10.5,4.9,15.8,14.6,15.8s14.2-5.3,14.2-15.8v-199c0-13.9-16.2-30.8-48.6-50.7-37.4-22.4-56.1-49.9-56.1-82.3v-202c0-50.6,30-75.9,90.1-75.9s90.5,25.3,90.5,75.9v161.3h0Z";
 const swsLogo=(cls="")=>`<svg class="sws-logo ${cls}" viewBox="0 0 1000 1000" role="img" aria-label="SWS Agency"><path fill="currentColor" d="${SWS_PATH}"/></svg>`;
 const CONTACT={site:"https://www.swsagency.it",siteLabel:"swsagency.it",ig:"https://www.instagram.com/agency_sws/",igLabel:"@agency_sws",name:"Dario Poma",tel:"+393296606094",telLabel:"329 660 6094",wa:"https://wa.me/393296606094"};
 const SAMPLE_LOGO="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100"><rect x="4" y="10" width="80" height="80" rx="18" fill="#0F5C4D"/><path d="M26 30h36v40H26z" fill="none" stroke="#fff" stroke-width="6"/><path d="M44 30v40M26 50h36" stroke="#fff" stroke-width="4"/><text x="100" y="54" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#0F5C4D">Colombo</text><text x="102" y="80" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#3B4A47">SERRAMENTI · DAL 1978</text></svg>`);
 const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"pallavolo", g:"f", players:14,
   n:180, share:60, spend:30, az:"", logo:null, sample:true, month:11, budget:1500, tess:180, gift:false,
-  tasks:{}, sent:{}, formula:null };
+  tasks:{}, sent:{}, formula:null, altro:"" };
 
 /* ---------- components ---------- */
 const pImg=(sp,g)=>`img/p/${sp}-${g}.jpg`;
@@ -361,7 +365,8 @@ function calendar({m, soc=S.soc, sp=S.sport, g=S.g}={}){
 function picker(){
   return `<div class="picker">
     <div class="seg" role="group" aria-label="Squadra">${[["f","Femminile"],["m","Maschile"]].map(([k,l])=>`<button class="segb" data-g="${k}" aria-pressed="${S.g===k}">${l}</button>`).join("")}</div>
-    <div class="sports">${SPORTS.map(([k,l])=>`<button class="chip" data-sport="${k}" aria-pressed="${S.sport===k}">${l}</button>`).join("")}</div>
+    <div class="sports">${SPORTS.map(([k,l])=>`<button class="chip${k==="altro"?" chip-altro":""}" data-sport="${k}" aria-pressed="${S.sport===k}">${l}</button>`).join("")}</div>
+    <div class="field pk-altro"${S.sport==="altro"?"":" hidden"}><label for="pk-altro">Quale sport?</label><input id="pk-altro" value="${esc(S.altro)}" placeholder="es. Padel, Bocce, Tiro con l'arco" maxlength="24"></div>
   </div>`;
 }
 
@@ -452,7 +457,7 @@ function pGratis(p){
     <div id="gr-fig">${figurina({size:"15×20"})}</div>
   </section>
   <section class="sec"><div class="two">
-    <div class="sec-head"><span class="label">Il vostro sport</span><h2>Scegli sport e squadra.<br>La figurina cambia.</h2><p>Venti discipline, squadre maschili e femminili. Ogni atleta riceve la sua figurina con nome, numero, società e stagione.</p></div>
+    <div class="sec-head"><span class="label">Il vostro sport</span><h2>Scegli sport e squadra.<br>La figurina cambia.</h2><p>Venti discipline, squadre maschili e femminili. Ogni atleta riceve la sua figurina con nome, numero, società e stagione. E la squadra la sua foto di gruppo.</p><div class="pk-team">${teamCard()}</div></div>
     <div class="panel">${picker()}<div class="field"><label for="gr-soc">Nome della società</label><input id="gr-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div></div></div></section>
   <section class="sec" id="conto"><div class="two">
     <div class="sec-head"><span class="label">Chi fa cosa</span><h2>Spunta tutto quello che serve.<br>Poi guarda il totale.</h2>
@@ -484,7 +489,7 @@ function pRicordo(p){
   </section>
   <section class="sec"><div class="two">
     <div class="sec-head"><span class="label">Personalizza</span><h2>Scrivi un nome.<br>Guarda cosa arriva a casa.</h2>
-      <p>Ogni foto individuale riporta nome e cognome, categoria e società. È il suo ricordo, non una foto qualsiasi.</p></div>
+      <p>Ogni foto individuale riporta nome e cognome, categoria e società. È il suo ricordo, non una foto qualsiasi.</p><div class="pk-team">${teamCard()}</div></div>
     <div class="panel">
       ${picker()}
       <div class="field"><label for="rc-name">Nome dell'atleta</label><input id="rc-name" value="${esc(S.atleta)}" maxlength="22"></div>
@@ -649,7 +654,7 @@ function pNatale(p){
     <div id="na-box">${giftBox()}</div>
   </section>
   <section class="sec"><div class="two">
-    <div class="sec-head"><span class="label">Personalizza il regalo</span><h2>Metti il tuo marchio sul pacco</h2><p>Carica il logo: compare sulle foto regalate e sui calendari che le famiglie comprano per i nonni.</p></div>
+    <div class="sec-head"><span class="label">Personalizza il regalo</span><h2>Metti il tuo marchio sul pacco</h2><p>Carica il logo: compare sulle foto regalate e sui calendari che le famiglie comprano per i nonni.</p><div class="pk-team">${teamCard()}</div></div>
     <div class="panel">${picker()}${logoDrop("na")}</div></div></section>
   <section class="sec"><div class="sec-head"><span class="label">Dopo la festa</span><h2>Il regalo che continua</h2>
     <p>Finita la consegna apriamo un nuovo modulo per gli acquisti in più: altre stampe e, sotto le feste, i calendari personalizzati. Anche questi possono portare il tuo logo.</p></div>
@@ -728,7 +733,7 @@ document.addEventListener("click", e=>{
 // live inputs: aggiornano solo le parti necessarie per non perdere il cursore
 document.addEventListener("input", e=>{
   const id=e.target.id, v=e.target.value;
-  const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az" };
+  const map={ "gr-soc":"soc", "rc-name":"atleta", "rc-soc":"soc", "rc-nr":"nr", "sq-soc":"soc", "lg-soc":"soc", "tr-soc":"soc", "tr-az":"az", "lg-az":"az", "na-az":"az", "pk-altro":"altro" };
   if(map[id]!==undefined){ S[map[id]]=v; partial(); return; }
   if(id==="sq-n"){ S.players=+v; partial(); return; }
   if(id==="fo-n"){ S.n=+v; partial(); return; }
@@ -740,7 +745,8 @@ document.addEventListener("input", e=>{
 function set(id,html){ const el=document.getElementById(id); if(el) el.innerHTML=html; }
 function partial(pick){
   if(!current) return;
-  if(pick){ document.querySelectorAll("[data-sport]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sport===S.sport)); document.querySelectorAll("[data-g]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===S.g)); const rn=document.getElementById("rc-name"); if(rn) rn.value=S.atleta; }
+  document.querySelectorAll(".pk-team").forEach(el=>el.innerHTML=teamCard());
+  if(pick){ document.querySelectorAll(".pk-altro").forEach(el=>{ el.hidden=S.sport!=="altro"; if(!el.hidden) setTimeout(()=>el.querySelector("input").focus(),50); }); document.querySelectorAll("[data-sport]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sport===S.sport)); document.querySelectorAll("[data-g]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.g===S.g)); const rn=document.getElementById("rc-name"); if(rn) rn.value=S.atleta; }
   switch(current.id){
     case "gratis": set("gr-fig", figurina({size:"15×20"})); break;
     case "ricordo":
