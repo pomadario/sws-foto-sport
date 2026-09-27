@@ -3,7 +3,6 @@
 <meta property="og:title" content="Il regalo di Natale ai ragazzi lo firmi tu · video"><meta property="og:description" content="Guarda il video di 10 secondi: la festa di Natale della società sportiva e il regalo firmato dallo sponsor."><meta property="og:image" content="https://sws-foto-sport.vercel.app/img/natale.jpg"><meta property="og:url" content="https://sws-foto-sport.vercel.app/video/">
 <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/img/sws-icon.png">
 <style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Martian+Mono:wght@400;500&display=swap">
@@ -122,32 +121,28 @@ footer a{text-decoration:none;font-weight:600}
   </header>
 
   <section class="intro">
-    <span class="kicker">Nuova idea di sponsorizzazione · stagione 2026/27</span>
-    <h1>Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span></h1>
-    <p>SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.</p>
+    <span class="kicker" id="kick">Nuova idea di sponsorizzazione · stagione 2026/27</span>
+    <h1 id="h1">Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span></h1>
+    <p id="lead">SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.</p>
   </section>
 
   <div class="stage" id="stage">
     <video id="vid" src="video/natale.mp4" playsinline muted preload="auto" poster="video/natale-poster.jpg"></video>
     <div class="hud">
-      <div class="chip-top"><span>Festa di Natale · stagione 2026/2027</span></div>
+      <div class="chip-top"><span id="chip">Festa di Natale · stagione 2026/2027</span></div>
       <button class="btn ghost sound" id="sound" type="button">Attiva l'audio</button>
-      <button class="hotspot" id="hot" type="button" hidden style="left:66%;top:47%">Tocca</button>
+      <button class="hotspot" id="hot" type="button" hidden style="left:50%;top:70%">Tocca</button>
       <div class="sponsor-bug" id="bug" hidden><span>con il sostegno di</span><img id="bugimg" alt="Logo sponsor"></div>
       <div class="progress"><i id="prog"></i></div>
       <div class="overlay" id="ov-start"><div class="box">
         <span class="poster-msg">10 secondi · con audio</span>
-        <h2>La festa di Natale della tua società</h2>
+        <h2 id="t-start">La festa di Natale della tua società</h2>
         <div class="choices"><button class="btn kit" id="play" type="button">Guarda il video</button></div>
       </div></div>
       <div class="overlay" id="ov-end" hidden><div class="box">
         <span class="poster-msg">E adesso?</span>
-        <h2>Dentro il pacco c'è la sua figurina. Sopra, il tuo logo.</h2>
-        <div class="choices">
-          <button class="btn kit" data-act="reveal" type="button">Apri il regalo</button>
-          <button class="btn ghost" data-act="logo" type="button">Metti il mio logo</button>
-          <button class="btn ghost" data-act="replay" type="button">Rivedi</button>
-        </div>
+        <h2 id="t-end">Dentro il pacco c'è la sua figurina. Sopra, il tuo logo.</h2>
+        <div class="choices" id="choices"></div>
       </div></div>
     </div>
   </div>
@@ -197,7 +192,7 @@ $("#sound").onclick=()=>{ v.muted=!v.muted; $("#sound").textContent=v.muted?"Att
 v.addEventListener("timeupdate",()=>{
   const d=v.duration||8, t=v.currentTime;
   $("#prog").style.width=(t/d*100)+"%";
-  $("#hot").hidden=!(t>d*0.18 && t<d*0.62);
+  $("#hot").hidden=!(t>CUR.hot[2] && t<CUR.hot[3]);
   $("#bug").hidden=!(t>1.2);
 });
 v.addEventListener("ended",()=>{ $("#ov-end").hidden=false; $("#hot").hidden=true; });
@@ -206,21 +201,52 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]"); if(!b) return;
   const a=b.dataset.act;
   if(a==="replay"){ $("#ov-end").hidden=true; $("#stage").scrollIntoView({behavior:"smooth",block:"center"}); v.currentTime=0; v.play().catch(()=>{}); }
+  if(a==="go"){ location.href=b.dataset.href; return; }
+  if(a==="pick"){ load(b.dataset.id,true); return; }
   if(a==="reveal"||a==="logo"){ $("#reveal").hidden=false; $("#reveal").scrollIntoView({behavior:"smooth"}); if(a==="logo") setTimeout(()=>$("#file").focus(),500); }
 });
 $("#file").addEventListener("change",e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ setLogo(r.result); $("#lnote").textContent="Stai vedendo il tuo logo."; }; r.readAsDataURL(f); });
 
-const BOARD=[
- ["natale","Aziende · Natale","Il regalo firmato da te","live"],
- ["gratis","Società · Gratis","Il fotografo arriva, voi vi allenate","next"],
- ["ricordo","Società · Ricordo","Vent'anni dopo, la foto è ancora sul frigo","next"],
- ["squadra","Società · Appartenenza","Tutti in posa: la squadra si stringe","next"],
- ["fondi","Società · Raccolta fondi","L'esultanza che finanzia la stagione","next"],
- ["logo","Aziende · Visibilità","Dodici mesi in cucina, accanto alla moka","next"],
- ["territorio","Aziende · Territorio","Il campo del paese al tramonto","next"],
- ["costo","Aziende · Costo contatto","Il tuo marchio sul tavolo di casa","next"],
-];
-$("#board").innerHTML=BOARD.map(([id,tag,t,st])=>`<article class="shot"><img src="img/${id}.jpg" alt="" loading="lazy"><div><span class="tag ${st}">${st==="live"?"Prova pronta":"Da girare"}</span><span class="label">${tag}</span><b>${t}</b></div></article>`).join("");
+const WA="https://wa.me/393296606094";
+const IS_WEB=location.hostname.endsWith("vercel.app")||location.pathname.startsWith("/video");
+const land=id=>IS_WEB?`/${id}/`:`https://sws-foto-sport.vercel.app/${id}/`;
+const VIDEOS={
+ natale:{aud:"az",ready:true,tag:"Aziende · Natale",short:"Il regalo firmato da te",
+   kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span>',
+   lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.",
+   chip:"Festa di Natale · stagione 2026/2027",start:"La festa di Natale della squadra",end:"Dentro il pacco c'è la sua foto. Sopra, il tuo logo.",hot:[50,70,0.8,4.6]},
+ gratis:{aud:"soc",tag:"Società · Gratis",short:"Il fotografo arriva, voi vi allenate",start:"Il fotografo in palestra, gratis",end:"Alla società non costa nulla. Vuoi vedere come funziona?"},
+ ricordo:{aud:"soc",tag:"Società · Ricordo",short:"La foto che resta appesa per anni",start:"Una foto che resta",end:"Ogni atleta con la sua foto, nome e squadra."},
+ squadra:{aud:"soc",tag:"Società · Appartenenza",short:"Tutti in posa: la squadra si stringe",start:"Tutti in posa",end:"La foto di squadra, per tutte le categorie."},
+ fondi:{aud:"soc",tag:"Società · Raccolta fondi",short:"Le famiglie scelgono, la società incassa il 15%",start:"Un'entrata in più",end:"Alla società torna il 15% di ogni foto venduta."},
+ logo:{aud:"az",tag:"Aziende · Visibilità",short:"Dodici mesi appeso in casa e in ufficio",start:"Il tuo logo in casa per 12 mesi",end:"Foto e calendari con il tuo logo."},
+ territorio:{aud:"az",tag:"Aziende · Territorio",short:"Il campo del paese al tramonto",start:"Il tuo paese, la tua squadra",end:"Sostieni lo sport del tuo territorio."},
+ costo:{aud:"az",tag:"Aziende · Costo contatto",short:"Il calendario sul muro di cucina",start:"Quanto costa arrivare a ogni famiglia?",end:"Fai il conto in 30 secondi."},
+};
+let CUR=VIDEOS.natale;
+function choicesFor(id,c){
+  const more=`<button class="btn ghost" data-act="go" data-href="${land(id)}" type="button">Scopri come funziona</button>`;
+  const wa=`<a class="btn kit" href="${WA}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a>`;
+  if(c.aud==="az") return `<button class="btn kit" data-act="reveal" type="button">Apri il regalo</button><button class="btn ghost" data-act="logo" type="button">Metti il mio logo</button>${more}<button class="btn ghost" data-act="replay" type="button">Rivedi</button>`;
+  return `${wa}${more}<button class="btn ghost" data-act="replay" type="button">Rivedi</button>`;
+}
+function load(id,play){
+  const c=VIDEOS[id]; if(!c||!c.ready) return; CUR=c;
+  document.documentElement.style.setProperty("--kit",c.aud==="az"?"#E2332B":"#2D55F0");
+  if(c.kick) $("#kick").textContent=c.kick; if(c.h1) $("#h1").innerHTML=c.h1; if(c.lead) $("#lead").textContent=c.lead;
+  $("#chip").textContent=c.chip||c.tag; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
+  $("#choices").innerHTML=choicesFor(id,c);
+  const h=$("#hot"); h.style.left=c.hot[0]+"%"; h.style.top=c.hot[1]+"%"; h.hidden=true;
+  v.src=`video/${id}.mp4`; v.poster=`video/${id}-poster.jpg`;
+  $("#ov-end").hidden=true; $("#reveal").hidden=true; $("#ov-start").hidden=!!play;
+  if(play){ $("#stage").scrollIntoView({behavior:"smooth",block:"center"}); v.play().catch(()=>{}); }
+  if(history.replaceState) history.replaceState(null,"","#"+id);
+  drawBoard(id);
+}
+function drawBoard(cur){
+  $("#board").innerHTML=Object.entries(VIDEOS).map(([id,c])=>`<article class="shot"${c.ready?` data-act="pick" data-id="${id}" style="cursor:pointer"`:""}><img src="img/${id}.jpg" alt="" loading="lazy"><div><span class="tag ${c.ready?"live":"next"}">${id===cur?"In riproduzione":c.ready?"Guarda":"In arrivo"}</span><span class="label">${c.tag}</span><b>${c.short}</b></div></article>`).join("");
+}
+load((location.hash||"").slice(1) in VIDEOS && VIDEOS[(location.hash||"").slice(1)].ready ? location.hash.slice(1) : "natale", false);
 </script>
 
 </body></html>
