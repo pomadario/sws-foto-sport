@@ -591,6 +591,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .pc-year{font-size:7cqi!important}
 .pc-col .mm table{letter-spacing:-.04em}
 .cfg-sub{margin:8px 0 0;font-size:clamp(15px,1.6vw,18px);color:var(--muted,#aaa);max-width:640px}
+.legal{grid-column:1/-1;flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 40px;border-top:1px solid var(--line,#333);padding-top:16px;margin-top:8px;font-size:12px;line-height:1.5;color:var(--muted,#aaa)}.legal p{margin:0}.legal p:first-child{flex:1 1 520px;max-width:860px}.legal b{color:#fff}.legal-l{display:flex;gap:40px;color:#fff}
 </style>
 
 <div id="app"></div>
@@ -744,7 +745,7 @@ function foot(){ return `<footer class="foot2">
     <a href="${CONTACT.ig}" target="_blank" rel="noopener"><span class="label">Instagram</span>${CONTACT.igLabel}</a>
     <a href="${CONTACT.wa}" target="_blank" rel="noopener"><span class="label">WhatsApp</span>${CONTACT.telLabel}</a>
     <a href="mailto:${CONTACT.mail}"><span class="label">Email</span>${CONTACT.mail}</a>
-  </div></footer>`; }
+  </div><div class="legal"><p><b>2026© SWS AGENCY S.R.L.</b> - Partita IVA e Codice Fiscale: 04625240983 - Cap. Sociale: € 10.000,00 iv<br>SDI: M5UXCR1 - Sede legale: Via Attiraglio, 100 Palazzolo sull'Oglio (BS) - Sede operativa: Via F.lli Pagani 10, Castelli Calepio (BG)<br>Attività avviata con il contributo di Regione Lombardia - Bando Nuova Impresa 2026</p><p class="legal-l"><span>Privacy policy</span><span>Termini di utilizzo</span></p></div></footer>`; }
 function directLine(){ return `<div class="direct"><div><span class="label">Preferisci parlarne subito?</span><b>${CONTACT.telLabel} · <a href="mailto:${CONTACT.mail}" style="color:inherit">${CONTACT.mail}</a></b></div><div class="cta-row" style="margin:0"><a class="btn kit" href="${CONTACT.wa}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="tel:${CONTACT.tel}">Chiama</a></div></div>`; }
 function page(p, inner){
   const cut=inner.indexOf("</section>")+10;
