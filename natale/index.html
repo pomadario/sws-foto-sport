@@ -392,6 +392,8 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .cfg-ctl .two{grid-template-columns:1.6fr 1fr}
 @media (max-width:640px){.cfg-prev .tband b{font-size:14px}.cfg-prev .tband img{height:26px!important}.cfg-prev .tband span{font-size:9px}}
 .cfg-link{display:inline-flex;gap:6px;font-weight:700;font-size:14px}
+.toplinks a.wa-ic{background:#25D366!important;color:#fff;width:42px;height:42px;padding:0!important;border-radius:50%;display:inline-grid!important;place-items:center;flex:0 0 auto;border:0}
+.toplinks a.wa-ic:hover{background:#1EBE5A!important}
 </style>
 
 <div id="app"></div>
@@ -500,7 +502,7 @@ function compare(f){
 function topBar(aud){
   const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["atleti","Atleti e famiglie"],["prova","Prova tu"],["video","Video"],["area-riservata","Area riservata"]];
   const cur=current?current.id:"";
-  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="toptel" href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${CONTACT.telLabel}</a></nav></header>`;
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="toptel wa-ic" href="${CONTACT.wa}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" title="Scrivici su WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2.1 7L3.7 28.4l5.8-1.5c2 1.1 4.2 1.6 6.5 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a></nav></header>`;
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
