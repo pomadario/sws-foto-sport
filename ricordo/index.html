@@ -459,6 +459,8 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .cfg-prev3 .calnav b{font-size:12px}
 .cfg-ctl3{grid-template-columns:1fr;gap:18px}
 }
+.toplinks a.ic{width:42px;height:42px;padding:0!important;border-radius:50%;display:inline-grid!important;place-items:center;flex:0 0 auto;border:1px solid var(--line);color:var(--ink)}
+.toplinks a.ic:hover,.toplinks a.ic.on{background:var(--soft);border-color:var(--kit)}
 </style>
 
 <div id="app"></div>
@@ -567,20 +569,22 @@ function compare(f){
 }
 /* ---------- shared blocks ---------- */
 function topBar(aud){
-  const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["atleti","Atleti e famiglie"],["prova","Prova tu"],["video","Video"],["area-riservata","Area riservata"]];
+  const nav=[["societa","Gruppi sportivi"],["aziende","Sponsor &amp; partner"],["enti","Federazioni &amp; enti"],["atleti","Atleti e famiglie"],["prova","Prova tu"]];
   const cur=current?current.id:"";
-  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${id==="video"?vidLink(""):linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="toptel wa-ic" href="${CONTACT.wa}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" title="Scrivici su WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2.1 7L3.7 28.4l5.8-1.5c2 1.1 4.2 1.6 6.5 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a></nav></header>`;
+  const IC_VIDEO=`<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2.5" y="5" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 10.2 21.5 7v10l-5-3.2z" fill="currentColor"/></svg>`;
+  const IC_LOCK=`<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor"/></svg>`;
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="ic" href="${vidLink("")}" aria-label="Video" title="Video">${IC_VIDEO}</a><a class="ic ${cur==="area-riservata"?"on":""}" href="${linkTo("area-riservata")}" aria-label="Area riservata" title="Area riservata">${IC_LOCK}</a><a class="toptel wa-ic" href="${CONTACT.wa}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" title="Scrivici su WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2.1 7L3.7 28.4l5.8-1.5c2 1.1 4.2 1.6 6.5 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a></nav></header>`;
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
-  const org = aud==="soc" ? "Società / associazione" : "Azienda";
+  const org = key==="enti" ? "Federazione, comitato o ente" : aud==="soc" ? "Società / associazione" : "Azienda";
   return `<form class="form" id="f-${key}" novalidate>
     <div class="field"><label for="${key}-nome">Nome e cognome</label><input id="${key}-nome" required autocomplete="name"></div>
     <div class="field"><label for="${key}-org">${org}</label><input id="${key}-org" value="${esc(aud==="soc"?S.soc:S.az)}"></div>
     <div class="field"><label for="${key}-tel">Telefono</label><input id="${key}-tel" type="tel" autocomplete="tel"></div>
     <div class="field"><label for="${key}-mail">Email</label><input id="${key}-mail" type="email" autocomplete="email"></div>
     <div class="full" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-      <button class="btn kit" type="submit">${aud==="soc"?"Voglio il servizio per la mia società":"Voglio sapere quanto costa"}</button>
+      <button class="btn kit" type="submit">${key==="enti"?"Chiedi un incontro":aud==="soc"?"Voglio il servizio per la mia società":"Voglio sapere quanto costa"}</button>
       <span class="note" id="${key}-err"></span></div>
   </form>`;
 }
@@ -1012,6 +1016,28 @@ function pProva(p){
         <div style="display:flex;flex-wrap:wrap;gap:10px">${howBtn()}<a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho provato il configuratore SWS e vorrei le foto per il mio gruppo sportivo")}" target="_blank" rel="noopener">Lo voglio per la mia squadra</a></div></div>
     </div></div></section>`);
 }
+
+function pEnti(p){
+  const who=[["Comitati provinciali e regionali delle federazioni","Calcio, pallavolo, basket, atletica e tutte le altre discipline."],["Enti di promozione sportiva","CSI, UISP, AICS, PGS e gli altri enti che organizzano campionati e attività di base."],["Comuni e assessorati allo sport","Per le società del territorio comunale, le consulte dello sport e le feste dello sport."],["Consorzi e reti di società","Gruppi di società della stessa zona o dello stesso sport che lavorano insieme."]];
+  const vant=[["Un servizio in più per tutte le società","Offri alle tue affiliate un servizio fotografico professionale, gratis per loro."],["Nessun costo per l'ente","Il servizio si sostiene con le famiglie che ordinano o con gli sponsor. L'ente non spende nulla."],["Le foto del movimento","Squadre, campionati, finali e premiazioni: un archivio fotografico di tutto il tuo sport sul territorio."],["Materiale per la comunicazione","Foto pronte per sito, social, annuari e presentazioni dell'ente."],["Sponsor per tutto il territorio","Un'azienda può sostenere molte società insieme: più visibilità per lei, più risorse per lo sport di base."],["I numeri del movimento","Quante squadre, quanti atleti, quali categorie: dati utili per raccontare il tuo sport."]];
+  const steps=[["Ci conosciamo","Un incontro per capire le esigenze dell'ente e delle sue società."],["Accordo quadro","Definiamo insieme condizioni, calendario e modalità, uguali per tutte le società."],["Lo comunichiamo","L'ente informa le affiliate, noi prepariamo i materiali e rispondiamo alle loro domande."],["Scattiamo, zona per zona","Organizziamo le giornate di scatto per zona, con le date concordate con le società."],["Raccontiamo i risultati","A fine stagione: foto, numeri e un evento finale da condividere."]];
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">Per federazioni, comitati ed enti sportivi</span>
+      <h1>Facciamolo<br><span class="kitc">insieme.</span><br>Per tutte le squadre.</h1>
+      <p class="lead">Una società alla volta si arriva lontano. Con un comitato o un ente si arriva a tutte: le foto professionali per ogni squadra e ogni sport del territorio, sempre gratis per le società.</p>
+      <div class="cta-row"><button class="btn kit" data-go="contatti">Parliamone</button>${howBtn()}</div></div>
+    <div>${teamCard()}</div>
+  </section>
+  <section class="sec"><div class="sec-head"><span class="label">A chi ci rivolgiamo</span><h2>Chi può farlo con noi</h2></div>
+    <div class="feat" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${who.map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Perché conviene all'ente</span><h2>Un progetto per tutto il movimento</h2></div>
+    <div class="bgrid">${vant.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  ${formule("soc")}
+  <section class="sec"><div class="sec-head"><span class="label">Come lavoriamo insieme</span><h2>Cinque passi</h2></div>
+    <div class="steps">${steps.map(([a,b])=>`<div class="step"><span class="label"></span><b>${a}</b><p>${b}</p></div>`).join("")}</div></section>
+  <section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte: ti proponiamo come partire.</p></div>${form("enti","soc")}${directLine()}</section>`, "t-fam");
+}
 const SITE=[
   {id:"", render:pHome},
   {id:"societa", aud:"soc", render:pTarget},
@@ -1020,6 +1046,7 @@ const SITE=[
   {id:"famiglie", aud:"soc", render:pPeople},
   {id:"area-riservata", aud:"soc", render:pArea},
   {id:"prova", aud:"soc", render:pProva},
+  {id:"enti", aud:"soc", render:pEnti},
 ];
 
 /* ================= PAGES & ROUTER ================= */
