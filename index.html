@@ -18,7 +18,7 @@
   --mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --r-sm:10px; --r:18px; --r-lg:28px; --shadow:0 24px 60px -30px rgba(0,0,0,.8);
 }
-.kit-red{--kit:var(--red); --kit-soft:rgba(226,51,43,.22)}
+.kit-red{--kit:#F26B1D; --kit-soft:rgba(242,107,29,.22)}
 body{background:radial-gradient(1200px 600px at 80% -10%,#262626,transparent 60%),var(--ground)}
 *{box-sizing:border-box}
 body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px}
@@ -334,7 +334,7 @@ footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;fle
 .bcol li span{font-size:13.5px;color:var(--muted)}
 .bcol a.more{font-weight:700;font-size:14px;text-decoration:none}
 .t-atl{--kit:#F2B705;--on-kit:#141414;--kit-soft:rgba(242,183,5,.2)}
-.t-fam{--kit:#1FA37A;--kit-soft:rgba(31,163,122,.2)}
+.t-fam{--kit:#F2B705;--on-kit:#141414;--kit-soft:rgba(242,183,5,.2)}
 .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media (max-width:900px){.bgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:540px){.bgrid{grid-template-columns:1fr}}
@@ -606,6 +606,11 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .legaldoc ul{padding-left:20px}
 .legaldoc .upd{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#999)}
 .legaldoc a{color:#fff}
+.toplinks a.n-societa{--nc:#2D55F0}.toplinks a.n-aziende{--nc:#F26B1D}.toplinks a.n-enti{--nc:#1FA37A}.toplinks a.n-atleti{--nc:#F2B705}
+.toplinks a.n-societa,.toplinks a.n-aziende,.toplinks a.n-enti,.toplinks a.n-atleti{border:1px solid var(--line)}
+.toplinks a.n-societa:hover,.toplinks a.n-aziende:hover,.toplinks a.n-enti:hover,.toplinks a.n-atleti:hover,.toplinks a.n-societa.on,.toplinks a.n-aziende.on,.toplinks a.n-enti.on,.toplinks a.n-atleti.on{border-color:var(--nc)!important;box-shadow:0 0 12px color-mix(in srgb,var(--nc) 40%,transparent)}
+.toplinks a.n-societa.on,.toplinks a.n-aziende.on,.toplinks a.n-enti.on,.toplinks a.n-atleti.on{background:color-mix(in srgb,var(--nc) 14%,transparent)}
+.kit-green{--kit:#1FA37A;--kit-soft:rgba(31,163,122,.2)}
 </style>
 
 <div id="app"></div>
@@ -640,7 +645,7 @@ const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"palla
   tasks:{}, sent:{}, formula:null, altro:"" };
 
 /* ---------- components ---------- */
-const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"rosso",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"verde",sp:"calcio",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"}};
+const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"rosso",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"giallo",sp:"basket",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"}};
 const heroOn=sp=>!S.picked && S.hero && sp===S.hero.sp;
 const pImg=(sp,g)=>heroOn(sp)?`img/p/hero-${S.hero.k}-${g}.jpg`:`img/p/${imgKey(sp)}-${g}.jpg`;
 const tImg=(sp,g)=>heroOn(sp)&&g===S.hero.g?`img/t/hero-${S.hero.k}.jpg`:`img/t/${imgKey(sp)}-${g}.jpg`;
@@ -695,7 +700,7 @@ function picker(){
   return `<div class="picker">
     <div class="seg" role="group" aria-label="Squadra">${[["f","Femminile"],["m","Maschile"]].map(([k,l])=>`<button class="segb" data-g="${k}" aria-pressed="${S.g===k}">${l}</button>`).join("")}</div>
     <label class="sport-sel"><span class="label">Sport · ${SPORTS.length-1} disponibili</span><select aria-label="Scegli lo sport">${SPORT_GROUPS.map(([g,L],i)=>{const o=L.map(([k,l])=>`<option value="${k}"${S.sport===k?" selected":""}>${l}</option>`).join(""); return i?`<optgroup label="${g}">${o}</optgroup>`:o;}).join("")}<optgroup label="Non lo trovi?"><option value="altro"${S.sport==="altro"?" selected":""}>Altro sport (scrivilo tu)</option></optgroup></select></label>
-    ${current&&current.id!=="prova"?`<a class="cfg-link" href="${linkTo("prova")}">Vedi figurina e foto di squadra insieme → Prova tu</a>`:""}
+    ${current&&current.id!=="prova"?`<a class="cfg-link" href="${linkTo("prova")}">Vedi foto atleta, foto di squadra e calendario insieme → Prova tu</a>`:""}
     <div class="field pk-altro"${S.sport==="altro"?"":" hidden"}><label for="pk-altro">Quale sport?</label><input id="pk-altro" value="${esc(S.altro)}" placeholder="es. Padel, Bocce, Tiro con l'arco" maxlength="24"></div>
   </div>`;
 }
@@ -734,7 +739,7 @@ function topBar(aud){
   const cur=current?current.id:"";
   const IC_VIDEO=`<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2.5" y="5" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 10.2 21.5 7v10l-5-3.2z" fill="currentColor"/></svg>`;
   const IC_LOCK=`<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor"/></svg>`;
-  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${linkTo(id)}" class="${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="ic" href="${vidLink("")}" aria-label="Video" title="Video">${IC_VIDEO}</a><a class="ic ${cur==="area-riservata"?"on":""}" href="${linkTo("area-riservata")}" aria-label="Area riservata" title="Area riservata">${IC_LOCK}</a><a class="toptel wa-ic" href="${CONTACT.wa}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" title="Scrivici su WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2.1 7L3.7 28.4l5.8-1.5c2 1.1 4.2 1.6 6.5 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a></nav></header>`;
+  return `<header class="top"><a class="mark" href="${linkTo("")}">${swsLogo()}<span>Foto Sport<small>by SWS Agency</small></span></a><nav class="toplinks" aria-label="Menu">${nav.map(([id,l])=>`<a href="${linkTo(id)}" class="n-${id} ${cur===id?"on":""} ${id==="prova"?"hot":""}">${l}</a>`).join("")}<a class="ic" href="${vidLink("")}" aria-label="Video" title="Video">${IC_VIDEO}</a><a class="ic ${cur==="area-riservata"?"on":""}" href="${linkTo("area-riservata")}" aria-label="Area riservata" title="Area riservata">${IC_LOCK}</a><a class="toptel wa-ic" href="${CONTACT.wa}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp" title="Scrivici su WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2.1 7L3.7 28.4l5.8-1.5c2 1.1 4.2 1.6 6.5 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.3-.4a10.4 10.4 0 0 1-1.7-5.8C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a></nav></header>`;
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
@@ -792,7 +797,7 @@ function pGratis(p){
     <div id="gr-fig">${figurina({size:"15×20"})}</div>
   </section>
   <section class="sec"><div class="two">
-    <div class="sec-head"><span class="label">Il vostro sport</span><h2>Scegli sport e squadra.<br>La figurina cambia.</h2><p>Venti discipline, squadre maschili e femminili. Ogni atleta riceve la sua figurina con nome, numero, società e stagione. E la squadra la sua foto di gruppo.</p><div class="pk-team">${teamCard()}</div></div>
+    <div class="sec-head"><span class="label">Il vostro sport</span><h2>Scegli sport e squadra.<br>La foto cambia.</h2><p>Più di 90 discipline, squadre maschili e femminili. Ogni atleta riceve la sua foto con nome, numero, società e stagione. E la squadra la sua foto di gruppo.</p><div class="pk-team">${teamCard()}</div></div>
     <div class="panel">${picker()}<div class="field"><label for="gr-soc">Nome della società</label><input id="gr-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div></div></div></section>
   <section class="sec" id="conto"><div class="two">
     <div class="sec-head"><span class="label">Chi fa cosa</span><h2>Spunta tutto quello che serve.<br>Poi guarda il totale.</h2>
@@ -1011,7 +1016,7 @@ const vidLink = id => (WEB?"":"https://sws-foto-sport.vercel.app")+"/video/"+(id
 const VANT = {
  soc:{t:"Per la società sportiva", cls:"", page:"societa", items:[
   ["Zero costi, sempre","Fotografo, stampa e consegna sono a carico nostro. Alla società non costa nulla."],
-  ["Un ricordo per ogni atleta","La foto individuale con nome, numero e squadra, come una figurina."],
+  ["Un ricordo per ogni atleta","La foto individuale con nome, numero e squadra, come i professionisti."],
   ["Il senso di squadra","La foto di gruppo di ogni categoria, da appendere in sede e a casa."],
   ["Una raccolta fondi senza fatica","Senza sponsor, il 15% di ogni foto venduta torna alla società."],
   ["Nessun lavoro organizzativo","Ci accordiamo con gli allenatori e scattiamo durante gli allenamenti."],
@@ -1029,12 +1034,19 @@ const VANT = {
   ["Storie vere per i tuoi social","Racconti un'azione concreta sul territorio, non uno spot."],
   ["Responsabilità sociale concreta","Un sostegno reale e visibile allo sport di base."],
   ["Risultati misurabili","Sai quante famiglie raggiungi e quante foto hai regalato."]]},
- atl:{t:"Per gli atleti", cls:"t-atl", page:"atleti", items:[
-  ["La tua figurina","Una foto vera con nome, numero e squadra, come i professionisti."],
+ atl:{t:"Per atleti e famiglie", cls:"t-atl", page:"atleti", items:[
+  ["La tua foto ufficiale","Una foto vera con nome, numero e squadra, come i professionisti."],
+  ["La foto con i compagni","La squadra al completo, per ricordarsi di questa stagione."],
+  ["Basta foto sfocate dagli spalti","Scatti professionali con la luce giusta, senza nessuna fatica."],
+  ["Gratis con lo sponsor","Con la formula sponsor le foto sono un regalo per tutti."],
   ["Foto da usare sui tuoi profili","Scatti professionali, non la solita foto sfocata dal telefono."],
-  ["La foto con i compagni","La squadra al completo, per ricordarti di questa stagione."],
-  ["La collezione delle stagioni","Anno dopo anno, la tua storia sportiva in una serie di foto."],
-  ["Gratis con lo sponsor","Con la formula sponsor la ricevi in regalo."]]},
+  ["La collezione delle stagioni","Anno dopo anno, la tua storia sportiva in una serie di foto."]]},
+ enti:{t:"Per federazioni ed enti", cls:"kit-green", page:"enti", items:[
+  ["Un servizio in più per tutte le società","Offri alle tue affiliate foto professionali, gratis per loro."],
+  ["Nessun costo per l'ente","Il servizio si sostiene con le famiglie che ordinano o con gli sponsor."],
+  ["Tutti gli sport, un solo progetto","Un accordo unico per squadre e discipline di tutto il territorio."],
+  ["Organizziamo tutto noi","Calendario degli scatti, consegne e rapporti con le società."],
+  ["Visibilità per l'ente","Il vostro nome accanto a un progetto concreto per i ragazzi."]]},
  fam:{t:"Per le famiglie", cls:"t-fam", page:"famiglie", items:[
   ["Basta foto sfocate dagli spalti","Scatti professionali con la luce giusta, senza nessuna fatica."],
   ["Ordini solo se vuoi","Guardi le foto da casa e scegli con calma. Nessun obbligo."],
@@ -1081,11 +1093,11 @@ function pHome(p){
     <div>${figurina({size:"15×20"})}</div>
   </section>
   <section class="split">
-    <a class="door" href="${linkTo("societa")}"><img src="img/gratis.jpg" alt=""><span class="label" style="color:#ddd">Società e associazioni sportive</span><h2>Le foto dei tuoi atleti, <span class="kitc">gratis</span></h2><p>Figurine, foto di squadra e una raccolta fondi, senza spendere un euro e senza lavoro in più.</p><span class="btn kit">Entra</span></a>
+    <a class="door" href="${linkTo("societa")}"><img src="img/gratis.jpg" alt=""><span class="label" style="color:#ddd">Società e associazioni sportive</span><h2>Le foto dei tuoi atleti, <span class="kitc">gratis</span></h2><p>Foto degli atleti, foto di squadra e una raccolta fondi, senza spendere un euro e senza lavoro in più.</p><span class="btn kit">Entra</span></a>
     <a class="door kit-red" href="${linkTo("aziende")}"><img src="img/natale.jpg" alt=""><span class="label" style="color:#ddd">Aziende del territorio</span><h2>Comunica in modo <span class="kitc">nuovo</span></h2><p>Il tuo logo sul regalo che ogni famiglia aspetta: foto e calendari che restano in casa tutto l'anno.</p><span class="btn kit">Entra</span></a>
   </section>
   <section class="sec"><div class="sec-head"><span class="label">Una sola azione, quattro vantaggi</span><h2>Chi ci guadagna?<br><span class="kitc">Tutti.</span></h2><p>Le foto della squadra, fatte bene, mettono d'accordo quattro persone diverse.</p></div>
-    <div class="ben4">${bcol("soc")}${bcol("az")}${bcol("atl")}${bcol("fam")}</div></section>
+    <div class="ben4">${bcol("soc")}${bcol("az")}${bcol("enti")}${bcol("atl")}</div></section>
   ${formule("soc")}
   <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>Guarda come funziona</h2><p>Otto video da 10 secondi: tocca il punto rosso quando compare.</p></div>${vstrip()}</section>
   ${athleteBand()}
@@ -1133,7 +1145,7 @@ function pPeople(p){
   <section class="hero">
     <div><span class="kicker">${atl?"Per gli atleti":"Per le famiglie"}</span>
       <h1>${atl?`Sei un'atleta?<br><span class="kitc">Proponilo alla tua società.</span>`:`Le foto di tuo figlio,<br><span class="kitc">fatte bene.</span>`}</h1>
-      <p class="lead">${atl?"La tua figurina con nome e numero, la foto con i compagni, una collezione stagione dopo stagione. Basta che la tua società dica sì: per lei è gratis.":"Niente più foto sfocate dagli spalti: un fotografo professionista in palestra, le foto le guardi da casa e ordini solo se vuoi. Con uno sponsor, sono un regalo."}</p>
+      <p class="lead">${atl?"La tua foto ufficiale con nome e numero, la foto con i compagni, una collezione stagione dopo stagione. Basta che la tua società dica sì: per lei è gratis.":"Niente più foto sfocate dagli spalti: un fotografo professionista in palestra, le foto le guardi da casa e ordini solo se vuoi. Con uno sponsor, sono un regalo."}</p>
       <div class="cta-row"><button class="btn kit" data-go="proponi">Proponilo alla società</button>${howBtn()}<a class="btn ghost" href="${linkTo(atl?"famiglie":"atleti")}">${atl?"Sei un genitore?":"Sei un'atleta?"}</a></div></div>
     <div>${figurina({size:"15×20"})}</div>
   </section>
@@ -1174,7 +1186,7 @@ function pProva(p){
         <div class="field"><label for="cf-soc">Nome del gruppo sportivo</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div><div class="field"><label for="crest-in">Stemma della società (facoltativo)</label><input id="crest-in" type="file" accept="image/*"><small class="hint">Se non lo carichi, nel cerchio mettiamo le iniziali del gruppo sportivo.</small></div>
         <div class="field"><label>Categoria</label><div class="chips small">${["Under 10","Under 12","Under 14","Under 16","Prima squadra"].map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join("")}</div><div class="field" style="margin-top:8px"><label for="cat-free" class="note" style="font-weight:600">Oppure scrivila tu</label><input id="cat-free" value="${esc(["Under 10","Under 12","Under 14","Under 16","Prima squadra"].includes(S.cat)?"":S.cat)}" placeholder="es. Esordienti, Allievi, Serie C, Master" maxlength="24"></div></div></div>
       <div class="col"><span class="label">3 · Lo sponsor</span>
-        <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo: compare su figurina, foto e calendario.</span></div>
+        <div class="sp-callout"><i>IL TUO SPONSOR QUI</i><span>Carica un logo: compare su foto atleta, foto di squadra e calendario.</span></div>
         ${logoDrop("cf")}
         <div style="display:flex;flex-wrap:wrap;gap:10px">${howBtn()}<a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho provato il configuratore SWS e vorrei le foto per il mio gruppo sportivo")}" target="_blank" rel="noopener">Lo voglio per la mia squadra</a></div></div>
     </div></div></section>`);
@@ -1221,7 +1233,7 @@ const LEGAL_PRIV=`<span class="kicker">Informativa</span><h1>Privacy policy</h1>
 const LEGAL_TERM=`<span class="kicker">Condizioni</span><h1>Termini di utilizzo</h1><p class="upd">Ultimo aggiornamento: 28 settembre 2026</p>
 <p>Questo sito è gestito da SWS AGENCY S.R.L., P.IVA e C.F. 04625240983, sede legale in Via Attiraglio 100, Palazzolo sull'Oglio (BS), sede operativa in Via F.lli Pagani 10, Castelli Calepio (BG), email <a href="mailto:info@swsagency.it">info@swsagency.it</a>. Usando il sito accetti questi termini.</p>
 <h2>A cosa serve il sito</h2><p>Il sito presenta il servizio fotografico di SWS Agency per società sportive, sponsor, atleti e famiglie. Le informazioni hanno scopo illustrativo: condizioni, prezzi e tempi del servizio sono definiti nella proposta o nel contratto firmato con la società sportiva o con lo sponsor.</p>
-<h2>Anteprime e simulazioni</h2><p>Figurine, foto di squadra, calendari e simulazioni economiche mostrati nel configuratore sono esempi indicativi. Le immagini di esempio sono illustrative e non ritraggono atleti reali delle società. I prodotti finali possono differire per grafica, colori e impaginazione.</p>
+<h2>Anteprime e simulazioni</h2><p>Foto degli atleti, foto di squadra, calendari e simulazioni economiche mostrati nel configuratore sono esempi indicativi. Le immagini di esempio sono illustrative e non ritraggono atleti reali delle società. I prodotti finali possono differire per grafica, colori e impaginazione.</p>
 <h2>Proprietà dei contenuti</h2><p>Testi, grafica, marchi e immagini del sito appartengono a SWS Agency o ai rispettivi titolari e non possono essere copiati o riutilizzati senza autorizzazione scritta. Loghi e nomi inseriti dagli utenti nel configuratore restano dei rispettivi titolari e sono usati solo per mostrare l'anteprima nel browser.</p>
 <h2>Uso corretto</h2><p>Non caricare nel configuratore contenuti di cui non hai i diritti o che siano offensivi. È vietato usare il sito in modo da danneggiarne il funzionamento.</p>
 <h2>Responsabilità</h2><p>Ci impegniamo a mantenere il sito corretto e aggiornato, ma non garantiamo l'assenza di errori o interruzioni. Eventuali link a siti esterni (ad es. WhatsApp, Instagram) portano a servizi di terzi con condizioni proprie.</p>
