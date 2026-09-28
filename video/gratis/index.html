@@ -28,7 +28,7 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--kit);outline-offset:2px}
 .btn{appearance:none;border:2px solid #fff;background:#fff;color:#141414;padding:12px 22px;border-radius:999px;font:700 15px var(--display);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn.kit{background:var(--kit);border-color:var(--kit);color:#fff}
+.btn.kit{background:var(--kit);border-color:var(--kit);color:var(--on-kit,#fff)}
 .btn.ghost{background:rgba(0,0,0,.35);color:#fff;border-color:rgba(255,255,255,.5);backdrop-filter:blur(6px)}
 
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
@@ -39,7 +39,7 @@ a{color:inherit}
 
 .intro{padding-block:36px 24px;display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
 .intro>*{min-width:0;overflow-wrap:break-word}
-.kicker{display:inline-block;width:max-content;max-width:100%;background:var(--kit);font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.kicker{display:inline-block;width:max-content;max-width:100%;background:var(--kit);color:var(--on-kit,#fff);font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
 
 /* player */
 .stage{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#000;box-shadow:var(--shadow);aspect-ratio:16/9}
@@ -228,18 +228,28 @@ const VIDEOS={
  natale:{aud:"az",ready:true,tag:"Aziende · Natale",short:"Il regalo firmato da te",
    kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span>',
    lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.",
-   chip:"Festa di Natale · stagione 2026/2027",start:"La festa di Natale della squadra",end:"Dentro il pacco c'è la sua foto. Sopra, il tuo logo.",hot:[50,70,0.8,4.6]},
- gratis:{ready:true,hot:[50,80,4.2,7.2],aud:"soc",tag:"Società · Gratis",short:"Il fotografo arriva, voi vi allenate",start:"Il fotografo in palestra, gratis",end:"Alla società non costa nulla. Vuoi vedere come funziona?"},
+   chip:"Festa di Natale · stagione 2026/2027",start:"La festa di Natale della squadra",end:"Dentro il pacco c'è la sua foto. Sopra, il tuo logo.",hot:[52,60,0.8,3.6]},
+ gratis:{ready:true,hot:[40,72,4.0,7.8],aud:"soc",tag:"Società · Gratis",short:"Il fotografo arriva, voi vi allenate",start:"Il fotografo in palestra, gratis",end:"Alla società non costa nulla. Vuoi vedere come funziona?"},
  ricordo:{ready:true,hot:[22,42,3.5,5.7],aud:"soc",tag:"Società · Ricordo",short:"La foto che resta appesa per anni",start:"Una foto che resta",end:"Ogni atleta con la sua foto, nome e squadra."},
  squadra:{ready:true,hot:[55,45,4.5,6.8],aud:"soc",tag:"Società · Appartenenza",short:"Tutti in posa: la squadra si stringe",start:"Tutti in posa",end:"La foto di squadra, per tutte le categorie."},
  fondi:{ready:true,preview:true,aud:"soc",tag:"Società · Raccolta fondi",short:"Le famiglie scelgono, la società incassa il 15%",start:"Un'entrata in più",end:"Alla società torna il 15% di ogni foto venduta."},
  logo:{ready:true,hot:[72,45,5.8,8.8],aud:"az",tag:"Aziende · Visibilità",short:"Dodici mesi appeso in casa e in ufficio",start:"Il tuo logo in casa per 12 mesi",end:"Foto e calendari con il tuo logo."},
  territorio:{ready:true,hot:[55,68,5.0,8.5],aud:"az",tag:"Aziende · Territorio",short:"Il campo del paese al tramonto",start:"Il tuo paese, la tua squadra",end:"Sostieni lo sport del tuo territorio."},
  costo:{ready:true,preview:true,aud:"az",tag:"Aziende · Costo contatto",short:"Il calendario sul muro di cucina",start:"Quanto costa arrivare a ogni famiglia?",end:"Fai il conto in 30 secondi."},
+ stagione:{ready:false,aud:"fam",tag:"Atleti · La tua foto",short:"La tua stagione in una foto",start:"La foto ufficiale, con il tuo nome",end:"Proponilo alla tua società: per lei è gratis."},
+ compagni:{ready:false,aud:"fam",tag:"Atleti · Spogliatoio",short:"Tutti in posa, dopo l'allenamento",start:"Quelli dello spogliatoio",end:"La foto di squadra, per ricordarsi di tutti."},
+ nonni:{ready:false,aud:"fam",tag:"Famiglie · Regalo",short:"Il calendario per i nonni",start:"Il regalo di Natale per i nonni",end:"Il calendario con la squadra, tutto l'anno."},
+ spalti:{ready:false,aud:"fam",tag:"Famiglie · Genitori",short:"Basta foto sfocate dagli spalti",start:"Le solite foto dagli spalti…",end:"Un fotografo vero, ordini solo se vuoi."},
+ movimento:{ready:false,aud:"enti",tag:"Enti · Archivio",short:"Tutte le squadre del territorio",start:"Ogni campo, ogni squadra",end:"Le foto di tutto il movimento, gratis per le società."},
+ affiliate:{ready:false,aud:"enti",tag:"Enti · Servizio",short:"Un servizio per le affiliate",start:"Un'idea per tutte le società",end:"Un servizio in più, a costo zero per l'ente."},
+ rete:{ready:false,aud:"enti",tag:"Enti · Sponsor",short:"Uno sponsor, tante società",start:"Un'azienda, tante squadre",end:"Uno sponsor di territorio per più società."},
+ festa:{ready:false,aud:"enti",tag:"Enti · Eventi",short:"La festa di fine stagione",start:"Il giorno della premiazione",end:"Ogni squadra con la sua foto sul podio."},
 };
 let CUR=VIDEOS.natale;
 const DEF_SOC={kick:"Nuovo servizio SWS · gratis per le società sportive",h1:'Le foto dei tuoi atleti.<br><span class="kitc">Alla società non costa nulla.</span>',lead:"SWS Agency fotografa tutti gli atleti e tutte le squadre. Senza sponsor le famiglie ordinano solo se vogliono e alla società torna il 15%. Con uno sponsor le foto le ricevono tutti in regalo."};
 const DEF_AZ={kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il tuo logo nelle case<br><span class="kitc">di tutte le famiglie.</span>',lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con il tuo sostegno ogni tesserato riceve in regalo la sua foto e quella della squadra, con il tuo logo sopra."};
+const DEF_FAM={kick:"Per atleti e famiglie · stagione 2026/27",h1:'Le foto della tua squadra.<br><span class="kitc">Fatte bene.</span>',lead:"Un fotografo professionista in palestra o al campo: la foto ufficiale di ogni atleta e quella della squadra. Per la società è gratis: basta proporlo."};
+const DEF_ENTI={kick:"Per federazioni, comitati ed enti",h1:'Facciamolo insieme.<br><span class="kitc">Per tutte le squadre.</span>',lead:"Foto professionali per ogni squadra e ogni sport del territorio, sempre gratis per le società e senza costi per l'ente."};
 function choicesFor(id,c){
   const more=`<button class="btn ghost" data-act="go" data-href="${land(id)}" type="button">Scopri come funziona</button>`;
   const wa=`<a class="btn kit" href="${WA}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a>`;
@@ -248,8 +258,8 @@ function choicesFor(id,c){
 }
 function load(id,play){
   const c=VIDEOS[id]; if(!c||!c.ready) return; CUR=c;
-  document.documentElement.style.setProperty("--kit",c.aud==="az"?"#F26B1D":"#2D55F0");
-  const D=c.aud==="az"?DEF_AZ:DEF_SOC;
+  document.documentElement.style.setProperty("--kit",({az:"#F26B1D",fam:"#F2B705",enti:"#1FA37A"})[c.aud]||"#2D55F0"); document.documentElement.style.setProperty("--on-kit",c.aud==="fam"?"#141414":"#fff");
+  const D=c.aud==="az"?DEF_AZ:c.aud==="fam"?DEF_FAM:c.aud==="enti"?DEF_ENTI:DEF_SOC;
   $("#kick").textContent=c.kick||D.kick; $("#h1").innerHTML=c.h1||D.h1; $("#lead").textContent=c.lead||D.lead;
   $("#chip").textContent=c.chip||c.tag; $("#pmsg").textContent=c.preview?"Anteprima animata · il video completo arriva a breve":"10 secondi · con audio"; $("#sound").hidden=!!c.preview; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
   $("#choices").innerHTML=choicesFor(id,c);

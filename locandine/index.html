@@ -1084,6 +1084,7 @@ const VANT = {
   ["Consegna in società","Niente spedizioni: ritiri tutto agli allenamenti."]]}
 };
 const VIDS=[["natale","az","Il regalo firmato da te"],["logo","az","Dodici mesi appeso in casa"],["territorio","az","Il campo del paese"],["costo","az","Il calendario in cucina"],["gratis","soc","Il fotografo in palestra"],["ricordo","soc","La foto che resta"],["squadra","soc","Tutti in posa"],["fondi","soc","Le foto che finanziano la stagione"]];
+const VIDS_READY=new Set(["natale","logo","territorio","costo","gratis","ricordo","squadra","fondi"]);
 
 function howBtn(){ return `<button class="btn ghost" type="button" data-how="1">Come funziona</button>`; }
 function howDialog(){ return `<dialog class="how" id="how" aria-labelledby="how-t"><div class="how-in">
@@ -1107,7 +1108,7 @@ function howDialog(){ return `<dialog class="how" id="how" aria-labelledby="how-
 function shell(inner, cls=""){ return `<div class="wrap ${cls}">${topBar()}${inner}${foot()}</div>`; }
 function bcol(k,n=4){ const v=VANT[k]; return `<div class="bcol ${v.cls}"><span class="label">${v.t}</span><ul>${v.items.slice(0,n).map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ul><a class="more" href="${linkTo(v.page)}">Tutti i vantaggi →</a></div>`; }
 function bgrid(k){ return `<div class="bgrid">${VANT[k].items.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("")}</div>`; }
-function vstrip(aud){ const l=VIDS.filter(v=>!aud||v[1]===aud); return `<div class="vstrip">${l.map(([id,a,t])=>`<a class="vcard ${a==="az"?"kit-red":""}" href="${vidLink(id)}"><img src="img/${id}.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="label">${a==="az"?"Aziende":"Società"} · video</span><b>${esc(t)}</b></a>`).join("")}</div>`; }
+function vstrip(aud){ const l=VIDS.filter(v=>!aud||v[1]===aud); return `<div class="vstrip">${l.map(([id,a,t])=>`<a class="vcard ${({az:"kit-red",fam:"t-atl",enti:"kit-green"})[a]||""}" href="${vidLink(id)}"><img src="img/${id}.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="label">${({az:"Aziende",fam:"Atleti e famiglie",enti:"Enti"})[a]||"Società"} · video</span><b>${esc(t)}</b></a>`).join("")}</div>`; }
 function lcards(aud){ return `<div class="hub-grid">${PAGES.filter(p=>p.aud===aud).map(p=>`<div class="hub-card ${({az:"kit-red",fam:"t-atl",enti:"kit-green"})[p.aud]||""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${esc(p.tag)}</span><h3>${esc(p.title)}</h3><div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a></div></div>`).join("")}</div>`; }
 function athleteBand(){ return `<section class="sec t-atl"><div class="cta-band"><span class="label">Sei un'atleta o un genitore?</span><h2>Proponilo alla tua società</h2><p>Ti scriviamo noi il messaggio per il presidente o l'allenatore: lo mandi con WhatsApp o per email in un minuto.</p><a class="btn" href="${linkTo("atleti")}#proponi">Scrivi il messaggio</a></div></section>`; }
 
