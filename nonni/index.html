@@ -638,6 +638,19 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .loc-soc a:hover,.loc-soc button:hover{border-color:var(--lc)}
 .toplinks a.n-locandine{border:1px solid var(--line)}
 .ar-tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(127,127,127,.15);padding:4px;border-radius:12px}.ar-tabs button{flex:1;border:0;background:transparent;padding:9px 10px;border-radius:9px;font:inherit;font-weight:700;cursor:pointer;color:inherit;opacity:.65}.ar-tabs button.on{background:#fff;color:#111;opacity:1;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.how-var{cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s,opacity .18s}
+.how-var:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.35);border-color:var(--blue)}
+.how-var.sp:hover{border-color:var(--red)}
+.how-var:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.how-var .pick{font-style:normal;float:right;opacity:.7;font-size:11px}
+.how-var .var-cta{display:none;justify-self:start;margin-top:4px}
+.how-var.sel{border-width:2px;border-color:var(--blue);box-shadow:0 0 0 4px rgba(45,85,240,.18)}
+.how-var.sp.sel{border-color:var(--red);box-shadow:0 0 0 4px rgba(242,107,29,.2)}
+.how-var.sel .var-cta{display:inline-flex}
+.how-var.sp .var-cta{background:var(--red);border-color:var(--red)}
+.how-var.sel .pick{opacity:1}
+.how-vars.chosen .how-var:not(.sel){opacity:.55}
+.how-vars.chosen .how-var:not(.sel):hover{opacity:.85}
 </style>
 
 <div id="app"></div>
@@ -1093,14 +1106,14 @@ function howDialog(){ return `<dialog class="how" id="how" aria-labelledby="how-
   <h2 id="how-t">Per il gruppo sportivo<br>è sempre gratis.</h2>
   <p>Fotografiamo tutti gli atleti e tutte le squadre: foto individuale con nome e numero, e foto di gruppo. Poi scegli una delle due varianti.</p>
   <div class="how-vars">
-    <div class="how-var"><span class="label">Variante 1</span><b class="t">Senza sponsor</b>
+    <div class="how-var" data-var="1" role="button" tabindex="0" aria-pressed="false"><span class="label">Variante 1 <em class="pick">Tocca per scegliere</em></span><b class="t">Senza sponsor</b>
       <ol><li>Scattiamo le foto in palestra o al campo a tutti gli atleti e a tutte le squadre.</li><li>La società raccoglie i nominativi e il denaro di chi vuole le foto.</li><li>Consegniamo alla società tutto il materiale.</li><li>Alla società rimane il ${PCT}% di tutto il venduto.</li></ol>
       <div class="pc"><div class="pro"><b>Pro</b><ul><li>Velocissima: si parte subito, basta fissare le date.</li><li>Nessuno da trovare o convincere.</li><li>Alla società rimane il ${PCT}% di tutto il venduto.</li><li>Ogni famiglia sceglie liberamente cosa ordinare.</li></ul></div><div class="con"><b>Contro</b><ul><li>Non tutti gli atleti ricevono la foto: solo chi la ordina.</li><li>La società si occupa di raccogliere nominativi e denaro.</li><li>L'incasso dipende da quante famiglie ordinano.</li></ul></div></div>
-      <span class="res">Costo per la società: 0 €</span></div>
-    <div class="how-var sp"><span class="label">Variante 2</span><b class="t">Con sponsor</b>
+      <span class="res">Costo per la società: 0 €</span><a class="btn kit var-cta" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, mi interessa la variante 1 (senza sponsor) delle foto SWS per il mio gruppo sportivo")}" target="_blank" rel="noopener">Voglio la variante 1</a></div>
+    <div class="how-var sp" data-var="2" role="button" tabindex="0" aria-pressed="false"><span class="label">Variante 2 <em class="pick">Tocca per scegliere</em></span><b class="t">Con sponsor</b>
       <ol><li>Un'azienda del territorio sostiene il servizio.</li><li>Ogni atleta riceve in regalo la sua foto e quella della squadra, con il logo dello sponsor.</li><li>Consegna in società, per esempio alla festa di Natale.</li><li>Sugli acquisti in più delle famiglie (altre foto, calendari per i parenti) alla società rimane il ${PCT}%.</li></ol>
       <div class="pc"><div class="pro"><b>Pro</b><ul><li>Tutti gli atleti ricevono la foto, senza eccezioni.</li><li>Nessun denaro da raccogliere per la foto regalo.</li><li>Lo sponsor resta legato alla società anche per altre iniziative.</li><li>Un bel regalo della società da consegnare alla festa.</li><li>In più il ${PCT}% sugli acquisti extra delle famiglie.</li></ul></div><div class="con"><b>Contro</b><ul><li>Ci può volere tempo per individuare lo sponsor.</li><li>Serve un nome da parte della società (poi a convincerlo ci pensiamo noi).</li><li>I tempi di consegna dipendono dall'accordo con lo sponsor.</li></ul></div></div>
-      <span class="res">Costo per società e famiglie: 0 €</span></div>
+      <span class="res">Costo per società e famiglie: 0 €</span><a class="btn kit var-cta" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, mi interessa la variante 2 (con sponsor) delle foto SWS per il mio gruppo sportivo")}" target="_blank" rel="noopener">Voglio la variante 2</a></div>
   </div>
   <div class="how-note"><b>Lo sponsor lo suggerisce il gruppo sportivo</b><span>Ci indichi un'azienda che conosci: un genitore imprenditore, un negozio o un fornitore della zona. Poi pensiamo noi a incontrarla, spiegarle il progetto con materiali pronti e aiutarla a dire sì.</span></div>
   <div class="cta-row" style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, vorrei saperne di più sulle foto SWS per il mio gruppo sportivo")}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><button class="btn ghost" type="button" data-howclose="1">Ho capito</button></div>
@@ -1502,6 +1515,9 @@ document.addEventListener("submit", e=>{
 
 route();
 document.addEventListener("click",e=>{const b=e.target.closest("[data-ar]");if(!b)return;const box=b.closest(".lockbox");box.querySelectorAll("[data-ar]").forEach(x=>x.classList.toggle("on",x===b));box.querySelectorAll(".ar-pane").forEach(x=>x.hidden=x.dataset.pane!==b.dataset.ar);});
+function pickVar(el){ const box=el.closest(".how-vars"); box.classList.add("chosen"); box.querySelectorAll(".how-var").forEach(v=>{const on=v===el; v.classList.toggle("sel",on); v.setAttribute("aria-pressed",on); v.querySelector(".pick").textContent=on?"✓ Scelta":"Tocca per scegliere";}); }
+document.addEventListener("click",e=>{ if(e.target.closest(".var-cta")) return; const v=e.target.closest(".how-var[data-var]"); if(v) pickVar(v); });
+document.addEventListener("keydown",e=>{ const v=e.target.closest&&e.target.closest(".how-var[data-var]"); if(v&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); pickVar(v); } });
 </script>
 
 </body></html>
