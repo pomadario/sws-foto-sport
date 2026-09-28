@@ -651,6 +651,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .how-var.sel .pick{opacity:1}
 .how-vars.chosen .how-var:not(.sel){opacity:.55}
 .how-vars.chosen .how-var:not(.sel):hover{opacity:.85}
+.spot-v{border-radius:var(--r);overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.45)}.spot-v video{width:100%;height:100%;display:block;object-fit:cover}.spotbox .cta-row{margin-top:18px}
 </style>
 
 <div id="app"></div>
@@ -1125,6 +1126,9 @@ function vstrip(aud){ const l=VIDS.filter(v=>!aud||v[1]===aud); return `<div cla
 function lcards(aud){ return `<div class="hub-grid">${PAGES.filter(p=>p.aud===aud).map(p=>`<div class="hub-card ${({az:"kit-red",fam:"t-atl",enti:"kit-green"})[p.aud]||""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${esc(p.tag)}</span><h3>${esc(p.title)}</h3><div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a></div></div>`).join("")}</div>`; }
 function athleteBand(){ return `<section class="sec t-atl"><div class="cta-band"><span class="label">Sei un'atleta o un genitore?</span><h2>Proponilo alla tua società</h2><p>Ti scriviamo noi il messaggio per il presidente o l'allenatore: lo mandi con WhatsApp o per email in un minuto.</p><a class="btn" href="${linkTo("atleti")}#proponi">Scrivi il messaggio</a></div></section>`; }
 
+function spotBox(){ return `<section class="sec spotbox" id="spot"><div class="sec-head"><span class="label">Lo spot · 30 secondi</span><h2>Guarda come funziona</h2><p>Il fotografo in palestra, la foto per ogni atleta, lo sponsor che la regala, la famiglia che la appende in casa.</p></div>
+    <div class="spot-v"><video src="video/spot.mp4" poster="video/spot-poster.jpg" controls playsinline preload="none"></video></div>
+    <div class="cta-row"><a class="btn kit" href="${CONTACT.wa}?text=${encodeURIComponent("Ciao, ho visto lo spot SWS Foto Sport e vorrei saperne di più")}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a><a class="btn ghost" href="${vidLink("")}">Tutti i video</a></div></section>`; }
 function pHome(p){
   return shell(`
   <section class="hero">
@@ -1134,6 +1138,7 @@ function pHome(p){
       <div class="cta-row"><a class="btn kit" href="${linkTo("societa")}">Sono una società sportiva</a><a class="btn ghost" href="${linkTo("aziende")}">Sono un'azienda</a>${howBtn()}</div></div>
     <div>${figurina({size:"15×20"})}</div>
   </section>
+  ${spotBox()}
   <section class="split">
     <a class="door" href="${linkTo("societa")}"><img src="img/gratis.jpg" alt=""><span class="label" style="color:#ddd">Società e associazioni sportive</span><h2>Le foto dei tuoi atleti, <span class="kitc">gratis</span></h2><p>Foto degli atleti, foto di squadra e una raccolta fondi, senza spendere un euro e senza lavoro in più.</p><span class="btn kit">Entra</span></a>
     <a class="door kit-red" href="${linkTo("aziende")}"><img src="img/natale.jpg" alt=""><span class="label" style="color:#ddd">Aziende del territorio</span><h2>Comunica in modo <span class="kitc">nuovo</span></h2><p>Il tuo logo sul regalo che ogni famiglia aspetta: foto e calendari che restano in casa tutto l'anno.</p><span class="btn kit">Entra</span></a>
@@ -1158,6 +1163,7 @@ function pTarget(p){
       <div class="cta-row"><button class="btn kit" data-go="contatti">${soc?"Prenota le giornate di scatto":"Chiedi un preventivo"}</button>${howBtn()}<a class="btn ghost" href="${vidLink(soc?"gratis":"natale")}">Guarda il video</a></div></div>
     <div>${soc?teamCard():calendar()}</div>
   </section>
+  ${spotBox()}
   <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${soc?"Perché conviene alla società":"Perché conviene alla tua azienda"}</h2></div>${bgrid(aud)}</section>
   ${formule(aud)}
   <section class="sec"><div class="sec-head"><span class="label">Approfondisci</span><h2>Scegli il tuo motivo</h2></div>${lcards(aud)}</section>
