@@ -672,8 +672,8 @@ const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"palla
   tasks:{}, sent:{}, formula:null, altro:"" };
 
 /* ---------- components ---------- */
-const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"arancio",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"giallo",sp:"basket",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"}};
-const heroOn=sp=>!S.picked && S.hero && sp===S.hero.sp;
+const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"arancio",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"giallo",sp:"basket",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"},stagione:{k:null,sp:"pallamano",g:"m"},compagni:{k:null,sp:"flagfootball",g:"f"},nonni:{k:null,sp:"beach",g:"m"},spalti:{k:"giallo",sp:"basket",g:"f"},movimento:{k:null,sp:"rugby",g:"f"},affiliate:{k:null,sp:"hockey",g:"m"},rete:{k:null,sp:"pattinaggio",g:"f"},festa:{k:"verde",sp:"calcio",g:"f"}};
+const heroOn=sp=>!S.picked && S.hero && S.hero.k && sp===S.hero.sp;
 const TEAM_OK=new Set(["acrobatica", "aerobica", "aikido", "altro", "arco", "arrampicata", "atletica", "automobilismo", "badminton", "baseball", "basket", "baskin", "beach", "biathlon", "biliardo", "bmx", "bocce", "bowling", "boxe", "calcio", "calcio5", "calciobalilla", "canoa", "canottaggio", "cheerleading", "ciclismo", "ciclocross", "crossfit", "curling", "danza", "dragonboat", "equitazione", "flagfootball", "floorball", "footamericano", "freccette", "ginnastica", "golf", "hiphop", "hockey", "hockeyghiaccio", "hockeypista", "jiujitsu", "judo", "karate", "karting", "kickboxing", "korfball", "kungfu", "lacrosse", "lotta", "mma", "montagna", "motocross", "mtb", "muaythai", "nuoto", "nuotoart", "nuotopinnato", "orienteering", "padel", "pallamano", "pallanuoto", "pallavolo", "pattcorsa", "pattinaggio", "pentathlon", "pesistica", "pickleball", "podismo", "powerlifting", "ritmica", "rugby", "salvamento", "scherma", "sci", "scifondo", "sittingvolley", "snowboard", "softball", "squash", "sup", "taekwondo", "tennis", "tennistavolo", "tiroasegno", "tiroavolo", "trail", "trampolino", "triathlon", "tuffi", "twirling", "ultimate", "vela", "windsurf"]), PORT_OK=new Set(["acrobatica", "aerobica", "aikido", "altro", "arco", "arrampicata", "atletica", "automobilismo", "badminton", "baseball", "basket", "baskin", "beach", "biathlon", "biliardo", "bmx", "bocce", "bowling", "boxe", "calcio", "calcio5", "calciobalilla", "canoa", "canottaggio", "cheerleading", "ciclismo", "ciclocross", "crossfit", "curling", "danza", "dragonboat", "equitazione", "flagfootball", "floorball", "footamericano", "freccette", "ginnastica", "golf", "hiphop", "hockey", "hockeyghiaccio", "hockeypista", "jiujitsu", "judo", "karate", "karting", "kickboxing", "korfball", "kungfu", "lacrosse", "lotta", "mma", "montagna", "motocross", "mtb", "muaythai", "nuoto", "nuotoart", "nuotopinnato", "orienteering", "padel", "pallamano", "pallanuoto", "pallavolo", "pattcorsa", "pattinaggio", "pentathlon", "pesistica", "pickleball", "podismo", "powerlifting", "ritmica", "rugby", "salvamento", "scherma", "sci", "scifondo", "sittingvolley", "snowboard", "softball", "squash", "sup", "taekwondo", "tennis", "tennistavolo", "tiroasegno", "tiroavolo", "trail", "trampolino", "triathlon", "tuffi", "twirling", "ultimate", "vela", "windsurf"]);
 const pImg=(sp,g)=>heroOn(sp)?`img/p/hero-${S.hero.k}-${g}.jpg`:`img/p/${PORT_OK.has(sp)?sp:imgKey(sp)}-${g}.jpg`;
 const tImg=(sp,g)=>heroOn(sp)&&g===S.hero.g?`img/t/hero-${S.hero.k}.jpg`:`img/t/${TEAM_OK.has(sp)?sp:imgKey(sp)}-${g}.jpg`;
@@ -732,7 +732,7 @@ function picker(){
   </div>`;
 }
 
-const IMG={gratis:"img/gratis.jpg",ricordo:"img/ricordo.jpg",squadra:"img/squadra.jpg",fondi:"img/fondi.jpg",logo:"img/logo.jpg",territorio:"img/territorio.jpg",costo:"img/costo.jpg",natale:"img/natale.jpg"};
+const IMG={stagione:"img/t/pallamano-m.jpg",compagni:"img/t/flagfootball-f.jpg",nonni:"img/t/beach-m.jpg",spalti:"img/t/hero-giallo.jpg",movimento:"img/t/rugby-f.jpg",affiliate:"img/t/hockey-m.jpg",rete:"img/t/pattinaggio-f.jpg",festa:"img/t/hero-verde.jpg",gratis:"img/gratis.jpg",ricordo:"img/ricordo.jpg",squadra:"img/squadra.jpg",fondi:"img/fondi.jpg",logo:"img/logo.jpg",territorio:"img/territorio.jpg",costo:"img/costo.jpg",natale:"img/natale.jpg"};
 const CAP={gratis:"Il fotografo arriva in palestra. Voi pensate solo ad allenarvi.",ricordo:"Il posto giusto per una foto di sport: in cucina, tutti i giorni.",squadra:"Fango, sorrisi e braccia sulle spalle. Questa è la squadra.",fondi:"Ogni stagione ha il suo momento. E può anche finanziare la prossima.",logo:"Dodici mesi appeso in cucina, accanto alla moka.",territorio:"Il campo del paese, i ragazzi del paese, le aziende del paese.",costo:"È qui che arriva il tuo marchio: sul tavolo di casa.",natale:"Festa di Natale: il regalo passa dalle mani della società."};
 function band(id){ return IMG[id]?`<figure class="band"><img src="${IMG[id]}" alt="${esc(CAP[id])}" loading="eager"><figcaption><b>${esc(CAP[id])}</b><span>Stagione ${SEASON}</span></figcaption></figure>`:""; }
 
@@ -770,14 +770,15 @@ function topBar(aud){
 }
 function form(key, aud){
   if(S.sent[key]) return `<div class="thanks fade"><span class="label" style="color:inherit">Richiesta ricevuta</span><h3>Grazie ${esc(S.sent[key])}, ci sentiamo a breve.</h3><p>${WEB?"Ti abbiamo aperto WhatsApp con il messaggio già scritto: premi Invia e ti rispondiamo noi. Se non si è aperto, scrivici al 329 660 6094.":"Anteprima: su Vercel questo modulo apre WhatsApp con il messaggio già scritto."}</p></div>`;
-  const org = key==="enti" ? "Federazione, comitato o ente" : aud==="soc" ? "Società / associazione" : "Azienda";
+  const isEnte=key==="enti"||(PAGES.find(x=>x.id===key)||{}).aud==="enti";
+  const org = isEnte ? "Federazione, comitato o ente" : aud==="soc" ? "Società / associazione" : "Azienda";
   return `<form class="form" id="f-${key}" novalidate>
     <div class="field"><label for="${key}-nome">Nome e cognome</label><input id="${key}-nome" required autocomplete="name"></div>
     <div class="field"><label for="${key}-org">${org}</label><input id="${key}-org" value="${esc(aud==="soc"?S.soc:S.az)}"></div>
     <div class="field"><label for="${key}-tel">Telefono</label><input id="${key}-tel" type="tel" autocomplete="tel"></div>
     <div class="field"><label for="${key}-mail">Email</label><input id="${key}-mail" type="email" autocomplete="email"></div>
     <div class="full" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-      <button class="btn kit" type="submit">${key==="enti"?"Chiedi un incontro":aud==="soc"?"Voglio il servizio per la mia società":"Voglio sapere quanto costa"}</button>
+      <button class="btn kit" type="submit">${isEnte?"Chiedi un incontro":aud==="soc"?"Voglio il servizio per la mia società":"Voglio sapere quanto costa"}</button>
       <span class="note" id="${key}-err"></span></div>
   </form>`;
 }
@@ -1107,7 +1108,7 @@ function shell(inner, cls=""){ return `<div class="wrap ${cls}">${topBar()}${inn
 function bcol(k,n=4){ const v=VANT[k]; return `<div class="bcol ${v.cls}"><span class="label">${v.t}</span><ul>${v.items.slice(0,n).map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ul><a class="more" href="${linkTo(v.page)}">Tutti i vantaggi →</a></div>`; }
 function bgrid(k){ return `<div class="bgrid">${VANT[k].items.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("")}</div>`; }
 function vstrip(aud){ const l=VIDS.filter(v=>!aud||v[1]===aud); return `<div class="vstrip">${l.map(([id,a,t])=>`<a class="vcard ${a==="az"?"kit-red":""}" href="${vidLink(id)}"><img src="img/${id}.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="label">${a==="az"?"Aziende":"Società"} · video</span><b>${esc(t)}</b></a>`).join("")}</div>`; }
-function lcards(aud){ return `<div class="hub-grid">${PAGES.filter(p=>p.aud===aud).map(p=>`<div class="hub-card ${p.aud==="az"?"kit-red":""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${esc(p.tag)}</span><h3>${esc(p.title)}</h3><div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a></div></div>`).join("")}</div>`; }
+function lcards(aud){ return `<div class="hub-grid">${PAGES.filter(p=>p.aud===aud).map(p=>`<div class="hub-card ${({az:"kit-red",fam:"t-atl",enti:"kit-green"})[p.aud]||""}"><img class="thumb" src="${IMG[p.id]}" alt="" loading="lazy"><div class="bar"></div><span class="label">${esc(p.tag)}</span><h3>${esc(p.title)}</h3><div class="row"><a class="btn kit" href="${linkTo(p.id)}">Scopri</a></div></div>`).join("")}</div>`; }
 function athleteBand(){ return `<section class="sec t-atl"><div class="cta-band"><span class="label">Sei un'atleta o un genitore?</span><h2>Proponilo alla tua società</h2><p>Ti scriviamo noi il messaggio per il presidente o l'allenatore: lo mandi con WhatsApp o per email in un minuto.</p><a class="btn" href="${linkTo("atleti")}#proponi">Scrivi il messaggio</a></div></section>`; }
 
 function pHome(p){
@@ -1129,7 +1130,9 @@ function pHome(p){
   <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>Guarda come funziona</h2><p>Otto video da 10 secondi: tocca il punto rosso quando compare.</p></div>${vstrip()}</section>
   ${athleteBand()}
   <section class="sec"><div class="sec-head"><span class="label">Per le società</span><h2>Quattro buoni motivi</h2></div>${lcards("soc")}
-    <div class="sec-head"><span class="label">Per le aziende</span><h2>Quattro buoni motivi</h2></div>${lcards("az")}</section>`);
+    <div class="sec-head"><span class="label">Per le aziende</span><h2>Quattro buoni motivi</h2></div>${lcards("az")}
+    <div class="sec-head"><span class="label">Per federazioni ed enti</span><h2>Quattro progetti</h2></div>${lcards("enti")}
+    <div class="sec-head"><span class="label">Per atleti e famiglie</span><h2>Quattro ragioni per chiederlo</h2></div>${lcards("fam")}</section>`);
 }
 function pTarget(p){
   const aud=p.id==="societa"?"soc":"az", soc=aud==="soc";
@@ -1178,6 +1181,7 @@ function pPeople(p){
   </section>
   <section class="sec"><div class="sec-head"><span class="label">I vantaggi</span><h2>${atl?"Cosa ci guadagni tu":"Cosa ci guadagna la tua famiglia"}</h2></div>${bgrid(atl?"atl":"fam")}</section>
   <section class="sec"><div class="sec-head"><span class="label">${atl?"E per la tua famiglia":"E per tuo figlio"}</span></div>${bgrid(atl?"fam":"atl")}</section>
+  <section class="sec"><div class="sec-head"><span class="label">Approfondisci</span><h2>Scegli il tuo motivo</h2></div>${lcards("fam")}</section>
   ${proposer()}
   <section class="sec"><div class="sec-head"><span class="label">Video</span><h2>Guarda come funziona</h2></div>${vstrip("soc")}</section>`, atl?"t-atl":"t-fam");
 }
@@ -1241,11 +1245,57 @@ function pEnti(p){
     <div class="feat" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${who.map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
   <section class="sec"><div class="sec-head"><span class="label">Perché conviene all'ente</span><h2>Un progetto per tutto il movimento</h2></div>
     <div class="bgrid">${vant.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  <section class="sec"><div class="sec-head"><span class="label">Approfondisci</span><h2>Quattro progetti possibili</h2></div>${lcards("enti")}</section>
   ${formule("soc")}
   <section class="sec"><div class="sec-head"><span class="label">Come lavoriamo insieme</span><h2>Cinque passi</h2></div>
     <div class="steps">${steps.map(([a,b])=>`<div class="step"><span class="label"></span><b>${a}</b><p>${b}</p></div>`).join("")}</div></section>
   <section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte: ti proponiamo come partire.</p></div>${form("enti","soc")}${directLine()}</section>`, "kit-green");
 }
+/* ================= LANDING: ATLETI/FAMIGLIE (giallo) e FEDERAZIONI/ENTI (verde) ================= */
+const MSG={
+ stagione:{kick:"Per gli atleti · la tua foto ufficiale",h1:`La tua stagione.<br><span class="kitc">In una foto.</span>`,lead:"Nome, numero, squadra e stagione: la foto ufficiale come quella dei professionisti. Scrivi il tuo nome qui sotto e guarda come viene.",vis:"fig",edit:true,
+  ptitle:"Perché ne vale la pena",points:[["È la tua foto","Non una foto di gruppo dove ti cerchi: sei tu, con il tuo nome e il tuo numero."],["Fatta da un professionista","Luce giusta, sfondo pulito, niente foto mosse dal telefono."],["Da usare dove vuoi","Sul profilo, in camera, da regalare a chi ti segue alle partite."],["Una ogni stagione","Anno dopo anno vedi quanto sei cresciuto, in campo e fuori."]],
+  btitle:"Come arrivarci",btext:"Basta che la tua società dica sì. Per lei è gratis: ti prepariamo noi il messaggio da mandare al presidente o all'allenatore."},
+ compagni:{kick:"Per gli atleti · la foto di squadra",h1:`Quelli dello spogliatoio.<br><span class="kitc">Tutti in una foto.</span>`,lead:"Le vittorie, le sconfitte, i viaggi in pulmino. Tra qualche anno vorrai ricordarti di ognuno di loro: la foto di squadra ufficiale, con il nome della società e la stagione.",vis:"team",edit:false,
+  ptitle:"Cosa ricevi",points:[["La squadra al completo","Tutti, allenatori compresi, in una foto vera in formato 20×30."],["Con nome e stagione","La società, la categoria e l'anno: un pezzo della vostra storia."],["Anche per chi ha cambiato squadra","Un ricordo da tenere anche quando le strade si dividono."],["Gratis con lo sponsor","Se un'azienda sostiene la società, la foto è un regalo per tutti."]],
+  btitle:"Parlane in squadra",btext:"Se siete in tanti a chiederlo, la società dice sì più facilmente. Manda il messaggio nella chat della squadra."},
+ nonni:{kick:"Per le famiglie · il regalo di Natale",h1:`Il regalo per i nonni<br><span class="kitc">è già pronto.</span>`,lead:"Il calendario 2027 con la foto della squadra o del tuo campione. Appeso in cucina, per dodici mesi i nonni lo vedono ogni mattina.",vis:"cal",edit:false,
+  ptitle:"Perché piace a tutti",points:[["Formato 30×40","Grande, da appendere: le foto si vedono bene anche da lontano."],["Con nome e squadra","Il nipote in divisa, la società, la stagione. Tutto l'anno."],["Pronto per Natale","Si ordina con le foto della stagione e arriva in tempo per le feste."],["Aiuti la società","Una parte di ogni acquisto torna alla società sportiva."]],
+  btitle:"Come si ordina",btext:"Dopo la giornata di scatto guardi le foto da casa e scegli cosa ordinare. Ritiri tutto in società, agli allenamenti."},
+ spalti:{kick:"Per le famiglie · niente più foto sfocate",h1:`Basta foto<br><span class="kitc">dagli spalti.</span>`,lead:"Controluce, da lontano, sempre mosse. Un fotografo professionista viene in palestra o al campo, fotografa ogni atleta e ogni squadra. Tu guardi le foto da casa e ordini solo se vuoi.",vis:"fig",edit:false,
+  ptitle:"Cosa cambia per te",points:[["Zero fatica","Non devi fare niente: scattiamo durante un allenamento."],["Ordini solo se vuoi","Nessun obbligo, nessun anticipo. Scegli con calma."],["Consegna in società","Niente spedizioni: ritiri tutto agli allenamenti."],[`Il ${PCT}% alla società`,"Ogni foto ordinata aiuta anche la società di tuo figlio."]],
+  btitle:"Proponilo tu",btext:"Molte società non lo sanno ancora. Un messaggio di un genitore è il modo più semplice per partire: te lo scriviamo noi."},
+ movimento:{kick:"Per federazioni ed enti · l'archivio del territorio",h1:`Le foto di tutto<br><span class="kitc">il movimento.</span>`,lead:"Ogni squadra, ogni categoria, ogni stagione: un archivio fotografico dello sport del territorio, fatto da professionisti e sempre gratis per le società.",vis:"team",
+  ptitle:"Cosa ottiene l'ente",points:[["Un archivio che non c'era","Le foto ufficiali di tutte le squadre, organizzate per stagione, categoria e disciplina."],["Materiale per comunicare","Immagini pronte per sito, social, annuari e presentazioni ai partner."],["I numeri del movimento","Quante società, squadre e atleti: dati per raccontare il tuo sport."],["Zero costi","Il servizio si sostiene con le famiglie che ordinano o con gli sponsor."]],
+  btitle:"Un progetto per anni",btext:"Ogni stagione si aggiunge un capitolo. Dopo qualche anno l'ente ha la storia visiva di tutto il suo movimento."},
+ affiliate:{kick:"Per federazioni ed enti · un servizio alle società",h1:`Un servizio in più<br><span class="kitc">per le tue affiliate.</span>`,lead:"Offri a tutte le società del tuo comitato foto professionali di atleti e squadre. Per le società è gratis, per l'ente anche. Il lavoro lo facciamo noi.",vis:"fig",
+  ptitle:"Perché le società ringraziano",points:[["Gratis per tutte","Nessun costo per le società, in nessuna delle due formule."],[`Il ${PCT}% alle società`,"Senza sponsor, a ogni società torna il 15% di quello che vendono le famiglie."],["Nessun lavoro in più","Organizziamo noi date, scatti, stampe e consegne."],["Condizioni uguali per tutti","Un accordo unico, chiaro, valido per ogni affiliata."]],
+  btitle:"L'ente ci mette il nome",btext:"Basta una comunicazione alle società: il resto lo gestiamo noi, zona per zona, con un referente per l'ente."},
+ rete:{kick:"Per federazioni ed enti · sponsor di territorio",h1:`Uno sponsor.<br><span class="kitc">Tante società.</span>`,lead:"Un'azienda può sostenere molte società della stessa zona o dello stesso sport. Più visibilità per lei, foto regalate a migliaia di atleti, nessun costo per l'ente.",vis:"cal",
+  ptitle:"Come funziona la rete",points:[["Un accordo, tante squadre","Lo sponsor sostiene il servizio per un gruppo di società insieme."],["Visibilità misurabile","Sa quante famiglie raggiunge e quanti prodotti ha regalato."],["Più risorse per lo sport di base","Anche le società più piccole ricevono le foto in regalo."],["Lo cerchiamo insieme","Ci indicate le aziende vicine al vostro sport, noi le incontriamo."]],
+  btitle:"Apriamo la porta insieme",btext:"L'ente apre la porta e dà credibilità al progetto. SWS prepara i materiali, incontra le aziende e segue tutte le consegne."},
+ festa:{kick:"Per federazioni ed enti · eventi e premiazioni",h1:`La festa dello sport,<br><span class="kitc">da ricordare.</span>`,lead:"Finali, premiazioni, feste di fine stagione: fotografiamo l'evento e consegniamo a ogni squadra la sua foto. Un ricordo per gli atleti, materiale per l'ente.",vis:"team",
+  ptitle:"Cosa facciamo all'evento",points:[["Foto di ogni squadra premiata","Sul podio, con coppe e medaglie, con il nome dell'evento."],["Set fotografico sul posto","Un angolo dove atleti e famiglie si fanno fotografare."],["Foto per l'ente","Immagini pronte per comunicati, social e sponsor dell'evento."],["Senza costi per l'ente","Come sempre: famiglie che ordinano o uno sponsor che regala."]],
+  btitle:"Partiamo da un evento",btext:"È il modo più semplice per provarci insieme: scegliete un evento della stagione e lo seguiamo noi."}
+};
+function pMsg(p){
+  const m=MSG[p.id], fam=p.aud==="fam";
+  const vis=m.vis==="fig"?`<div id="ms-fig">${figurina({size:"15×20"})}</div>`:m.vis==="team"?`<div class="pk-team">${teamCard()}</div>`:`<div id="ms-cal">${calendar()}</div>`;
+  const edit=m.edit?`<div class="panel">${picker()}<div class="field"><label for="cf-name">Il tuo nome</label><input id="cf-name" value="${esc(S.atleta)}" maxlength="22"></div><div class="two" style="gap:12px"><div class="field"><label for="cf-nr">Numero</label><input id="cf-nr" value="${esc(S.nr)}" maxlength="2" inputmode="numeric"></div><div class="field"><label for="cf-soc">La tua squadra</label><input id="cf-soc" value="${esc(S.soc)}" placeholder="es. Volley Iseo" maxlength="30"></div></div></div>`:`<div class="panel">${picker()}</div>`;
+  return shell(`
+  <section class="hero">
+    <div><span class="kicker">${m.kick}</span><h1>${m.h1}</h1><p class="lead">${m.lead}</p>
+      <div class="cta-row"><button class="btn kit" data-go="${fam?"proponi":"contatti"}">${fam?"Proponilo alla società":"Parliamone"}</button>${howBtn()}</div></div>
+    ${vis}
+  </section>
+  <section class="sec"><div class="two"><div class="sec-head"><span class="label">${fam?"Prova":"Anteprima"}</span><h2>Scegli lo sport.<br>Guarda il risultato.</h2><p>Più di 90 discipline, squadre maschili e femminili.</p></div>${edit}</div></section>
+  <section class="sec"><div class="sec-head"><span class="label">${m.ptitle}</span></div>
+    <div class="bgrid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${m.points.map(([a,b],i)=>`<div class="bitem ${i===0?"star":""}"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
+  <section class="sec"><div class="cta-band"><span class="label">${fam?"Il prossimo passo":"Il ruolo dell'ente"}</span><h2>${m.btitle}</h2><p>${m.btext}</p>${fam?`<button class="btn" data-go="proponi">Scrivi il messaggio</button>`:`<button class="btn" data-go="contatti">Chiedi un incontro</button>`}</div></section>
+  ${fam?proposer():`<section class="sec" id="contatti"><div class="sec-head"><span class="label">Parliamone</span><h2>Scrivici per un incontro</h2><p>Raccontaci quale ente rappresenti e quante società ne fanno parte.</p></div>${form(p.id,"soc")}${directLine()}</section>`}
+  ${othersMsg(p)}`, fam?"t-atl":"kit-green");
+}
+function othersMsg(p){ const l=PAGES.filter(x=>x.aud===p.aud&&x.id!==p.id); return `<section class="sec"><div class="sec-head"><span class="label">Altri motivi</span></div><div class="others">${l.map(x=>`<a href="${linkTo(x.id)}"><span class="label">${esc(x.tag)}</span><b>${esc(x.title)}</b></a>`).join("")}<a href="${linkTo(p.aud==="fam"?"atleti":"enti")}"><span class="label">Panoramica</span><b>${p.aud==="fam"?"Atleti e famiglie":"Federazioni ed enti"}</b></a></div></section>`; }
 function pLegal(p){ return shell(`<section class="legaldoc">${p.id==="privacy"?LEGAL_PRIV:LEGAL_TERM}</section>`); }
 const LEGAL_PRIV=`<span class="kicker">Informativa</span><h1>Privacy policy</h1><p class="upd">Ultimo aggiornamento: 28 settembre 2026</p>
 <p>Questa informativa spiega come trattiamo i dati personali di chi visita questo sito, ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003.</p>
@@ -1308,6 +1358,14 @@ const PAGES = [
   {id:"territorio",aud:"az", tag:"Territorio",    title:"Accanto ai ragazzi del paese", render:pTerritorio},
   {id:"costo",    aud:"az",  tag:"Costo contatto",title:"Quanto costa entrare in casa", render:pCosto},
   {id:"natale",   aud:"az",  tag:"Regalo di Natale",title:"Il regalo firmato da te", render:pNatale},
+  {id:"stagione", aud:"fam", tag:"La tua foto",   title:"La tua stagione in una foto", render:pMsg},
+  {id:"compagni", aud:"fam", tag:"Spogliatoio",   title:"Tutti in una foto", render:pMsg},
+  {id:"nonni",    aud:"fam", tag:"Regalo",        title:"Il regalo per i nonni", render:pMsg},
+  {id:"spalti",   aud:"fam", tag:"Genitori",      title:"Basta foto dagli spalti", render:pMsg},
+  {id:"movimento",aud:"enti",tag:"Archivio",      title:"Le foto di tutto il movimento", render:pMsg},
+  {id:"affiliate",aud:"enti",tag:"Servizio",      title:"Un servizio per le affiliate", render:pMsg},
+  {id:"rete",     aud:"enti",tag:"Sponsor",       title:"Uno sponsor, tante società", render:pMsg},
+  {id:"festa",    aud:"enti",tag:"Eventi",        title:"La festa dello sport", render:pMsg},
 ];
 
 function hub(){
@@ -1327,7 +1385,7 @@ function route(){
   const id=(location.hash||"").slice(1) || window.__PAGE || "";
   const p=PAGES.find(x=>x.id===id) || SITE.find(x=>x.id===id) || SITE[0];
   current=p;
-  if(!S.picked){ S.hero=HERO[p.id]||null; if(S.hero){ S.sport=S.hero.sp; S.g=S.hero.g; } }
+  if(!S.picked){ S.hero=HERO[p.id]||null; if(S.hero){ S.sport=S.hero.sp; S.g=S.hero.g; if(S.g==="m"&&S.atleta==="Martina Rossi") S.atleta="Luca Rossi"; if(S.g==="f"&&S.atleta==="Luca Rossi") S.atleta="Martina Rossi"; } }
   $("#app").innerHTML = p.render(p);
   if(!WEB) document.title = p.tag ? `SWS · ${p.tag}` : "SWS Foto Sport";
   if(!route.first) window.scrollTo(0,0);
@@ -1405,6 +1463,8 @@ function partial(pick){
       set("co-big",eur(c.perFam)); set("co-sub",`circa ${num(c.perFamMonth)} € al mese per famiglia, per 12 mesi di calendario`);
       set("co-bv",eur(S.budget)); set("co-tv",S.tess); set("co-a",eur(c.perFam)); set("co-d",num(c.perDay)+" €"); set("co-p",S.tess*2); break; }
     case "natale": set("na-box", giftBox()); break;
+    case "stagione": case "spalti": case "affiliate": set("ms-fig", figurina({size:"15×20"})); break;
+    case "nonni": case "rete": set("ms-cal", calendar()); break;
     case "prova": set("cf-fig", figurina({size:""})); set("cf-team", teamCard()); set("cf-cal", calendar()); break;
   }
 }
