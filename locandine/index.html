@@ -637,6 +637,7 @@ dialog.how::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
 .loc-soc a,.loc-soc button{font:600 12px var(--body);color:#fff;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:none;cursor:pointer}
 .loc-soc a:hover,.loc-soc button:hover{border-color:var(--lc)}
 .toplinks a.n-locandine{border:1px solid var(--line)}
+.ar-tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(127,127,127,.15);padding:4px;border-radius:12px}.ar-tabs button{flex:1;border:0;background:transparent;padding:9px 10px;border-radius:9px;font:inherit;font-weight:700;cursor:pointer;color:inherit;opacity:.65}.ar-tabs button.on{background:#fff;color:#111;opacity:1;box-shadow:0 1px 4px rgba(0,0,0,.12)}
 </style>
 
 <div id="app"></div>
@@ -673,7 +674,7 @@ const S = { soc:"", atleta:"Martina Rossi", cat:"Under 12", nr:"7", sport:"palla
 /* ---------- components ---------- */
 const HERO={"":{k:"blu",sp:"pallavolo",g:"f"},societa:{k:"blu",sp:"pallavolo",g:"f"},prova:{k:"blu",sp:"pallavolo",g:"f"},aziende:{k:"arancio",sp:"calcio",g:"m"},enti:{k:"verde",sp:"calcio",g:"f"},famiglie:{k:"giallo",sp:"basket",g:"f"},atleti:{k:"giallo",sp:"basket",g:"f"}};
 const heroOn=sp=>!S.picked && S.hero && sp===S.hero.sp;
-const TEAM_OK=new Set(["acrobatica", "aerobica", "aikido", "altro", "arco", "arrampicata", "atletica", "badminton", "baseball", "basket", "baskin", "beach", "biathlon", "biliardo", "bmx", "bocce", "bowling", "boxe", "calcio", "calcio5", "calciobalilla", "canoa", "canottaggio", "cheerleading", "ciclismo", "ciclocross", "crossfit", "curling", "danza", "dragonboat", "equitazione", "flagfootball", "floorball", "footamericano", "freccette", "ginnastica", "golf", "hiphop", "hockey", "hockeyghiaccio", "hockeypista", "jiujitsu", "judo", "karate", "kickboxing", "korfball", "kungfu", "lacrosse", "lotta", "mma", "montagna", "mtb", "muaythai", "nuoto", "nuotoart", "nuotopinnato", "orienteering", "padel", "pallamano", "pallanuoto", "pallavolo", "pattcorsa", "pattinaggio", "pesistica", "pickleball", "podismo", "powerlifting", "ritmica", "rugby", "salvamento", "scherma", "sci", "scifondo", "sittingvolley", "snowboard", "softball", "squash", "sup", "taekwondo", "tennis", "tennistavolo", "tiroasegno", "tiroavolo", "trail", "trampolino", "triathlon", "tuffi", "twirling", "ultimate", "vela", "windsurf"]), PORT_OK=new Set(["altro", "arrampicata", "atletica", "baseball", "basket", "calcio", "ciclismo", "danza", "ginnastica", "hockey", "judo", "karate", "nuoto", "padel", "pallamano", "pallanuoto", "pallavolo", "pattinaggio", "rugby", "scherma", "sci", "tennis"]);
+const TEAM_OK=new Set(["acrobatica", "aerobica", "aikido", "altro", "arco", "arrampicata", "atletica", "automobilismo", "badminton", "baseball", "basket", "baskin", "beach", "biathlon", "biliardo", "bmx", "bocce", "bowling", "boxe", "calcio", "calcio5", "calciobalilla", "canoa", "canottaggio", "cheerleading", "ciclismo", "ciclocross", "crossfit", "curling", "danza", "dragonboat", "equitazione", "flagfootball", "floorball", "footamericano", "freccette", "ginnastica", "golf", "hiphop", "hockey", "hockeyghiaccio", "hockeypista", "jiujitsu", "judo", "karate", "karting", "kickboxing", "korfball", "kungfu", "lacrosse", "lotta", "mma", "montagna", "motocross", "mtb", "muaythai", "nuoto", "nuotoart", "nuotopinnato", "orienteering", "padel", "pallamano", "pallanuoto", "pallavolo", "pattcorsa", "pattinaggio", "pentathlon", "pesistica", "pickleball", "podismo", "powerlifting", "ritmica", "rugby", "salvamento", "scherma", "sci", "scifondo", "sittingvolley", "snowboard", "softball", "squash", "sup", "taekwondo", "tennis", "tennistavolo", "tiroasegno", "tiroavolo", "trail", "trampolino", "triathlon", "tuffi", "twirling", "ultimate", "vela", "windsurf"]), PORT_OK=new Set(["acrobatica", "aerobica", "aikido", "altro", "arco", "arrampicata", "atletica", "automobilismo", "badminton", "baseball", "basket", "baskin", "beach", "biathlon", "biliardo", "bmx", "bocce", "bowling", "boxe", "calcio", "calcio5", "calciobalilla", "canoa", "canottaggio", "cheerleading", "ciclismo", "ciclocross", "crossfit", "curling", "danza", "dragonboat", "equitazione", "flagfootball", "floorball", "footamericano", "freccette", "ginnastica", "golf", "hiphop", "hockey", "hockeyghiaccio", "hockeypista", "jiujitsu", "judo", "karate", "karting", "kickboxing", "korfball", "kungfu", "lacrosse", "lotta", "mma", "montagna", "motocross", "mtb", "muaythai", "nuoto", "nuotoart", "nuotopinnato", "orienteering", "padel", "pallamano", "pallanuoto", "pallavolo", "pattcorsa", "pattinaggio", "pentathlon", "pesistica", "pickleball", "podismo", "powerlifting", "ritmica", "rugby", "salvamento", "scherma", "sci", "scifondo", "sittingvolley", "snowboard", "softball", "squash", "sup", "taekwondo", "tennis", "tennistavolo", "tiroasegno", "tiroavolo", "trail", "trampolino", "triathlon", "tuffi", "twirling", "ultimate", "vela", "windsurf"]);
 const pImg=(sp,g)=>heroOn(sp)?`img/p/hero-${S.hero.k}-${g}.jpg`:`img/p/${PORT_OK.has(sp)?sp:imgKey(sp)}-${g}.jpg`;
 const tImg=(sp,g)=>heroOn(sp)&&g===S.hero.g?`img/t/hero-${S.hero.k}.jpg`:`img/t/${TEAM_OK.has(sp)?sp:imgKey(sp)}-${g}.jpg`;
 const sponsorSrc=()=>S.logo|| (S.sample?SAMPLE_LOGO:null);
@@ -1185,11 +1186,17 @@ function pArea(p){
   <section class="hero">
     <div><span class="kicker">Area riservata</span><h1>La tua squadra,<br><span class="kitc">le tue foto.</span></h1>
       <p class="lead">Presto ogni squadra avrà il suo accesso: le foto della stagione, gli ordini delle famiglie e i download, tutto in un posto solo.</p></div>
-    <div class="panel lockbox"><span class="soon">In arrivo</span>
+    <div class="panel lockbox"><div class="ar-tabs" role="tablist"><button type="button" class="on" data-ar="soc">Società clienti</button><button type="button" data-ar="sws">Team SWS</button></div>
+      <div class="ar-pane" data-pane="soc"><span class="soon">In arrivo</span>
       <div class="field"><label for="ar-cod">Codice squadra</label><input id="ar-cod" disabled placeholder="es. VOLLEYISEO-U12"></div>
       <div class="field"><label for="ar-pw">Password</label><input id="ar-pw" type="password" disabled></div>
       <button class="btn kit" disabled style="opacity:.5;cursor:not-allowed">Accedi</button>
       <p class="note">L'accesso viene attivato dopo la giornata di scatto. Ricevi codice e password dalla tua società.</p></div>
+      <div class="ar-pane" data-pane="sws" hidden><span class="soon">Solo staff</span>
+      <div class="field"><label for="ar-mail">Email aziendale</label><input id="ar-mail" type="email" disabled placeholder="nome@swsagency.it"></div>
+      <div class="field"><label for="ar-pw2">Password</label><input id="ar-pw2" type="password" disabled></div>
+      <button class="btn kit" disabled style="opacity:.5;cursor:not-allowed">Entra nella dashboard</button>
+      <p class="note">Accesso riservato ai commerciali SWS: lead del territorio, stato dei contatti, appuntamenti e risultati per società. La dashboard è in preparazione.</p></div></div>
   </section>
   <section class="sec"><div class="sec-head"><span class="label">Cosa troverai</span><h2>Tutto in un posto</h2></div>
     <div class="feat">${[["Le foto della squadra","Individuali e di gruppo, divise per categoria."],["Gli ordini","Le famiglie scelgono formati e quantità e pagano online."],["I download","Le foto per i canali della società, pronte da usare."]].map(([a,b],i)=>`<div class="bitem"><i>${String(i+1).padStart(2,"0")}</i><b>${a}</b><span>${b}</span></div>`).join("")}</div></section>
@@ -1433,6 +1440,7 @@ document.addEventListener("submit", e=>{
 });
 
 route();
+document.addEventListener("click",e=>{const b=e.target.closest("[data-ar]");if(!b)return;const box=b.closest(".lockbox");box.querySelectorAll("[data-ar]").forEach(x=>x.classList.toggle("on",x===b));box.querySelectorAll(".ar-pane").forEach(x=>x.hidden=x.dataset.pane!==b.dataset.ar);});
 </script>
 
 </body></html>
