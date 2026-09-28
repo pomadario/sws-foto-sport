@@ -225,6 +225,7 @@ const WA="https://wa.me/393296606094";
 const IS_WEB=location.hostname.endsWith("vercel.app")||location.pathname.startsWith("/video");
 const land=id=>IS_WEB?`/${id}/`:`https://sws-foto-sport.vercel.app/${id}/`;
 const VIDEOS={
+ spot:{ready:true,aud:"soc",tag:"Lo spot · 30 secondi",short:"Lo spot: una sola azione, quattro vincitori",len:"30 secondi · con musica",kick:"SWS Foto Sport · lo spot",h1:'Una sola azione.<br><span class="kitc">Quattro vincitori.</span>',lead:"Il fotografo in palestra, la foto per ogni atleta, lo sponsor che la regala, la famiglia che la appende in casa. Tutto in 30 secondi.",start:"Lo spot di SWS Foto Sport",end:"Gratis per le società. Un modo nuovo di comunicare per le aziende."},
  natale:{aud:"az",ready:true,tag:"Aziende · Natale",short:"Il regalo firmato da te",
    kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il regalo lo fa la società.<br><span class="kitc">La firma è tua.</span>',
    lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con uno sponsor, ogni tesserato riceve in regalo la sua foto e quella della squadra, con il logo dell'azienda. Guarda il video: quando il pacco passa di mano, toccalo.",
@@ -245,13 +246,13 @@ const VIDEOS={
  rete:{ready:true,hot:[50,70,4.0,7.5],aud:"enti",tag:"Enti · Sponsor",short:"Uno sponsor, tante società",start:"Un'azienda, tante squadre",end:"Uno sponsor di territorio per più società."},
  festa:{ready:true,hot:[50,45,1.0,5.5],aud:"enti",tag:"Enti · Eventi",short:"La festa di fine stagione",start:"Il giorno della premiazione",end:"Ogni squadra con la sua foto sul podio."},
 };
-let CUR=VIDEOS.natale;
+let CUR=VIDEOS.spot;
 const DEF_SOC={kick:"Nuovo servizio SWS · gratis per le società sportive",h1:'Le foto dei tuoi atleti.<br><span class="kitc">Alla società non costa nulla.</span>',lead:"SWS Agency fotografa tutti gli atleti e tutte le squadre. Senza sponsor le famiglie ordinano solo se vogliono e alla società torna il 15%. Con uno sponsor le foto le ricevono tutti in regalo."};
 const DEF_AZ={kick:"Nuova idea di sponsorizzazione · stagione 2026/27",h1:'Il tuo logo nelle case<br><span class="kitc">di tutte le famiglie.</span>',lead:"SWS Agency fotografa gratis gli atleti delle società sportive del territorio. Con il tuo sostegno ogni tesserato riceve in regalo la sua foto e quella della squadra, con il tuo logo sopra."};
 const DEF_FAM={kick:"Per atleti e famiglie · stagione 2026/27",h1:'Le foto della tua squadra.<br><span class="kitc">Fatte bene.</span>',lead:"Un fotografo professionista in palestra o al campo: la foto ufficiale di ogni atleta e quella della squadra. Per la società è gratis: basta proporlo."};
 const DEF_ENTI={kick:"Per federazioni, comitati ed enti",h1:'Facciamolo insieme.<br><span class="kitc">Per tutte le squadre.</span>',lead:"Foto professionali per ogni squadra e ogni sport del territorio, sempre gratis per le società e senza costi per l'ente."};
 function choicesFor(id,c){
-  const more=`<button class="btn ghost" data-act="go" data-href="${land(id)}" type="button">Scopri come funziona</button>`;
+  const more=`<button class="btn ghost" data-act="go" data-href="${id==="spot"?(IS_WEB?"/":"https://sws-foto-sport.vercel.app/"):land(id)}" type="button">Scopri come funziona</button>`;
   const wa=`<a class="btn kit" href="${WA}" target="_blank" rel="noopener">Ti interessa? Scrivici su WhatsApp</a>`;
   if(c.aud==="az") return `<button class="btn kit" data-act="reveal" type="button">Apri il regalo</button><button class="btn ghost" data-act="logo" type="button">Metti il mio logo</button>${more}<button class="btn ghost" data-act="replay" type="button">Rivedi</button>`;
   return `${wa}${more}<button class="btn ghost" data-act="replay" type="button">Rivedi</button>`;
@@ -261,7 +262,7 @@ function load(id,play){
   document.documentElement.style.setProperty("--kit",({az:"#F26B1D",fam:"#F2B705",enti:"#1FA37A"})[c.aud]||"#2D55F0"); document.documentElement.style.setProperty("--on-kit",c.aud==="fam"?"#141414":"#fff");
   const D=c.aud==="az"?DEF_AZ:c.aud==="fam"?DEF_FAM:c.aud==="enti"?DEF_ENTI:DEF_SOC;
   $("#kick").textContent=c.kick||D.kick; $("#h1").innerHTML=c.h1||D.h1; $("#lead").textContent=c.lead||D.lead;
-  $("#chip").textContent=c.chip||c.tag; $("#pmsg").textContent=c.preview?"Anteprima animata · il video completo arriva a breve":"10 secondi · con audio"; $("#sound").hidden=!!c.preview; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
+  $("#chip").textContent=c.chip||c.tag; $("#pmsg").textContent=c.preview?"Anteprima animata · il video completo arriva a breve":(c.len||"10 secondi · con audio"); $("#sound").hidden=!!c.preview; $("#t-start").textContent=c.start; $("#t-end").textContent=c.end;
   $("#choices").innerHTML=choicesFor(id,c);
   const h=$("#hot"); if(c.hot){h.style.left=c.hot[0]+"%"; h.style.top=c.hot[1]+"%";} h.hidden=true;
   v.src=`video/${id}.mp4`; v.poster=`video/${id}-poster.jpg`;
@@ -273,7 +274,7 @@ function load(id,play){
 function drawBoard(cur){
   $("#board").innerHTML=Object.entries(VIDEOS).map(([id,c])=>`<article class="shot"${c.ready?` data-act="pick" data-id="${id}" style="cursor:pointer"`:""}><img src="img/${id}.jpg" alt="" loading="lazy"><div><span class="tag ${c.ready?"live":"next"}">${id===cur?"In riproduzione":c.preview?"Anteprima":c.ready?"Guarda":"In arrivo"}</span><span class="label">${c.tag}</span><b>${c.short}</b></div></article>`).join("");
 }
-{ const h=(location.hash||"").slice(1), w=window.__VID||""; const st=(h in VIDEOS&&VIDEOS[h].ready)?h:(w in VIDEOS?w:"natale"); load(st,false); }
+{ const h=(location.hash||"").slice(1), w=window.__VID||""; const st=(h in VIDEOS&&VIDEOS[h].ready)?h:(w in VIDEOS?w:"spot"); load(st,false); }
 </script>
 
 </body></html>
